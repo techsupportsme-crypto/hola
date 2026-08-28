@@ -1,0 +1,12 @@
+# robots.txt — Hola Paje Luxury Residences
+# Canonical domain: holapaje.com
+#
+# NOTE: In production this file is served dynamically by the Express server,
+# which returns Disallow: / for all non-canonical hostnames (*.manus.space etc.)
+# and Allow: / only for holapaje.com and www.holapaje.com.
+# This static file is a fallback used only by the Vite dev server.
+
+User-agent: *
+Allow: /
+
+Sitemap: https://holapaje.com/sitemap.xml

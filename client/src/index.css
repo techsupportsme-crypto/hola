@@ -1,0 +1,6530 @@
+/*
+ * HOLA PAJE LUXURY RESIDENCES
+ * Design System: Montserrat Only
+ * Palette: Linen #F2EDE6 · Charcoal #1C1917 · Mid #6B6560
+ *          Teal #3A6B6E · Teal-deep #2A5558 · Gold #B8922A · Gold-muted #9B7C4A
+ * Accent colour used for eyebrows, callouts, reversed elements and key CTAs.
+ * Typography: Montserrat 100–700 — bold contrast between display and body.
+ *             Display: 300–400 weight, larger sizes. Body: 300. Labels: 400–500.
+ */
+
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  /* Breakpoints */
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+  --breakpoint-2xl: 1536px;
+}
+
+:root {
+  --radius: 0;
+
+  /* Hola Paje palette */
+  --hp-linen: #F2EDE6;
+  --hp-linen-dark: #EAE0D4;
+  --hp-charcoal: #1C1917;
+  --hp-charcoal-mid: #2A2522;
+  --hp-mid: #6B6560;
+  --hp-light: #9A9490;
+  /* Teal accent — Indian Ocean shallow water */
+  --hp-teal: #3A6B6E;
+  --hp-teal-deep: #2A5558;
+  --hp-teal-light: #4D8A8E;
+  --hp-teal-muted: rgba(58, 107, 110, 0.15);
+  /* Gold — warm editorial accent, payment plan callouts, eyebrows */
+  --hp-gold: #B8922A;
+  --hp-gold-muted: #9B7C4A;
+  --hp-gold-pale: rgba(184, 146, 42, 0.12);
+  /* Bronze/gold — legacy alias */
+  --hp-bronze: #9B7C4A;
+
+  /* Semantic tokens */
+  --background: var(--hp-linen);
+  --foreground: var(--hp-charcoal);
+  --card: var(--hp-linen);
+  --card-foreground: var(--hp-charcoal);
+  --popover: var(--hp-linen);
+  --popover-foreground: var(--hp-charcoal);
+  --primary: var(--hp-charcoal);
+  --primary-foreground: var(--hp-linen);
+  --secondary: var(--hp-linen-dark);
+  --secondary-foreground: var(--hp-charcoal);
+  --muted: var(--hp-linen-dark);
+  --muted-foreground: var(--hp-mid);
+  --accent: var(--hp-linen-dark);
+  --accent-foreground: var(--hp-charcoal);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: var(--hp-linen);
+  --border: rgba(28, 25, 23, 0.12);
+  --input: rgba(28, 25, 23, 0.12);
+  --ring: rgba(28, 25, 23, 0.3);
+  --sidebar: var(--hp-linen);
+  --sidebar-foreground: var(--hp-charcoal);
+  --sidebar-primary: var(--hp-charcoal);
+  --sidebar-primary-foreground: var(--hp-linen);
+  --sidebar-accent: var(--hp-linen-dark);
+  --sidebar-accent-foreground: var(--hp-charcoal);
+  --sidebar-border: rgba(28, 25, 23, 0.08);
+  --sidebar-ring: rgba(28, 25, 23, 0.2);
+  --chart-1: var(--hp-charcoal);
+  --chart-2: var(--hp-mid);
+  --chart-3: var(--hp-light);
+  --chart-4: var(--hp-linen-dark);
+  --chart-5: var(--hp-linen);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+    box-sizing: border-box;
+  }
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    /* overflow-x must NOT be set on html — doing so makes html the scroll container
+       which breaks IntersectionObserver, scroll event detection, and position:fixed.
+       Horizontal overflow is prevented by overflow-x:clip on body and #root instead. */
+  }
+  body {
+    background: var(--hp-linen);
+    color: var(--hp-charcoal);
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 200;
+    font-size: 15px;
+    line-height: 1.75;
+    /* No overflow set on body — overflow on body/html makes html the scroll container
+       which breaks IntersectionObserver and scroll events. Overflow is handled by
+       .hp-page-wrapper instead. */
+    width: 100%;
+  }
+  #root {
+    width: 100%;
+  }
+  button:not(:disabled),
+  [role="button"]:not([aria-disabled="true"]),
+  [type="button"]:not(:disabled),
+  [type="submit"]:not(:disabled),
+  a[href],
+  select:not(:disabled),
+  input[type="checkbox"]:not(:disabled),
+  input[type="radio"]:not(:disabled) {
+    cursor: pointer;
+  }
+}
+
+@layer components {
+  .container {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+  @media (min-width: 768px) {
+    .container {
+      padding-left: 3rem;
+      padding-right: 3rem;
+    }
+  }
+  @media (min-width: 1280px) {
+    .container {
+      padding-left: 5vw;
+      padding-right: 5vw;
+      max-width: 1440px;
+    }
+  }
+
+  .flex {
+    min-height: 0;
+    min-width: 0;
+  }
+}
+
+   /* SCROLL REVEAL UTILITY
+ */
+
+/* ── WAVE HEADLINE ANIMATION ── */
+/* ── WaveHeadline: line-by-line stagger + gold rule ── */
+.wh-wrap {
+  display: block;
+}
+
+/* Each line starts invisible and 32px below its resting position */
+.wh-line {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 1s cubic-bezier(0.23, 1, 0.32, 1),
+              transform 1s cubic-bezier(0.23, 1, 0.32, 1);
+  /* delay is set inline via JS */
+  will-change: opacity, transform;
+}
+.wh-line--visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Gold rule — draws in from left after the last line settles */
+.wh-rule {
+  display: block;
+  height: 1px;
+  width: 0;
+  background: linear-gradient(
+    to right,
+    rgba(184, 146, 42, 0.9) 0%,
+    rgba(212, 175, 55, 0.6) 60%,
+    rgba(212, 175, 55, 0) 100%
+  );
+  margin-top: 1.5rem;
+  transition: width 0.9s cubic-bezier(0.23, 1, 0.32, 1);
+  /* delay is set inline via JS */
+}
+.wh-rule--visible {
+  width: clamp(80px, 18vw, 200px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wh-line {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .wh-rule {
+    width: clamp(80px, 18vw, 200px);
+    transition: none;
+  }
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.9s cubic-bezier(0.23, 1, 0.32, 1),
+              transform 0.9s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-delay-1 { transition-delay: 0.12s; }
+.reveal-delay-2 { transition-delay: 0.24s; }
+.reveal-delay-3 { transition-delay: 0.36s; }
+.reveal-delay-4 { transition-delay: 0.48s; }
+
+/* Plan card riffle — slides up from below with a slight tilt, each card uses inline animationDelay */
+.hp-plan-card--riffle {
+  transform: translateY(48px) rotate(1.5deg);
+  transition: opacity 0.55s cubic-bezier(0.23, 1, 0.32, 1),
+              transform 0.55s cubic-bezier(0.23, 1, 0.32, 1);
+  transition-delay: var(--riffle-delay, 0ms);
+}
+.hp-plan-card--riffle.visible {
+  opacity: 1;
+  transform: translateY(0) rotate(0deg);
+}
+
+   /* NAVIGATION
+ */
+
+.hp-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  height: 108px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 5vw;
+  transition: background 0.4s ease, backdrop-filter 0.4s ease, height 0.4s ease;
+}
+/* Mobile: reduce nav height and logo so they sit on one row */
+@media (max-width: 1023px) {
+  .hp-nav {
+    height: 72px;
+    padding: 0 1.25rem;
+  }
+  .hp-nav.scrolled {
+    height: 60px;
+  }
+  .hp-nav-logo {
+    height: 3rem !important;
+  }
+  .hp-nav.scrolled .hp-nav-logo {
+    height: 2rem !important;
+  }
+}
+
+.hp-nav.scrolled {
+  background: rgba(28, 25, 23, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  height: 72px;
+}
+
+.hp-nav-wordmark {
+  text-decoration: none;
+  white-space: nowrap;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+}
+
+.hp-nav-logo {
+  height: 4.8rem;
+  width: auto;
+  display: block;
+  transition: opacity 200ms ease, height 0.4s ease;
+}
+
+.hp-nav.scrolled .hp-nav-logo {
+  height: 2.6rem;
+}
+
+.hp-nav-wordmark:hover .hp-nav-logo {
+  opacity: 0.75;
+}
+
+.hp-nav-links {
+  display: none;
+  align-items: center;
+  gap: 2.5rem;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+@media (min-width: 1024px) {
+  .hp-nav-links {
+    display: flex;
+  }
+}
+
+.hp-nav-link {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: 0.95rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(242, 237, 230, 0.96);
+  text-decoration: none;
+  transition: color 0.25s ease;
+  position: relative;
+  white-space: nowrap;
+}
+
+.hp-nav-link:hover {
+  color: rgba(242, 237, 230, 0.95);
+}
+
+/* Lateral villa sub-panel */
+.hp-nav-villas-trigger {
+  position: relative;
+}
+
+/* Villa sub-row — borderless inline expansion below the nav bar */
+.hp-nav-villas-panel {
+  position: fixed;
+  top: 72px; /* matches hp-nav height */
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  padding: 1.1rem 0;
+  background: rgba(28, 25, 23, 0.55);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border-top: 1px solid rgba(242, 237, 230, 0.1);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-4px);
+  transition: opacity 0.22s cubic-bezier(0.23, 1, 0.32, 1),
+              transform 0.22s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+/* Thin rule that appears under the nav when sub-row is open */
+.hp-nav-villas-trigger:hover .hp-nav-villas-panel,
+.hp-nav-villas-trigger:focus-within .hp-nav-villas-panel {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.hp-nav-villa-item {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+  font-size: 0.78rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(242, 237, 230, 0.82);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0 3rem;
+  transition: color 0.18s ease;
+  white-space: nowrap;
+}
+
+.hp-nav-villa-item:hover {
+  color: var(--hp-teal-light);
+}
+
+/* Thin vertical separator between villa names */
+.hp-nav-villa-sep {
+  display: inline-block;
+  width: 1px;
+  height: 0.7em;
+  background: rgba(242, 237, 230, 0.3);
+  flex-shrink: 0;
+}
+
+.hp-nav-cta {
+  display: none;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(242, 237, 230, 0.96);
+  text-decoration: none;
+  border: 1px solid rgba(58, 107, 110, 0.45);
+  padding: 0.55rem 1.4rem;
+  transition: border-color 0.25s ease, color 0.25s ease;
+  white-space: nowrap;
+}
+
+.hp-nav-cta:hover {
+  border-color: var(--hp-teal-light);
+  color: rgba(242, 237, 230, 0.95);
+}
+
+@media (min-width: 768px) {
+  .hp-nav-cta {
+    display: block;
+  }
+}
+
+.hp-nav-hamburger {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  padding: 4px;
+  cursor: pointer;
+}
+
+.hp-nav-hamburger span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  border-radius: 1px;
+  /* Dark charcoal by default — nav is transparent over linen background */
+  background: rgba(28, 25, 23, 0.85);
+  transition: transform 0.3s ease, opacity 0.3s ease, background 0.4s ease;
+}
+/* When nav is scrolled (dark background), switch lines to light */
+.hp-nav.scrolled .hp-nav-hamburger span {
+  background: rgba(242, 237, 230, 0.85);
+}
+
+@media (min-width: 1024px) {
+  .hp-nav-hamburger {
+    display: none;
+  }
+}
+
+/* Mobile overlay */
+.hp-mobile-menu {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: rgba(18, 16, 14, 0.97);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2.5rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease;
+}
+
+.hp-mobile-menu.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.hp-mobile-menu-link {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 100;
+  font-size: clamp(1.4rem, 5vw, 2rem);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(242, 237, 230, 0.75);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.hp-mobile-menu-link:hover {
+  color: rgba(242, 237, 230, 1);
+}
+
+.hp-mobile-close {
+  position: absolute;
+  top: 1.5rem;
+  right: 5vw;
+  background: none;
+  border: none;
+  color: rgba(242, 237, 230, 0.5);
+  font-size: 1.5rem;
+  font-weight: 100;
+  cursor: pointer;
+  padding: 0.5rem;
+  line-height: 1;
+}
+
+   /* HERO — FULL BLEED
+ */
+
+      /* OPENING SEQUENCE — THREE STACKED FULL-HEIGHT PANELS
+ */
+
+/* Page wrapper — simple full-width wrapper.
+   Do NOT add overflow, contain, or clip here — they break getBoundingClientRect
+   and make html the scroll container, breaking scroll events.
+   Horizontal overflow is handled per-section with overflow:hidden on each section. */
+.hp-page-wrapper {
+  width: 100%;
+}
+
+.hp-opening-sequence {
+  display: block;
+}
+
+/* ─── Beach arrival image — full-bleed emotional landing after hero ─── */
+.hp-beach-arrival {
+  width: 100%;
+  /* 16:9 on desktop, taller on mobile for more visual impact */
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  display: block;
+  line-height: 0;
+}
+.hp-beach-arrival-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 55%;
+  display: block;
+}
+@media (max-width: 767px) {
+  .hp-beach-arrival {
+    aspect-ratio: 4 / 3;
+  }
+  .hp-beach-arrival-img {
+    object-position: 65% 40%;
+  }
+}
+
+/* ─── Elegant section divider ─── */
+.hp-section-divider {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  padding: 0 5vw;
+  background: var(--hp-linen);
+  /* Gradient fade above and below so it blends into both sections */
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 30%, black 70%, transparent 100%);
+  mask-image: linear-gradient(to bottom, transparent 0%, black 30%, black 70%, transparent 100%);
+  height: 3.5rem;
+}
+
+.hp-section-divider-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(184, 146, 42, 0.45) 20%,
+    rgba(184, 146, 42, 0.45) 80%,
+    transparent
+  );
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.9s cubic-bezier(0.23, 1, 0.32, 1) 0.15s;
+}
+
+.hp-section-divider.visible .hp-section-divider-line {
+  transform: scaleX(1);
+}
+
+.hp-section-divider-ornament {
+  transition: opacity 0.6s ease 0.5s, transform 0.6s cubic-bezier(0.23, 1, 0.32, 1) 0.5s;
+  opacity: 0;
+  transform: scale(0);
+}
+
+.hp-section-divider.visible .hp-section-divider-ornament {
+  opacity: 0.7;
+  transform: scale(1);
+}
+
+.hp-section-divider-ornament {
+  display: block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--hp-gold);
+  box-shadow: 0 0 0 3px rgba(184, 146, 42, 0.15);
+  flex-shrink: 0;
+}
+
+/* ─── Aerial site overview — full-width section break ─── */
+.hp-aerial-break {
+  width: 100%;
+  aspect-ratio: 16 / 7;
+  overflow: hidden;
+  display: block;
+  line-height: 0;
+}
+.hp-aerial-break-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 40%;
+  display: block;
+  transition: transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+}
+@media (max-width: 767px) {
+  .hp-aerial-break {
+    aspect-ratio: 4 / 3;
+  }
+  .hp-aerial-break-img {
+    object-position: center 35%;
+  }
+}
+
+/* ─── Scroll-pinned crossfade hero ─── */
+.hp-crossfade-outer {
+  position: relative;
+  z-index: 10;
+  background: #0d0c0b; /* dark fallback — prevents linen bleed during crossfade */
+  /* height set inline via JS */
+}
+.hp-crossfade-sticky {
+  position: sticky;
+  top: 0;
+  /* Use 100dvh (dynamic viewport) so it fills the real visible area on mobile,
+     including when the browser chrome is shown/hidden. Fall back to 100svh. */
+  height: 100dvh;
+  min-height: 100svh;
+  overflow: hidden;
+  z-index: 10;
+  background: #0d0c0b; /* dark fallback — prevents linen bleed at bottom edge */
+}
+.hp-crossfade-panel {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  transition: opacity 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+  display: flex;
+  align-items: flex-end;
+  padding: 0 5vw 1.5vh;
+  will-change: opacity;
+}
+@media (max-width: 767px) {
+  .hp-crossfade-panel {
+    padding: 0 6vw 5vh;
+  }
+}
+
+.hp-seq-panel {
+  position: relative;
+  width: 100%;
+  height: 100svh;
+  min-height: 600px;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  padding: 0 5vw 1.5vh;
+}
+
+/* Panel 1 sits lower than panels 2 & 3 — 3-line block needs more bottom clearance */
+.hp-crossfade-panel[data-panel="0"] {
+  padding-bottom: 0.25vh;
+}
+@media (max-width: 767px) {
+  .hp-crossfade-panel[data-panel="0"] {
+    padding-bottom: 1vh;
+  }
+}
+
+
+.hp-seq-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 65%;
+}
+
+/* Panel 2 (villa exterior) — anchor slightly lower to show more building, less sky */
+.hp-crossfade-panel[data-panel="1"] .hp-seq-bg {
+  object-position: center 40%;
+}
+/* Panel 3 (aerial CGI) — anchor to top so the sea/development
+   relationship is always visible; default 65% crops the coastline */
+.hp-crossfade-panel[data-panel="2"] .hp-seq-bg {
+  object-position: center 15%;
+}
+@media (max-width: 767px) {
+  .hp-crossfade-panel[data-panel="2"] .hp-seq-bg {
+    object-position: center 10%;
+  }
+}
+
+
+
+.hp-seq-overlay {
+  position: absolute;
+  inset: 0;
+  /* Top vignette (nav legibility) + bottom vignette — desktop: +5% from base */
+  background:
+    linear-gradient(to bottom, rgba(28, 25, 23, 0.62) 0%, rgba(28, 25, 23, 0.18) 22%, rgba(28, 25, 23, 0.0) 38%),
+    linear-gradient(to top, rgba(28, 25, 23, 0.57) 0%, rgba(28, 25, 23, 0.27) 15%, rgba(28, 25, 23, 0.0) 25%);
+}
+@media (max-width: 767px) {
+  .hp-seq-overlay {
+    /* Mobile: +10% from base */
+    background:
+      linear-gradient(to bottom, rgba(28, 25, 23, 0.62) 0%, rgba(28, 25, 23, 0.18) 22%, rgba(28, 25, 23, 0.0) 38%),
+      linear-gradient(to top, rgba(28, 25, 23, 0.62) 0%, rgba(28, 25, 23, 0.32) 15%, rgba(28, 25, 23, 0.0) 25%);
+  }
+}
+
+.hp-seq-content {
+  position: relative;
+  z-index: 2;
+  max-width: 680px;
+}
+
+/* Light-background panel overlay — subtle dark vignette at bottom only */
+.hp-seq-overlay--light {
+  background: linear-gradient(
+    to top,
+    rgba(255, 248, 235, 0.55) 0%,
+    rgba(255, 248, 235, 0.18) 30%,
+    rgba(255, 248, 235, 0.0) 65%
+  );
+}
+
+.hp-seq-content--headline-only {
+  /* Headline sits at the very bottom of the panel — panel uses align-items: flex-end.
+     Minimal padding so text clears the bottom edge cleanly. */
+  padding-bottom: 0.5vh;
+}
+
+.hp-seq-eyebrow {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: 0.72rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: rgba(184, 146, 42, 0.85);
+  margin-bottom: 1.25rem;
+}
+
+.hp-seq-headline {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+  font-size: clamp(1.8rem, 3.2vw, 3.8rem);
+  line-height: 1.14;
+  color: rgba(242, 237, 230, 0.97);
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.01em;
+}
+
+/* Dark text variant for light-background panels */
+.hp-seq-headline--dark {
+  color: rgba(28, 22, 14, 0.88);
+  text-shadow: 0 1px 8px rgba(255, 248, 235, 0.6);
+}
+
+.hp-seq-body {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+  font-size: clamp(0.78rem, 1.1vw, 0.88rem);
+  line-height: 1.75;
+  color: rgba(242, 237, 230, 0.65);
+  max-width: 480px;
+  margin-bottom: 2rem;
+}
+
+.hp-seq-cta {
+  display: inline-block;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+  font-size: 0.62rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: rgba(242, 237, 230, 0.8);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(242, 237, 230, 0.3);
+  padding-bottom: 0.25rem;
+  transition: color 0.25s ease, border-color 0.25s ease;
+}
+
+.hp-seq-cta:hover {
+  color: rgba(242, 237, 230, 1);
+  border-color: var(--hp-teal-light);
+}
+
+@media (max-width: 767px) {
+  .hp-seq-panel {
+    min-height: 100svh;
+    padding: 0 6vw 5vh;
+  }
+  .hp-seq-headline {
+    font-size: clamp(1.6rem, 7vw, 2.6rem);
+  }
+}
+
+/* Villa beat CSS removed — replaced by hp-opening-sequence */
+
+   /* OVERVIEW — TWO COLUMN EDITORIAL
+ */
+
+/* ── OVERVIEW — full-bleed map banner + editorial copy panel ── */
+.hp-overview {
+  background: var(--hp-charcoal);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* Banner: map image fills full width, headline + stats overlay at bottom */
+.hp-overview-banner {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  flex-shrink: 0;
+  background: #0D1A18; /* ocean fallback colour */
+}
+@media (max-width: 767px) {
+  .hp-overview-banner {
+    /* On mobile: show the full map image naturally, no cropping */
+    aspect-ratio: unset;
+    height: auto;
+  }
+}
+
+/* SVG map fills the banner on desktop, natural width on mobile */
+.hp-overview-banner-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: center 30%;
+}
+@media (max-width: 767px) {
+  .hp-overview-banner-img {
+    position: static;
+    width: 100%;
+    height: auto;
+  }
+}
+
+/* Gradient: light at top, solid dark at bottom — desktop only */
+.hp-overview-banner-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(22, 20, 18, 0.08) 0%,
+    transparent 15%,
+    transparent 32%,
+    rgba(22, 20, 18, 0.6) 55%,
+    rgba(22, 20, 18, 0.97) 80%,
+    rgba(22, 20, 18, 1.0) 100%
+  );
+  pointer-events: none;
+}
+@media (max-width: 767px) {
+  /* On mobile the overlay is not needed — content sits below the map */
+  .hp-overview-banner-overlay {
+    display: none;
+  }
+}
+
+/* Headline + stats: absolute overlay on desktop, static block on mobile */
+.hp-overview-banner-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: clamp(2.5rem, 5vw, 4rem) clamp(1.5rem, 6vw, 6rem) clamp(2rem, 4vw, 3.5rem);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+@media (max-width: 767px) {
+  .hp-overview-banner-content {
+    /* On mobile: pull out of absolute positioning, sit in a dark panel below the map */
+    position: static;
+    background: var(--hp-charcoal);
+    padding: 2rem 1.5rem 2.5rem;
+  }
+}
+
+.hp-overview-headline {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 100;
+  font-size: clamp(1.8rem, 3.5vw, 3.8rem);
+  line-height: 1.12;
+  color: #fff;
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+@media (max-width: 767px) {
+  .hp-overview-headline {
+    font-size: clamp(1.7rem, 7vw, 2.6rem);
+  }
+}
+
+/* Stat row: three numbers with thin vertical dividers */
+.hp-overview-stats {
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+}
+.hp-overview-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+.hp-overview-stat:last-child {
+  /* no extra padding needed — dividers carry the spacing */
+}
+.hp-overview-stat-num {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 100;
+  font-size: clamp(1.8rem, 3.5vw, 3.8rem); /* matches hp-overview-headline */
+  line-height: 1;
+  color: var(--hp-gold);
+  letter-spacing: -0.02em;
+}
+@media (max-width: 767px) {
+  .hp-overview-stat-num {
+    font-size: clamp(1.7rem, 7vw, 2.6rem); /* matches mobile hp-overview-headline */
+  }
+}
+.hp-overview-stat-label {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.55);
+  white-space: nowrap;
+}
+.hp-overview-stat-divider {
+  width: 1px;
+  min-height: 4.5rem;
+  background: rgba(255,255,255,0.22);
+  flex-shrink: 0;
+  align-self: center;
+  margin-left: clamp(1.5rem, 3vw, 3rem);
+  margin-right: clamp(1.5rem, 3vw, 3rem);
+}
+
+/* Brochure download button — used in contact section and nav */
+.hp-brochure-btn {
+  display: inline-block;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: 0.65rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--hp-gold);
+  border: 1px solid var(--hp-gold);
+  padding: 0.65rem 1.5rem;
+  border-radius: 1px;
+  text-decoration: none;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+.hp-brochure-btn:hover {
+  background: var(--hp-gold);
+  color: var(--hp-charcoal);
+}
+
+/* Standalone stats bar — dark band between beach image and body copy */
+.hp-overview-stats-bar {
+  background: var(--hp-charcoal);
+  /* Left padding matches .hp-overview-body so stat figures sit above the copy columns */
+  padding: clamp(2.5rem, 5vw, 4rem) clamp(2.5rem, 7vw, 7rem);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+.hp-overview-headline--bar {
+  flex: 1 1 auto;
+  min-width: 200px;
+}
+@media (max-width: 767px) {
+  .hp-overview-stats-bar {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 2.5rem 1.5rem;
+    gap: 1.75rem;
+  }
+  .hp-overview-headline--bar {
+    min-width: unset;
+  }
+}
+
+/* Body copy panel — linen background, two-column on wide screens */
+.hp-overview-body {
+  background-color: var(--hp-linen);
+  position: relative;
+  /* Equal left/right padding so the grid midpoint = page midpoint */
+  padding: clamp(3.5rem, 5vw, 5.5rem) clamp(2.5rem, 7vw, 7rem) clamp(3rem, 4vw, 4.5rem);
+}
+.hp-overview-body::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('https://d2xsxph8kpxj0f.cloudfront.net/310519663202916011/SDqhtPCWEq4aL9UNBxfK3Z/sandbank-texture-VHp9fEWnLeFaEzZpHTCCGa.webp');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.18;
+  pointer-events: none;
+  z-index: 0;
+}
+.hp-overview-body > * {
+  position: relative;
+  z-index: 1;
+}
+.hp-overview-body-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem clamp(2rem, 5vw, 5rem);
+  width: 100%;
+  align-items: start;
+}
+@media (max-width: 767px) {
+  .hp-overview-body-inner {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+}
+
+.hp-section-label {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: 0.72rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--hp-gold);
+  margin-bottom: 2rem;
+}
+
+.hp-body-text {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+  font-size: 1.0rem;
+  line-height: 1.9;
+  color: rgba(28, 25, 23, 0.72);
+  max-width: 52ch;
+  margin: 0; /* reset browser default <p> margin so grid columns top-align cleanly */
+}
+
+.hp-body-text + .hp-body-text {
+  margin-top: 1.25rem; /* spacing only when stacked in the same column (mobile) */
+}
+
+   /* PLACE — FULL BLEED WITH SPARSE TEXT
+ */
+
+.hp-place {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 80vh;
+}
+
+@media (max-width: 767px) {
+  .hp-place {
+    grid-template-columns: 1fr;
+  }
+}
+
+.hp-place-text {
+  background: var(--hp-linen);
+  padding: 7rem 6vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+@media (max-width: 767px) {
+  .hp-place-text {
+    padding: 3rem 1.5rem 2.5rem;
+    order: 2;
+  }
+}
+
+.hp-place-headline {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+  font-size: clamp(1.5rem, 2.4vw, 2.6rem);
+  line-height: 1.18;
+  color: var(--hp-charcoal);
+  margin-bottom: 2rem;
+}
+.hp-place-body {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+  font-size: 1.0rem;
+  line-height: 1.9;
+  color: rgba(28, 25, 23, 0.72);
+  max-width: 52ch;
+}
+
+.hp-place-body + .hp-place-body {
+  margin-top: 1rem;
+}
+
+.hp-place-image-pair {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+@media (max-width: 767px) {
+  .hp-place-image-pair {
+    order: 1;
+  }
+}
+
+.hp-place-image {
+  position: relative;
+  overflow: hidden;
+  flex: 1;
+}
+
+.hp-place-image--main {
+  flex: 2;
+}
+
+.hp-place-image--spice {
+  flex: 1;
+}
+
+@media (max-width: 767px) {
+  .hp-place-image {
+    min-height: 200px;
+  }
+  .hp-place-image--main {
+    min-height: 280px;
+  }
+}
+
+.hp-place-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.hp-place-image--spice img {
+  object-position: center 30%;
+}
+/* Map image variant — dark background, image fills naturally */
+.hp-place-image--map {
+  background: #0D1A18;
+  flex: 2;
+  overflow: hidden;
+  position: relative;
+}
+.hp-map-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.hp-map-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* Anchor to left so the island is always fully visible; ZANZIBAR text is far right and will clip on narrow panels */
+  object-position: left center;
+  display: block;
+  box-sizing: border-box;
+}
+.hp-map-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+.hp-map-svg-component {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+@media (max-width: 767px) {
+  .hp-place-image--map {
+    min-height: 280px;
+  }
+}
+
+   /* SAFARI / DESTINATION SECTION
+ */
+
+.hp-safari {
+  display: grid;
+  grid-template-columns: 1fr;
+  min-height: unset;
+}
+
+@media (min-width: 768px) {
+  .hp-safari {
+    grid-template-columns: 65fr 35fr;
+    min-height: 80vh;
+  }
+}
+
+.hp-safari-image {
+  position: relative;
+  overflow: hidden;
+  order: 1; /* always in the wide left column */
+}
+
+/* Mobile: image takes natural height based on content */
+.hp-safari-image {
+  height: 56vw;
+  min-height: 240px;
+}
+
+@media (min-width: 768px) {
+  .hp-safari-image {
+    height: auto;
+    min-height: unset;
+  }
+}
+
+.hp-safari-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 60%;
+}
+
+/* Mobile: text gets comfortable padding */
+.hp-safari-text {
+  background: var(--hp-linen);
+  padding: 2.5rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  order: 2;
+}
+
+@media (min-width: 768px) {
+  .hp-safari-text {
+    padding: 6rem 6vw 6rem 5vw;
+  }
+}
+
+.hp-safari-headline {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  line-height: 1.18;
+  color: var(--hp-charcoal);
+  margin-bottom: 2rem;
+}
+.hp-safari-body {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+  font-size: 1.05rem;
+  line-height: 1.9;
+  color: rgba(28, 25, 23, 0.72);
+  max-width: 38ch;
+}
+
+.hp-safari-body + .hp-safari-body {
+  margin-top: 1rem;
+}
+
+.hp-safari-stats {
+  display: flex;
+  gap: 2.5rem;
+  margin-top: 3rem;
+  flex-wrap: wrap;
+}
+
+.hp-safari-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.hp-safari-stat-value {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+  font-size: 1.6rem;
+  color: var(--hp-teal-deep);
+  letter-spacing: 0.02em;
+}
+
+
+.hp-safari-stat-label {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(28, 25, 23, 0.5);
+}
+
+/* ── SAFARI PANEL SCROLL ANIMATIONS ── */
+/* Image column slides in from the left, text column from the right */
+.hp-safari .hp-safari-image {
+  opacity: 0;
+  transform: translateX(-40px);
+  transition: opacity 0.9s cubic-bezier(0.23, 1, 0.32, 1),
+              transform 0.9s cubic-bezier(0.23, 1, 0.32, 1);
+}
+.hp-safari .hp-safari-text {
+  opacity: 0;
+  transform: translateX(40px);
+  transition: opacity 0.9s cubic-bezier(0.23, 1, 0.32, 1) 0.15s,
+              transform 0.9s cubic-bezier(0.23, 1, 0.32, 1) 0.15s;
+}
+/* Reversed panels: image from right, text from left */
+.hp-safari--reverse .hp-safari-image {
+  transform: translateX(40px);
+}
+.hp-safari--reverse .hp-safari-text {
+  transform: translateX(-40px);
+}
+/* Visible state — triggered by useScrollReveal adding .visible to the section */
+.hp-safari.visible .hp-safari-image,
+.hp-safari.visible .hp-safari-text {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Reverse column order for alternating panels — desktop only, image stays in wide slot */
+@media (min-width: 768px) {
+  .hp-safari--reverse {
+    grid-template-columns: 35fr 65fr;
+  }
+  .hp-safari--reverse .hp-safari-text {
+    order: 1; /* text moves to narrow left column */
+  }
+  .hp-safari--reverse .hp-safari-image {
+    order: 2; /* image stays in wide right column */
+  }
+}
+
+/* ── SAFARI PANEL VIDEO (wildebeest / future panels) ── */
+.hp-safari-video-wrap {
+  position: relative;
+  height: 56vw;
+  min-height: 240px;
+}
+
+@media (min-width: 768px) {
+  .hp-safari-video-wrap {
+    height: auto;
+    min-height: unset;
+  }
+}
+
+.hp-safari-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  opacity: 1;
+  transition: opacity 0.7s ease;
+}
+
+.hp-safari-video--fading {
+  opacity: 0;
+  transition: opacity 0.7s ease;
+}
+
+/* Unmute toggle button — bottom-right corner of the video panel */
+.hp-video-unmute-btn {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 50%;
+  background: rgba(28, 25, 23, 0.55);
+  border: 1px solid rgba(242, 237, 230, 0.25);
+  color: rgba(242, 237, 230, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease;
+  z-index: 5;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.hp-video-unmute-btn:hover {
+  background: rgba(184, 146, 42, 0.35);
+  border-color: rgba(184, 146, 42, 0.6);
+  color: #F2EDE6;
+}
+
+@media (max-width: 900px) {
+  .hp-video-unmute-btn {
+    bottom: 0.75rem;
+    right: 0.75rem;
+    width: 2rem;
+    height: 2rem;
+  }
+}
+
+   /* VILLAS — THREE-COLUMN PORTRAIT CARD GRID
+ */
+
+.hp-villa-collection {
+  background: var(--hp-linen);
+  padding: 7rem 5vw 7rem;
+}
+@media (max-width: 900px) {
+  .hp-villa-collection {
+    padding: 3rem 1.5rem 3.5rem;
+  }
+}
+
+.hp-villa-collection-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 2rem;
+  margin-bottom: 2.5rem;
+}
+
+.hp-villa-collection-headline {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+  font-size: clamp(1.5rem, 2.4vw, 2.6rem);
+  line-height: 1.18;
+  color: var(--hp-charcoal);
+}
+
+/* Grid */
+.hp-villa-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+@media (max-width: 900px) {
+  .hp-villa-grid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+  .hp-villa-collection-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+}
+
+/* Card */
+.hp-villa-card {
+  display: flex;
+  flex-direction: column;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  text-align: left;
+  width: 100%;
+}
+
+.hp-villa-card-image {
+  position: relative;
+  width: 100%;
+  /* Portrait ratio ~4:5 */
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+}
+
+.hp-villa-card-image img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+  transition: transform 0.9s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.hp-villa-card:hover .hp-villa-card-image img {
+  transform: scale(1.05);
+}
+
+.hp-villa-card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(28, 25, 23, 0.72) 0%,
+    rgba(28, 25, 23, 0.18) 40%,
+    transparent 70%
+  );
+  transition: background 0.4s ease;
+}
+
+.hp-villa-card:hover .hp-villa-card-overlay {
+  background: linear-gradient(
+    to top,
+    rgba(28, 25, 23, 0.82) 0%,
+    rgba(28, 25, 23, 0.28) 45%,
+    transparent 72%
+  );
+}
+
+/* Villa name bar at bottom of image */
+.hp-villa-card-name-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1.4rem 1.6rem;
+  background: linear-gradient(
+    to top,
+    rgba(42, 85, 88, 0.75) 0%,
+    rgba(42, 85, 88, 0.0) 100%
+  );
+}
+
+.hp-villa-card-name {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 0.82rem;
+  letter-spacing: 0.22em;
+  color: rgba(242, 237, 230, 0.97);
+  display: block;
+  text-transform: uppercase;
+}
+
+/* Specs row below image */
+.hp-villa-card-specs {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  padding: 1.2rem 1.2rem 0;
+  background: var(--hp-linen-dark);
+}
+
+.hp-villa-card-spec-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.hp-villa-card-spec-list li {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+  font-size: 0.82rem;
+  color: var(--hp-charcoal);
+  opacity: 0.78;
+  line-height: 1.5;
+}
+
+.hp-villa-card-spec-list li::before {
+  content: '— ';
+  color: var(--hp-gold-muted);
+  font-size: 0.7rem;
+  font-weight: 400;
+}
+
+.hp-villa-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.85rem 1.2rem;
+  background: var(--hp-linen-dark);
+  border-top: 1px solid rgba(28, 25, 23, 0.1);
+  margin-top: 0;
+}
+
+.hp-villa-card-price {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  color: var(--hp-charcoal);
+  opacity: 0.9;
+}
+
+.hp-villa-card-cta {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: 0.62rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(242, 237, 230, 0.97);
+  background: var(--hp-teal-deep);
+  border: 1px solid var(--hp-teal-deep);
+  padding: 0.55rem 1rem;
+  white-space: nowrap;
+  flex-shrink: 0;
+  cursor: pointer;
+  transition: background 0.25s ease, border-color 0.25s ease, letter-spacing 0.25s ease;
+}
+.hp-villa-card:hover .hp-villa-card-cta {
+  background: var(--hp-teal-light);
+  border-color: var(--hp-teal-light);
+  letter-spacing: 0.3em;
+}
+
+   /* INVESTMENT — DARK FULL-BLEED
+ */
+
+/* ── LIFESTYLE / COMMERCIAL CENTRE ── */
+.hp-lifestyle {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  background: var(--hp-linen);
+  padding: 6rem 5vw;
+  align-items: start;
+  overflow: hidden;
+}
+
+@media (max-width: 900px) {
+  .hp-lifestyle {
+    grid-template-columns: 1fr;
+    padding: 3rem 1.5rem;
+    gap: 2rem;
+  }
+}
+
+.hp-lifestyle-text {
+  padding-right: 2.5rem;
+  padding-top: 1rem;
+}
+
+@media (max-width: 900px) {
+  .hp-lifestyle-text {
+    padding-right: 0;
+  }
+}
+
+.hp-lifestyle-headline {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+  font-size: clamp(1.5rem, 2.4vw, 2.6rem);
+  line-height: 1.18;
+  color: var(--hp-charcoal);
+  margin: 0.75rem 0 1.5rem;
+  letter-spacing: 0.01em;
+}
+
+.hp-lifestyle-body {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+  font-size: 1.0rem;
+  line-height: 1.9;
+  color: var(--hp-charcoal);
+  max-width: 52ch;
+  margin-bottom: 1.25rem;
+}
+
+.hp-lifestyle-amenities {
+  list-style: none;
+  padding: 0;
+  margin: 2rem 0 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem 2rem;
+}
+
+.hp-lifestyle-amenities li {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--hp-charcoal);
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.hp-lifestyle-bullet {
+  width: 1.4rem;
+  height: auto;
+  flex-shrink: 0;
+  opacity: 0.9;
+}
+
+.hp-lifestyle-images {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  overflow: hidden;
+}
+
+.hp-lifestyle-img-main {
+  width: 100%;
+  overflow: hidden;
+}
+
+/* Image itself starts slightly zoomed in and eases to natural size as the
+   wrapper reveal plays — creates a cinematic pull-into-focus effect */
+.hp-lifestyle-img-main img {
+  width: 100%;
+  height: 340px;
+  object-fit: cover;
+  display: block;
+  transform: scale(1.06);
+  transition:
+    transform 1.1s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.hp-lifestyle-img-main.visible img {
+  transform: scale(1);
+}
+
+.hp-lifestyle-img-main:hover img {
+  transform: scale(1.03);
+}
+
+.hp-lifestyle-img-pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+  overflow: hidden;
+}
+
+.hp-lifestyle-img-sub {
+  overflow: hidden;
+}
+
+.hp-lifestyle-img-sub img {
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+  display: block;
+  transform: scale(1.06);
+  transition:
+    transform 1.1s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.hp-lifestyle-img-sub.visible img {
+  transform: scale(1);
+}
+
+.hp-lifestyle-img-sub:hover img {
+  transform: scale(1.03);
+}
+
+/* ── OWNING ── */
+.hp-owning {
+  background: var(--hp-linen-dark);
+  padding: 8rem 5vw 4rem;
+}
+@media (max-width: 767px) {
+  .hp-owning {
+    padding: 5rem 1.5rem;
+  }
+}
+
+/* Header block */
+.hp-owning-header {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-bottom: 5rem;
+  max-width: 60ch;
+}
+@media (max-width: 767px) {
+  .hp-owning-header {
+    gap: 1.25rem;
+    margin-bottom: 3rem;
+  }
+}
+.hp-owning-headline {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+  font-size: clamp(1.5rem, 2.4vw, 2.6rem);
+  line-height: 1.1;
+  color: var(--hp-charcoal);
+  letter-spacing: -0.01em;
+}
+.hp-owning-intro {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+  font-size: 1.0rem;
+  line-height: 1.9;
+  color: rgba(28, 25, 23, 0.72);
+  max-width: 52ch;
+}
+/* Payment plan cards */
+.hp-owning-plans {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 1fr;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+@media (max-width: 1023px) {
+  .hp-owning-plans {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}
+/* ── Mobile: payment plan card ghost number and stat sizes ── */
+@media (max-width: 767px) {
+  /* Ghost number: reduce so it doesn't overlap card content */
+  .hp-plan-card::after {
+    font-size: clamp(3.5rem, 18vw, 5rem);
+    top: 0.2rem;
+    right: 0.8rem;
+    color: rgba(242, 237, 230, 0.05);
+  }
+  /* Plan title: tighter clamp */
+  .hp-plan-title {
+    font-size: clamp(1.4rem, 6vw, 2rem);
+  }
+  /* Curlicue accent: tighter on mobile — smaller image, reduced gap and margins */
+  .hp-plan-card .hp-curlicue-accent {
+    gap: 0.6rem;
+    margin: 0.3rem 0 1rem;
+  }
+  .hp-plan-card .hp-curlicue-accent img {
+    width: 37px !important;
+    height: 16px !important;
+    /* At sm (16px rendered), tips are 3.5px above image centre */
+    margin-top: 3.5px;
+  }
+}
+.hp-plan-card {
+  background: #2A5558;
+  border: none;
+  color: #F2EDE6;
+  padding: 2.8rem 2.2rem 2.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  /* No min-height — let the grid row stretch all cards to the tallest card's height */
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+/* Thin gold top bar */
+.hp-plan-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #B8922A 0%, #D4AC50 60%, #B8922A 100%);
+}
+/* Large ghost number — decorative watermark in top-right */
+.hp-plan-card::after {
+  content: attr(data-plan-num);
+  position: absolute;
+  top: -0.5rem;
+  right: 1rem;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  font-size: clamp(5rem, 10vw, 8rem);
+  line-height: 1;
+  color: rgba(242, 237, 230, 0.06);
+  letter-spacing: -0.04em;
+  pointer-events: none;
+  user-select: none;
+}
+.hp-plan-card:nth-child(1) {
+  background: #2A5558;
+}
+.hp-plan-card:nth-child(2) {
+  background: #234A4D;
+}
+/* Card 3 — topographic light-and-shade: radial highlight top-left, deep shadow bottom-right */
+.hp-plan-card:nth-child(3) {
+  background:
+    radial-gradient(ellipse 80% 60% at 15% 10%, rgba(200,168,80,0.13) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 50% at 85% 90%, rgba(10,28,30,0.55) 0%, transparent 65%),
+    #1C3E41;
+}
+.hp-plan-card-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin-bottom: 0;
+}
+.hp-plan-number {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: 0.82rem;
+  letter-spacing: 0.3em;
+  color: #B8922A;
+  text-transform: uppercase;
+}
+.hp-plan-card:nth-child(3) .hp-plan-number {
+  color: #C9A84C;
+}
+/* BIG plan title — the headline that commands the card */
+.hp-plan-title {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+  font-size: clamp(1.6rem, 2.8vw, 2.4rem);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: #F2EDE6;
+  margin: 0;
+}
+.hp-plan-card:nth-child(3) .hp-plan-title {
+  color: #F2EDE6;
+}
+.hp-plan-rows {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  flex: 1;
+}
+.hp-plan-row {
+  display: grid;
+  grid-template-columns: 3.5rem 1fr;
+  gap: 0.75rem;
+  padding: 0.85rem 0;
+  border-top: 1px solid rgba(242, 237, 230, 0.12);
+  align-items: start;
+}
+.hp-plan-card:nth-child(3) .hp-plan-row {
+  border-top-color: rgba(242, 237, 230, 0.15);
+}
+.hp-plan-pct {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  font-size: 0.95rem;
+  color: #F2EDE6;
+  letter-spacing: 0.02em;
+  padding-top: 0.05rem;
+}
+.hp-plan-card:nth-child(3) .hp-plan-pct {
+  color: #F2EDE6;
+}
+.hp-plan-pct--discount {
+  color: #B8922A;
+  font-weight: 500;
+}
+.hp-plan-desc {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+  font-size: 0.82rem;
+  line-height: 1.75;
+  color: rgba(242, 237, 230, 0.75);
+}
+.hp-plan-card:nth-child(3) .hp-plan-desc {
+  color: rgba(242, 237, 230, 0.85);
+}
+/* Callout footer */
+.hp-plan-callout {
+  margin-top: auto;
+  padding-top: 1.6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  border-top: 1px solid rgba(242, 237, 230, 0.12);
+}
+.hp-plan-callout-label {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(242, 237, 230, 0.55);
+}
+.hp-plan-callout-number {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 100;
+  font-size: clamp(2.8rem, 5vw, 4.5rem);
+  line-height: 1;
+  color: rgba(242, 237, 230, 0.5);
+  letter-spacing: -0.03em;
+}
+.hp-plan-callout-number--gold {
+  color: #B8922A;
+  opacity: 1;
+  font-weight: 200;
+}
+.hp-owning-note {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  color: rgba(28, 25, 23, 0.5);
+  margin-top: 1.5rem;
+  margin-bottom: 0;
+  max-width: 60ch;
+}
+
+/* Launch benefits */
+/* ═══════════════════════════════════════════════════
+   WHY BUY AT LAUNCH — standalone dark section
+   ═══════════════════════════════════════════════════ */
+.hp-launch-section {
+  background: #0D2426;
+  padding: 7rem 5vw 6rem;
+  overflow: hidden;
+  position: relative;
+}
+/* Subtle radial glow in the top-left corner */
+.hp-launch-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 60% 50% at 0% 0%, rgba(184,146,42,0.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+/* Top block: kicker + hero headline */
+.hp-launch-top {
+  max-width: 900px;
+  margin-bottom: 5rem;
+}
+/* Eyebrow — now a proper statement line */
+.hp-launch-kicker {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: 0.82rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--hp-gold);
+  margin-bottom: 1.6rem;
+  opacity: 0.9;
+}
+/* Hero headline — lighter weight, consistent with site */
+.hp-launch-hero {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+  font-size: clamp(1.5rem, 2.4vw, 2.6rem);
+  line-height: 1.18;
+  letter-spacing: -0.01em;
+  text-transform: none;
+  color: #F2EDE6;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+.hp-launch-hero-line {
+  display: block;
+}
+.hp-launch-hero-line--gold {
+  color: var(--hp-gold);
+}
+/* When headline is all-white, override the gold variant */
+.hp-launch-hero .hp-launch-hero-line {
+  color: #F2EDE6;
+}
+/* Three benefit cards */
+.hp-launch-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 4rem;
+  align-items: stretch;
+}
+@media (max-width: 900px) {
+  .hp-launch-cards {
+    grid-template-columns: 1fr;
+  }
+}
+/* Riffle animation for launch cards */
+.hp-launch-card--riffle {
+  opacity: 0;
+  transform: translateY(48px) rotate(1.5deg);
+  transition: opacity 0.55s cubic-bezier(0.23, 1, 0.32, 1),
+              transform 0.55s cubic-bezier(0.23, 1, 0.32, 1);
+  transition-delay: var(--riffle-delay, 0ms);
+}
+.hp-launch-card--riffle.visible {
+  opacity: 1;
+  transform: translateY(0) rotate(0deg);
+}
+.hp-launch-card {
+  background: #2A5558;
+  border: none;
+  border-top: 3px solid rgba(184,146,42,0.45);
+  padding: 2.4rem 2rem 2.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  position: relative;
+  overflow: hidden;
+  transition: border-top-color 250ms ease, background 250ms ease, transform 250ms cubic-bezier(0.23,1,0.32,1);
+}
+/* Left-to-right teal gradient shift — mirrors payment plan card treatment */
+.hp-launch-card:nth-child(1) {
+  background: #2A5558;
+}
+.hp-launch-card:nth-child(2) {
+  background: #234A4D;
+  border-top-color: var(--hp-gold);
+}
+.hp-launch-card:nth-child(3) {
+  background:
+    radial-gradient(ellipse 80% 60% at 15% 10%, rgba(200,168,80,0.13) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 50% at 85% 90%, rgba(10,28,30,0.55) 0%, transparent 65%),
+    #1C3E41;
+}
+/* Ghost number watermark — top right, same treatment as payment plan cards */
+.hp-launch-card::after {
+  content: attr(data-launch-num);
+  position: absolute;
+  top: -0.5rem;
+  right: 1rem;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  font-size: clamp(5rem, 10vw, 8rem);
+  line-height: 1;
+  color: rgba(242, 237, 230, 0.06);
+  letter-spacing: -0.04em;
+  pointer-events: none;
+  user-select: none;
+}
+.hp-launch-card:hover {
+  background: #2F5F62;
+  border-top-color: rgba(184,146,42,0.75);
+  transform: translateY(-3px);
+}
+/* --accent modifier now only controls the gold top border — background is handled by nth-child above */
+.hp-launch-card--accent {
+  border-top: 3px solid var(--hp-gold);
+}
+.hp-launch-card--accent:hover {
+  transform: translateY(-3px);
+}
+/* Card header block */
+.hp-launch-card-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin-bottom: 0;
+}
+/* Eyebrow inside card */
+.hp-launch-card-eyebrow {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: 0.78rem;
+  letter-spacing: 0.3em;
+  color: var(--hp-gold);
+  text-transform: uppercase;
+  display: block;
+}
+/* Card title */
+.hp-launch-card-title {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+  font-size: clamp(1.5rem, 2.4vw, 2.6rem);
+  line-height: 1.18;
+  letter-spacing: -0.01em;
+  color: #F2EDE6;
+  margin: 0;
+  text-transform: none;
+}
+/* Big stat — the key figure on each card */
+.hp-launch-stat {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 100;
+  font-size: clamp(3.2rem, 5.5vw, 5.5rem);
+  line-height: 1;
+  color: var(--hp-gold);
+  letter-spacing: -0.02em;
+  margin-bottom: 1.4rem;
+  flex-shrink: 0;
+}
+/* Card body copy */
+.hp-launch-card-body {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+  font-size: 1rem;
+  line-height: 1.85;
+  color: rgba(242,237,230,0.75);
+  margin: 0;
+  margin-top: auto;
+}
+/* ── Mobile: launch cards ── */
+@media (max-width: 767px) {
+  .hp-launch-section {
+    padding: 5rem 1.5rem 4rem;
+  }
+  .hp-launch-top {
+    margin-bottom: 3rem;
+  }
+  /* Ghost number: smaller so it doesn't bleed over card text */
+  .hp-launch-card::after {
+    font-size: clamp(3.5rem, 18vw, 5rem);
+    top: 0.2rem;
+    right: 0.8rem;
+    color: rgba(242, 237, 230, 0.05);
+  }
+  /* Stat: tighter clamp on narrow screens */
+  .hp-launch-stat {
+    font-size: clamp(2.4rem, 12vw, 3.8rem);
+    margin-bottom: 1rem;
+  }
+  /* Card title: tighter clamp */
+  .hp-launch-card-title {
+    font-size: clamp(1.3rem, 5.5vw, 1.8rem);
+  }
+  /* Curlicue accent: tighter on mobile — smaller image, reduced gap and margins */
+  .hp-launch-card .hp-curlicue-accent {
+    gap: 0.6rem;
+    margin: 0.3rem 0 1rem;
+  }
+  .hp-launch-card .hp-curlicue-accent img {
+    width: 37px !important;
+    height: 16px !important;
+    /* At sm (16px rendered), tips are 3.5px above image centre */
+    margin-top: 3.5px;
+  }
+}
+   /* DEVELOPER
+ */
+
+.hp-developer {
+  background: var(--hp-linen);
+  padding: 0 5vw 7rem;
+  margin-top: 0;
+  overflow: hidden;
+  position: relative;
+}
+
+.hp-developer::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('/manus-storage/zanzibar-door_f9ce03da.png');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  opacity: 0.11;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.hp-developer > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Headline + stats band (replaces teal stacked stats) ── */
+.hp-developer-headline-bar {
+  background: var(--hp-charcoal);
+  padding: clamp(2.5rem, 5vw, 4rem) clamp(2rem, 6vw, 6rem);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  flex-wrap: wrap;
+  margin-left: -5vw;
+  margin-right: -5vw;
+  width: calc(100% + 10vw);
+  max-width: none;
+  margin-bottom: 5rem;
+  margin-top: 0;
+  /* Ensure the dark bar sits flush against whatever is above the developer section */
+  position: relative;
+  z-index: 1;
+}
+.hp-developer-headline-left {
+  flex: 1 1 auto;
+  min-width: 200px;
+}
+.hp-developer-band-eyebrow {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: 0.72rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--hp-gold);
+  margin-bottom: 0.75rem;
+}
+.hp-developer-band-headline {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 100; /* matches overview headline weight */
+  font-size: clamp(1.8rem, 3.5vw, 3.8rem); /* matches hp-overview-headline */
+  line-height: 1.12;
+  color: rgba(242, 237, 230, 0.92);
+  letter-spacing: -0.01em;
+}
+.hp-developer-band-stats {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  flex-shrink: 0;
+}
+.hp-developer-band-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  padding: 0 clamp(1.2rem, 2.5vw, 2.5rem);
+}
+.hp-developer-band-stat:first-child {
+  padding-left: 0;
+}
+.hp-developer-band-stat:last-child {
+  padding-right: 0;
+}
+.hp-developer-band-num {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 100;
+  font-size: clamp(1.8rem, 3.5vw, 3.8rem); /* matches overview stat nums */
+  line-height: 1;
+  color: var(--hp-gold);
+  letter-spacing: -0.02em;
+  display: block;
+}
+.hp-developer-band-label {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  font-size: 0.68rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(242, 237, 230, 0.55);
+  display: block;
+  max-width: 18ch;
+  line-height: 1.55;
+}
+.hp-developer-band-divider {
+  width: 1px;
+  min-height: 5rem;
+  background: rgba(255,255,255,0.22);
+  flex-shrink: 0;
+  align-self: center;
+}
+@media (max-width: 767px) {
+  .hp-developer-headline-bar {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 2.5rem 1.5rem;
+    gap: 1.75rem;
+    margin-left: -1.5rem;
+    margin-right: -1.5rem;
+    width: calc(100% + 3rem);
+  }
+  .hp-developer-headline-left {
+    min-width: unset;
+  }
+  .hp-developer-band-stats {
+    width: 100%;
+    justify-content: flex-start;
+  }
+  .hp-developer-band-stat {
+    padding: 0 clamp(0.8rem, 4vw, 1.5rem);
+  }
+  .hp-developer-band-stat:first-child {
+    padding-left: 0;
+  }
+  .hp-developer-band-num {
+    font-size: clamp(1.7rem, 7vw, 2.6rem); /* matches mobile overview stat nums */
+  }
+  .hp-developer-band-headline {
+    font-size: clamp(1.7rem, 7vw, 2.6rem); /* matches mobile overview headline */
+  }
+}
+/* ── Legacy stat bar (kept for reference, no longer used) ── */
+.hp-developer-stat-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  background: #2A5558;
+  padding: 3.5rem 5vw;
+  margin-left: -5vw;
+  margin-right: -5vw;
+  margin-bottom: 5rem;
+  width: calc(100% + 10vw);
+  max-width: none;
+}
+.hp-developer-stat-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.5rem;
+  padding: 0 2rem;
+}
+.hp-developer-stat-item:first-child {
+  padding-left: 0;
+}
+.hp-developer-stat-divider {
+  width: 1px;
+  height: 3.5rem;
+  background: rgba(242, 237, 230, 0.2);
+  flex-shrink: 0;
+}
+.hp-developer-stat {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 100;
+  font-size: clamp(2.8rem, 5vw, 5rem);
+  color: #B8922A;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  display: block;
+}
+.hp-developer-stat-label {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(242, 237, 230, 0.7);
+  display: block;
+  max-width: 16ch;
+  line-height: 1.5;
+}
+/* ── Body grid ── */
+.hp-developer-body-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem 8vw;
+  align-items: start;
+}
+
+.hp-developer-body {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+  font-size: 1.0rem;
+  line-height: 1.9;
+  color: rgba(28, 25, 23, 0.72);
+  max-width: 52ch;
+}
+
+.hp-developer-body + .hp-developer-body {
+  margin-top: 1.25rem;
+}
+
+.hp-developer-right-headline {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+  font-size: clamp(1.5rem, 2.4vw, 2.6rem);
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--hp-charcoal);
+  margin-bottom: 1.75rem;
+}
+
+.hp-developer-right .hp-developer-body {
+  max-width: 58ch;
+}
+
+.hp-developer-right {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.hp-developer-portfolio-image {
+  flex: 1;
+  overflow: hidden;
+  border-radius: 2px;
+}
+
+.hp-developer-portfolio-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 2px;
+}
+
+.hp-developer-img-caption {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  font-size: 0.7rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(28, 25, 23, 0.48);
+  margin-top: 0.75rem;
+}
+
+.hp-developer-logo-block {
+  padding-top: 0;
+}
+
+.hp-developer-logo-block--left {
+  margin-top: 2.5rem;
+}
+
+.hp-floton-logo {
+  display: block;
+  width: 340px;
+  max-width: 100%;
+  margin-bottom: 1.75rem;
+  opacity: 0.88;
+}
+
+.hp-developer-credentials {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  font-size: 0.7rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(28, 25, 23, 0.48);
+  margin-top: 2rem;
+}
+
+@media (max-width: 1023px) {
+  .hp-developer-stat-bar {
+    flex-wrap: wrap;
+    gap: 0;
+  }
+  .hp-developer-stat-item {
+    flex: 0 0 50%;
+    padding: 2rem 2rem 2rem 0;
+  }
+  .hp-developer-stat-divider {
+    display: none;
+  }
+  .hp-developer-body-grid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .hp-developer {
+    padding: 0 1.5rem 4rem;
+  }
+  .hp-developer-stat-bar {
+    padding: 3rem 1.5rem;
+    margin-left: -1.5rem;
+    margin-right: -1.5rem;
+    width: calc(100% + 3rem);
+    margin-bottom: 3rem;
+  }
+  .hp-developer-stat-item {
+    flex: 0 0 100%;
+    padding: 1.5rem 0;
+  }
+}
+
+   /* INTERSTITIAL IMAGE BREAK
+ */
+
+.hp-interstitial-image {
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+  display: block;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.hp-interstitial-img {
+  display: block;
+  width: 100%;
+  height: clamp(380px, 55vw, 680px);
+  object-fit: cover;
+  object-position: center 40%;
+}
+
+/* Video variant — full-bleed, no black bars, full viewport height */
+/* The wrapper becomes the height anchor; the video is stretched via
+   min-width/min-height so it always covers the container edge-to-edge
+   regardless of the source file's aspect ratio. */
+.hp-interstitial-image:has(.hp-interstitial-video) {
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.hp-interstitial-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  /* Cover the container — expands whichever axis is too small */
+  min-width: 100%;
+  min-height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  display: block;
+}
+
+@media (max-width: 767px) {
+  .hp-interstitial-image:has(.hp-interstitial-video) {
+    height: clamp(380px, 80vw, 560px);
+  }
+}
+
+   /* ENQUIRE / CONTACT
+ */
+
+.hp-contact {
+  background: var(--hp-linen-dark);
+  padding: 8rem 5vw 3rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem 8vw;
+  align-items: start;
+}
+/* Headline aligns with first form field — no eyebrow above it */
+.hp-contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  padding-top: 0;
+}
+
+.hp-contact-image {
+  width: 100%;
+  margin: 2rem 0 2rem;
+  overflow: hidden;
+  border-radius: 2px;
+}
+
+.hp-contact-image img {
+  width: 100%;
+  height: 420px;
+  object-fit: cover;
+  object-position: center 35%;
+  display: block;
+}
+
+.hp-contact-form-col {
+  /* no extra wrapper needed — inherits grid cell padding */
+}
+
+@media (max-width: 1023px) {
+  .hp-contact {
+    grid-template-columns: 1fr;
+    padding: 5rem 1.5rem;
+    gap: 3rem;
+  }
+  .hp-contact-image img {
+    height: 220px;
+  }
+}
+
+.hp-contact-left-headline {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+  font-size: clamp(1.5rem, 2.4vw, 2.6rem);
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--hp-charcoal);
+  margin-top: 0;
+  margin-bottom: 2rem;
+}
+
+/* Dual CTA button row in contact column */
+.hp-contact-dual-btns {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+.hp-brochure-btn--half,
+.hp-btn--half {
+  flex: 1;
+  min-width: 0;
+  white-space: nowrap;
+  font-size: 0.68rem;
+}
+/* Full-width brochure button below the form's Send Enquiry */
+.hp-brochure-btn--form-col {
+  width: 100%;
+  margin-top: 1.5rem;
+  font-size: 0.72rem;
+}
+.hp-btn--charcoal {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--hp-linen);
+  background: var(--hp-charcoal);
+  border: 1px solid var(--hp-charcoal);
+  padding: 0.85rem 1.5rem;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+  border-radius: 0;
+}
+.hp-btn--charcoal:hover {
+  background: transparent;
+  color: var(--hp-charcoal);
+}
+@media (max-width: 480px) {
+  .hp-contact-dual-btns {
+    flex-direction: column;
+  }
+}
+
+/* WhatsApp + Email contact detail rows */
+.hp-contact-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin: 1.5rem 0 0;
+  border-top: 1px solid rgba(28, 25, 23, 0.12);
+}
+.hp-contact-detail-item {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 0.9rem 0;
+  border-bottom: 1px solid rgba(28, 25, 23, 0.12);
+  text-decoration: none;
+  color: var(--hp-charcoal);
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+  font-size: 0.88rem;
+  letter-spacing: 0.03em;
+  transition: color 0.2s ease;
+}
+.hp-contact-detail-item:hover {
+  color: var(--hp-gold, #b8965a);
+}
+.hp-contact-detail-icon {
+  flex-shrink: 0;
+  opacity: 0.6;
+  transition: opacity 0.2s ease;
+}
+.hp-contact-detail-item:hover .hp-contact-detail-icon {
+  opacity: 1;
+}
+
+.hp-contact-ways {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border-top: 1px solid rgba(28, 25, 23, 0.1);
+}
+
+.hp-contact-way {
+  padding: 0.85rem 0;
+  border-bottom: 1px solid rgba(28, 25, 23, 0.1);
+  display: flex;
+  align-items: baseline;
+  gap: 1.5rem;
+}
+
+.hp-contact-way-label {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(28, 25, 23, 0.55);
+  flex-shrink: 0;
+  width: 6rem;
+}
+
+.hp-contact-way-text {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 200;
+  font-size: 0.88rem;
+  line-height: 1.7;
+  color: rgba(28, 25, 23, 0.65);
+}
+
+.hp-contact-way-text a {
+  color: var(--hp-charcoal);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(58, 107, 110, 0.5);
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.hp-contact-way-text a:hover {
+  color: var(--hp-teal-light);
+  border-color: var(--hp-teal-light);
+}
+
+/* Form */
+.hp-form-headline {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  font-size: 0.78rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--hp-charcoal);
+  margin-bottom: 0.75rem;
+}
+
+.hp-form-precopy {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+  font-size: 0.82rem;
+  color: rgba(28, 25, 23, 0.62);
+  margin-bottom: 2.5rem;
+  line-height: 1.6;
+}
+
+.hp-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.hp-form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  max-width: 560px;
+}
+
+@media (max-width: 480px) {
+  .hp-form-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+.hp-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  max-width: 560px;
+}
+
+.hp-field-label {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: 0.72rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba(28, 25, 23, 0.85);
+}
+
+.hp-field-input,
+.hp-field-select,
+.hp-field-textarea {
+  background: transparent;
+  border: none;
+  border-bottom: 1.5px solid rgba(28, 25, 23, 0.28);
+  color: var(--hp-charcoal);
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+  font-size: 0.92rem;
+  padding: 0.75rem 0;
+  outline: none;
+  transition: border-color 0.25s ease;
+  width: 100%;
+  -webkit-appearance: none;
+  border-radius: 0;
+}
+
+.hp-field-input:focus,
+.hp-field-select:focus,
+.hp-field-textarea:focus {
+  border-bottom-color: var(--hp-teal);
+}
+
+.hp-field-input::placeholder,
+.hp-field-textarea::placeholder {
+  color: rgba(28, 25, 23, 0.45);
+}
+
+.hp-field-select {
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='rgba(28,25,23,0.4)' stroke-width='1.2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.25rem center;
+  padding-right: 1.5rem;
+  cursor: pointer;
+}
+
+.hp-field-select option {
+  background: var(--hp-linen);
+  color: var(--hp-charcoal);
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
+}
+
+.hp-field-textarea {
+  resize: none;
+  min-height: 90px;
+}
+
+/* ── Custom select (replaces native <select> for Villa of interest) ── */
+.hp-custom-select {
+  position: relative;
+  max-width: 560px;
+}
+
+.hp-custom-select-trigger {
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(28, 25, 23, 0.18);
+  color: var(--hp-charcoal);
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+  font-size: 0.85rem;
+  letter-spacing: 0.02em;
+  padding: 0.65rem 1.5rem 0.65rem 0;
+  text-align: left;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: border-color 0.25s ease;
+  outline: none;
+}
+
+.hp-custom-select-trigger:focus-visible {
+  border-bottom-color: var(--hp-teal);
+}
+
+.hp-custom-select-trigger--open {
+  border-bottom-color: var(--hp-teal);
+}
+
+.hp-custom-select-chevron {
+  display: inline-block;
+  width: 10px;
+  height: 6px;
+  flex-shrink: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='rgba(28,25,23,0.4)' stroke-width='1.2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+  transition: transform 0.2s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.hp-custom-select-trigger--open .hp-custom-select-chevron {
+  transform: rotate(180deg);
+}
+
+.hp-custom-select-list {
+  position: absolute;
+  top: calc(100% + 2px);
+  left: 0;
+  right: 0;
+  background: var(--hp-linen);
+  border: 1px solid rgba(28, 25, 23, 0.1);
+  border-top: none;
+  list-style: none;
+  margin: 0;
+  padding: 0.25rem 0;
+  z-index: 50;
+  box-shadow: 0 8px 24px rgba(28, 25, 23, 0.08);
+  animation: hp-fade-up 0.18s cubic-bezier(0.23, 1, 0.32, 1) both;
+}
+
+.hp-custom-select-option {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
+  color: rgba(28, 25, 23, 0.72);
+  padding: 0.65rem 1rem;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.hp-custom-select-option:hover {
+  background: rgba(77, 138, 142, 0.08);
+  color: var(--hp-teal-deep);
+}
+
+.hp-custom-select-option--selected {
+  color: var(--hp-teal);
+  font-weight: 400;
+}
+
+.hp-consent {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+  margin-top: 0.5rem;
+}
+
+/* Custom styled checkbox — toned down to match linen palette */
+.hp-consent-checkbox {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 13px;
+  height: 13px;
+  flex-shrink: 0;
+  margin-top: 3px;
+  border: 1px solid rgba(28, 25, 23, 0.28);
+  background: transparent;
+  cursor: pointer;
+  position: relative;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.hp-consent-checkbox:checked {
+  background: rgba(58, 107, 110, 0.18);
+  border-color: rgba(58, 107, 110, 0.55);
+}
+
+.hp-consent-checkbox:checked::after {
+  content: '';
+  position: absolute;
+  top: 1px;
+  left: 3px;
+  width: 4px;
+  height: 7px;
+  border-right: 1.2px solid rgba(58, 107, 110, 0.85);
+  border-bottom: 1.2px solid rgba(58, 107, 110, 0.85);
+  transform: rotate(45deg);
+}
+
+.hp-consent-checkbox:focus-visible {
+  outline: 1px solid rgba(58, 107, 110, 0.5);
+  outline-offset: 2px;
+}
+
+.hp-consent-label {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+  font-size: 0.78rem;
+  line-height: 1.7;
+  color: rgba(28, 25, 23, 0.58);
+}
+
+.hp-consent-label a {
+  color: rgba(58, 107, 110, 0.85);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(58, 107, 110, 0.3);
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.hp-consent-label a:hover {
+  color: var(--hp-teal-light);
+  border-color: var(--hp-teal);
+}
+
+.hp-submit-btn {
+  width: 100%;
+  max-width: 560px;
+  background: var(--hp-teal-deep);
+  border: 1.5px solid var(--hp-teal-deep);
+  color: rgba(242, 237, 230, 0.95);
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: 0.72rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  padding: 1.35rem 2rem;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition:
+    background 0.3s cubic-bezier(0.23, 1, 0.32, 1),
+    border-color 0.3s cubic-bezier(0.23, 1, 0.32, 1),
+    color 0.3s cubic-bezier(0.23, 1, 0.32, 1),
+    letter-spacing 0.3s cubic-bezier(0.23, 1, 0.32, 1),
+    transform 0.15s cubic-bezier(0.23, 1, 0.32, 1);
+  margin-top: 1.25rem;
+}
+
+.hp-submit-btn::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--hp-teal-light);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.35s cubic-bezier(0.23, 1, 0.32, 1);
+  z-index: 0;
+}
+
+.hp-submit-btn span {
+  position: relative;
+  z-index: 1;
+}
+
+.hp-submit-btn:hover:not(:disabled)::after {
+  transform: scaleX(1);
+}
+.hp-submit-btn:hover:not(:disabled) {
+  border-color: var(--hp-teal-light);
+  color: rgba(242, 237, 230, 0.97);
+  letter-spacing: 0.38em;
+}
+
+.hp-submit-btn:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.hp-submit-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.hp-form-success {
+  padding: 3rem 0;
+  animation: hp-fade-up 0.5s cubic-bezier(0.23, 1, 0.32, 1) both;
+}
+
+@keyframes hp-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hp-form-success-rule {
+  width: 2rem;
+  height: 1px;
+  background: rgba(58, 107, 110, 0.5);
+  margin-bottom: 2rem;
+}
+
+.hp-form-success-title {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+  font-size: clamp(1.6rem, 2.6vw, 2.4rem);
+  line-height: 1.2;
+  color: var(--hp-charcoal);
+  margin-bottom: 1.25rem;
+  letter-spacing: -0.01em;
+}
+
+.hp-form-success-body {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+  font-size: 1rem;
+  color: rgba(28, 25, 23, 0.62);
+  line-height: 1.8;
+  max-width: 38ch;
+}
+
+   /* FOOTER
+ */
+
+.hp-footer {
+  background: var(--hp-charcoal);
+  border-top: 1px solid rgba(242, 237, 230, 0.05);
+  padding: 3.5rem 5vw 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.hp-footer-wordmark {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+}
+
+.hp-footer-logo {
+  /* Footer is linen background — use black logo */
+  height: 2.8rem;
+  width: auto;
+  display: block;
+  opacity: 0.55;
+  transition: opacity 200ms ease;
+}
+
+.hp-footer-wordmark:hover .hp-footer-logo {
+  opacity: 0.8;
+}
+
+/* Footer brand block — Floton Africa logo, centred, pride of place */
+.hp-footer-brand {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2.5rem;
+}
+
+.hp-footer-floton {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  opacity: 0.70;
+  transition: opacity 0.2s ease;
+}
+
+.hp-footer-floton:hover {
+  opacity: 0.95;
+}
+
+.hp-footer-floton-logo {
+  height: 3.2rem;
+  width: auto;
+  display: block;
+}
+
+/* Social icons — centred row */
+.hp-footer-social {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.hp-footer-social-link {
+  color: rgba(242, 237, 230, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  width: 2.4rem;
+  height: 2.4rem;
+  border-radius: 50%;
+  border: 1px solid rgba(242, 237, 230, 0.12);
+  transition:
+    color 240ms cubic-bezier(0.23, 1, 0.32, 1),
+    border-color 240ms cubic-bezier(0.23, 1, 0.32, 1),
+    background 240ms cubic-bezier(0.23, 1, 0.32, 1),
+    transform 240ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.hp-footer-social-link:hover {
+  color: var(--hp-gold);
+  border-color: rgba(184, 146, 42, 0.45);
+  background: rgba(184, 146, 42, 0.08);
+  transform: translateY(-3px);
+}
+
+.hp-footer-social-link:active {
+  transform: translateY(-1px) scale(0.96);
+}
+
+/* Privacy Policy nav — centred */
+.hp-footer-links {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.hp-footer-link {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(242, 237, 230, 0.40);
+  text-decoration: none;
+  position: relative;
+  padding-bottom: 2px;
+  transition: color 240ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+/* Underline grows from left on hover */
+.hp-footer-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--hp-gold);
+  transition: width 280ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.hp-footer-link:hover {
+  color: rgba(242, 237, 230, 0.85);
+}
+
+.hp-footer-link:hover::after {
+  width: 100%;
+}
+
+.hp-footer-divider {
+  width: 100%;
+  height: 1px;
+  background: rgba(242, 237, 230, 0.08);
+  margin-bottom: 2rem;
+}
+
+/* Bottom row — copyright left, Machete centred, spacer right */
+.hp-footer-bottom {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 1rem;
+}
+
+.hp-footer-machete {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.35;
+  transition: opacity 0.2s ease;
+}
+
+.hp-footer-machete:hover {
+  opacity: 0.60;
+}
+
+.hp-footer-machete-img {
+  height: 1.2rem;
+  width: auto;
+  max-width: 220px;
+  display: block;
+  opacity: 0.50;
+}
+
+.hp-footer-bottom-spacer {
+  /* Right spacer to balance the copyright on the left */
+}
+
+.hp-footer-credit {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  color: rgba(242, 237, 230, 0.45);
+}
+
+.hp-cgi-disclaimer-text {
+  background: var(--hp-linen-dark);
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+  font-size: 0.78rem;
+  letter-spacing: 0;
+  color: rgba(28, 25, 23, 0.58);
+  text-align: center;
+  padding: 0 5vw 1.5rem;
+  margin: 0;
+  line-height: 1.7;
+}
+
+   /* WHATSAPP BUTTON
+ */
+
+.hp-whatsapp {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 150;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: var(--hp-charcoal);
+  border: 1px solid rgba(58, 107, 110, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 20px rgba(28, 25, 23, 0.45);
+  transition: transform 0.2s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.2s ease, border-color 0.2s ease;
+  text-decoration: none;
+}
+
+.hp-whatsapp:hover {
+  transform: scale(1.08);
+  border-color: var(--hp-teal);
+  box-shadow: 0 6px 28px rgba(58, 107, 110, 0.35);
+}
+
+.hp-whatsapp:active {
+  transform: scale(0.96);
+}
+
+   /* VILLA MODAL
+ */
+
+.hp-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  background: rgba(28, 25, 23, 0.6);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+.hp-modal-backdrop.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.hp-modal {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 301;
+  width: 100vw;
+  background: var(--hp-linen);
+  display: flex;
+  flex-direction: row;
+  transform: translateX(100%);
+  transition: transform 0.55s cubic-bezier(0.23, 1, 0.32, 1);
+  overflow: hidden;
+}
+
+.hp-modal.open {
+  transform: translateX(0);
+}
+
+/* Left rail — deep teal reversed-out panel */
+.hp-modal-rail {
+  width: 360px;
+  flex-shrink: 0;
+  /* Option B: rail is a flex column; upper content scrolls, controls are pinned */
+  display: flex;
+  flex-direction: column;
+  overflow: hidden; /* outer rail does NOT scroll */
+  background: var(--hp-teal-deep);
+  border-right: none;
+  scrollbar-width: none;
+  position: relative;
+  padding: 0;
+}
+
+.hp-modal-rail::-webkit-scrollbar { display: none; }
+
+/* Scrollable upper zone inside the rail */
+.hp-modal-rail-scroll {
+  flex: 1 1 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: none;
+  /* Top padding: 5rem clears the fixed nav bar (~64px) + comfortable breathing room */
+  padding: 5rem 3rem 1.5rem;
+  min-height: 0;
+}
+.hp-modal-rail-scroll::-webkit-scrollbar { display: none; }
+
+/* Right stage */
+.hp-modal-stage {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+}
+
+.hp-modal-close {
+  position: fixed;
+  top: calc(108px + 0.75rem);
+  right: 1.5rem;
+  z-index: 310;
+  background: rgba(28, 28, 24, 0.55);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border: 1px solid rgba(242, 237, 230, 0.18);
+  border-radius: 50%;
+  color: rgba(242, 237, 230, 0.85);
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+  font-size: 1rem;
+  cursor: pointer;
+  width: 2.4rem;
+  height: 2.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+.hp-modal-close:hover {
+  background: rgba(201, 169, 110, 0.25);
+  border-color: rgba(201, 169, 110, 0.55);
+  color: var(--hp-gold);
+}
+@media (max-width: 1023px) {
+  .hp-modal-close {
+    top: calc(72px + 0.75rem);
+    right: 1rem;
+  }
+}
+
+.hp-modal-villa-label {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 0.88rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--hp-gold);
+  margin-bottom: 0.5rem; /* tightened */
+}
+
+.hp-modal-villa-name {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+  font-size: clamp(1.4rem, 2.2vw, 1.9rem); /* reduced per brief */
+  color: rgba(242, 237, 230, 0.97);
+  line-height: 1.15;
+  margin-bottom: 1rem; /* tightened */
+}
+
+.hp-modal-statement {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+  font-size: 0.88rem;
+  line-height: 1.7; /* slightly tighter line-height */
+  color: rgba(242, 237, 230, 0.72);
+  margin-bottom: 1.25rem; /* tightened */
+}
+
+.hp-modal-area-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1.25rem; /* tightened */
+}
+
+.hp-modal-area-table tr {
+  border-bottom: 1px solid rgba(242, 237, 230, 0.12);
+}
+
+.hp-modal-area-table tr:first-child {
+  border-top: 1px solid rgba(242, 237, 230, 0.12);
+}
+
+.hp-modal-area-table td {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+  font-size: 0.88rem; /* raised to match body copy */
+  color: rgba(242, 237, 230, 0.65);
+  padding: 0.55rem 0; /* slightly tighter row height */
+  line-height: 1.4;
+}
+
+.hp-modal-area-table td:last-child {
+  text-align: right;
+  color: rgba(242, 237, 230, 0.82);
+}
+
+.hp-modal-area-table tr.total td {
+  color: rgba(242, 237, 230, 0.97);
+  font-weight: 500;
+  font-size: 0.88rem; /* match body copy */
+  border-bottom: none;
+  padding-top: 0.7rem;
+}
+
+.hp-modal-register-btn {
+  width: 100%;
+  background: var(--hp-teal-light);
+  border: 1px solid var(--hp-teal-light);
+  color: rgba(242, 237, 230, 0.97);
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: 0.6rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  /* Match the height of the tab buttons above */
+  padding: 0.65rem 0.5rem;
+  cursor: pointer;
+  transition: background 0.25s ease, border-color 0.25s ease, color 0.25s ease, letter-spacing 0.25s ease;
+  position: relative;
+  flex-shrink: 0;
+  /* No auto margins — sits directly below the nav/tab group */
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.hp-modal-register-btn:hover {
+  background: var(--hp-teal-light);
+  border-color: var(--hp-teal-light);
+  color: rgba(242, 237, 230, 1);
+  letter-spacing: 0.34em;
+}
+
+/* ── BOTTOM CONTROLS ZONE — contains toggles/nav OR enquiry form ── */
+/* Stage controls: mobile-only — hidden on desktop */
+.hp-modal-stage-controls {
+  display: none;
+}
+
+.hp-modal-rail-controls {
+  /* Pinned footer — always visible regardless of content height */
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  /* Uniform gap throughout: same rhythm as nav-row → tab-bar (0.5rem via margin-bottom) */
+  gap: 0.5rem;
+  /* Closer to baseline: 1rem top breathing room, 1.25rem bottom breathing room */
+  padding: 0.75rem 3rem 1.25rem;
+  background: var(--hp-teal-deep);
+  border-top: 1px solid rgba(242, 237, 230, 0.08);
+}
+/* Nav group (nav row + tab bar) — fades out when form opens */
+.hp-modal-rail-nav-group {
+  display: flex;
+  flex-direction: column;
+  transition: opacity 0.22s ease, max-height 0.32s cubic-bezier(0.23, 1, 0.32, 1);
+  max-height: 260px;
+  overflow: hidden;
+}
+.hp-modal-rail-nav-group.hidden {
+  opacity: 0;
+  max-height: 0;
+  pointer-events: none;
+}
+/* Compact enquiry form — slides up in place of controls */
+.hp-modal-enquiry-panel {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transition: max-height 0.38s cubic-bezier(0.23, 1, 0.32, 1),
+              opacity 0.28s cubic-bezier(0.23, 1, 0.32, 1);
+  pointer-events: none;
+}
+.hp-modal-enquiry-panel.open {
+  max-height: 400px;
+  opacity: 1;
+  pointer-events: auto;
+}
+/* Register Interest button — hidden when form open */
+.hp-modal-register-btn.hidden {
+  display: none;
+}
+/* Back link */
+.hp-modal-enquiry-back {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  font-size: 0.62rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(242, 237, 230, 0.55);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  margin-bottom: 0.75rem;
+  transition: color 0.2s ease;
+  text-align: left;
+}
+.hp-modal-enquiry-back:hover {
+  color: var(--hp-gold);
+}
+/* Form layout */
+.hp-modal-enquiry-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+.hp-modal-enquiry-row {
+  display: flex;
+  gap: 0.75rem;
+}
+.hp-modal-enquiry-row .hp-modal-enquiry-field {
+  flex: 1;
+}
+.hp-modal-enquiry-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+.hp-modal-enquiry-field label {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: 0.58rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(242, 237, 230, 0.5);
+}
+.hp-modal-enquiry-field input {
+  background: rgba(242, 237, 230, 0.07);
+  border: 1px solid rgba(242, 237, 230, 0.2);
+  color: rgba(242, 237, 230, 0.92);
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+  font-size: 0.78rem;
+  padding: 0.5rem 0.65rem;
+  outline: none;
+  transition: border-color 0.2s ease, background 0.2s ease;
+  width: 100%;
+  box-sizing: border-box;
+  border-radius: 0;
+  -webkit-appearance: none;
+}
+.hp-modal-enquiry-field input::placeholder {
+  color: rgba(242, 237, 230, 0.25);
+}
+.hp-modal-enquiry-field input:focus {
+  border-color: var(--hp-teal-light);
+  background: rgba(242, 237, 230, 0.11);
+}
+/* Confirmation state */
+.hp-modal-enquiry-thanks {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.hp-modal-enquiry-thanks-msg {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+  font-size: 0.88rem;
+  color: rgba(242, 237, 230, 0.8);
+  line-height: 1.65;
+  margin-bottom: 2rem;
+  margin-top: 0.5rem;
+}
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .hp-modal-enquiry-row {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+}
+
+/* Gallery stage — Rail tab toggles: VIDEO | IMAGES | PLANS in the teal left rail */
+.hp-modal-rail-tabs {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0;
+  margin-bottom: 0.75rem;
+}
+.hp-modal-rail-tab {
+  flex: 1;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  font-size: 0.6rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(242, 237, 230, 0.55);
+  background: rgba(242, 237, 230, 0.08);
+  border: 1px solid rgba(242, 237, 230, 0.18);
+  cursor: pointer;
+  padding: 0.65rem 0.5rem;
+  text-align: center;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+.hp-modal-rail-tab.active {
+  color: rgba(242, 237, 230, 0.97);
+  background: rgba(242, 237, 230, 0.18);
+  border-color: rgba(242, 237, 230, 0.45);
+}
+.hp-modal-rail-tab:hover:not(.active) {
+  color: rgba(242, 237, 230, 0.8);
+  background: rgba(242, 237, 230, 0.12);
+}
+/* Rail nav row — ← counter → — sits ABOVE the tab bar */
+.hp-modal-rail-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+.hp-modal-rail-arrow {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 200;
+  font-size: 1rem;
+  color: rgba(242, 237, 230, 0.65);
+  background: rgba(242, 237, 230, 0.08);
+  border: 1px solid rgba(242, 237, 230, 0.18);
+  width: 2.4rem;
+  height: 2.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+.hp-modal-rail-arrow:hover {
+  background: rgba(77, 138, 142, 0.35);
+  color: rgba(242, 237, 230, 0.97);
+  border-color: var(--hp-teal-light);
+}
+.hp-modal-rail-counter {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+  font-size: 0.6rem;
+  letter-spacing: 0.18em;
+  color: rgba(242, 237, 230, 0.45);
+  white-space: nowrap;
+  flex: 1;
+  text-align: center;
+}
+/* Gallery slider — fills the stage, no bottom bar */
+.hp-modal-gallery-slider {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+  background: #1c1917;
+  display: flex;
+  flex-direction: column;
+}
+.hp-modal-gallery-frame {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+}
+.hp-modal-gallery-slide {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  opacity: 0;
+  transform: translateX(60px);
+  transition: opacity 0.32s cubic-bezier(0.23, 1, 0.32, 1), transform 0.32s cubic-bezier(0.23, 1, 0.32, 1);
+  pointer-events: none;
+}
+.hp-modal-gallery-slide.active {
+  opacity: 1;
+  transform: translateX(0);
+  pointer-events: auto;
+}
+.hp-modal-gallery-slide.next {
+  opacity: 0;
+  transform: translateX(60px);
+}
+.hp-modal-gallery-slide.prev {
+  opacity: 0;
+  transform: translateX(-60px);
+}
+/* Minimal image-overlay breadcrumb dots — white on photos, dark on plans */
+.hp-modal-overlay-dots {
+  position: absolute;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 0.4rem;
+  align-items: center;
+  z-index: 5;
+  pointer-events: none;
+}
+.hp-modal-overlay-dot {
+  width: 5px;
+  height: 5px;
+  background: rgba(242, 237, 230, 0.38);
+  display: block;
+  transition: background 0.2s ease, transform 0.2s ease;
+  flex-shrink: 0;
+}
+.hp-modal-overlay-dot.active {
+  background: rgba(242, 237, 230, 0.92);
+  transform: scale(1.3);
+}
+/* Dark variant for floor plan white backgrounds */
+.hp-modal-overlay-dots.dark .hp-modal-overlay-dot {
+  background: rgba(28, 25, 23, 0.22);
+}
+.hp-modal-overlay-dots.dark .hp-modal-overlay-dot.active {
+  background: rgba(28, 25, 23, 0.65);
+  transform: scale(1.3);
+}
+/* Plans mode — white background, contain fit for line drawings */
+.hp-modal-gallery-slider.plans-mode {
+  background: #ffffff;
+}
+.hp-modal-gallery-slider.plans-mode .hp-modal-gallery-frame {
+  background: #ffffff;
+}
+/* When plans tab is active, push the stage down so images clear the nav bar */
+.hp-modal-stage.plans-mode {
+  padding-top: 4.5rem;
+  background: #ffffff;
+}
+/* Plan wrapper: absolutely positioned like a gallery slide, but with padding
+   so the img inside is genuinely inset from all four edges of the frame */
+.hp-modal-plan-wrapper {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 3.5rem 3rem 3.5rem;
+  box-sizing: border-box;
+  background: #ffffff;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+.hp-modal-plan-wrapper.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+.hp-modal-plan-wrapper.next {
+  opacity: 0;
+  transform: translateX(60px);
+}
+.hp-modal-plan-wrapper.prev {
+  opacity: 0;
+  transform: translateX(-60px);
+}
+.hp-modal-plan-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center center;
+  display: block;
+  background: transparent;
+}
+
+/* Floor plans tab */
+.hp-modal-plans {
+  flex: 1;
+  overflow-y: auto;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-content: start;
+  background: #f5f0ea;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(242, 237, 230, 0.1) transparent;
+}
+
+.hp-modal-plans-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.hp-modal-plans-label {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(28, 25, 23, 0.62);
+  margin: 0;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(28, 25, 23, 0.1);
+}
+
+/* Floor plan drawings: displayed on pure white so line work reads correctly.
+   Note: .hp-modal-plan-img inside .hp-modal-plan-wrapper uses width/height 100%
+   from the rule above — this rule only applies to the static plans tab view. */
+.hp-modal-plans .hp-modal-plan-img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  background: #ffffff;
+  display: block;
+  padding: 1.5rem;
+  box-sizing: border-box;
+}
+
+/* Axonometrics: full width, more generous padding on white */
+.hp-modal-axo-img {
+  padding: 2rem;
+}
+
+/* Mobile modal */
+@media (max-width: 767px) {
+  /* ── MOBILE MODAL: image-first stack ── */
+  .hp-modal {
+    width: 100vw;
+    flex-direction: column;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-bottom: 2rem;
+  }
+  /* Stage comes FIRST visually on mobile */
+  .hp-modal-stage {
+    order: -1;
+    flex: none;
+    height: auto;
+    min-height: 0;
+    overflow: visible;
+  }
+  /* Gallery slider: cinematic hero height at top */
+  .hp-modal-gallery-slider {
+    flex: none;
+    height: 58svh;
+    min-height: 260px;
+    max-height: 420px;
+  }
+  /* Plans mode: reduce stage top padding on mobile */
+  .hp-modal-stage.plans-mode {
+    padding-top: 2.5rem;
+  }
+  /* Plans mode: tighter padding on mobile */
+  .hp-modal-plan-wrapper {
+    padding: 2rem 1.5rem 1.5rem 1.5rem;
+  }
+  /* Rail: on mobile, revert to simple natural-flow column — no two-zone split */
+  .hp-modal-rail {
+    order: 1;
+    width: 100%;
+    /* Restore normal block flow — no flex pinning on mobile */
+    display: block;
+    overflow: visible;
+    padding: 0;
+    border-right: none;
+    border-top: none;
+    flex-shrink: 0;
+    background: var(--hp-teal-deep);
+  }
+  /* Scrollable upper zone: on mobile just flows naturally, no flex constraints */
+  .hp-modal-rail-scroll {
+    flex: none;
+    overflow: visible;
+    min-height: unset;
+    padding: 1.5rem 1.5rem 0.5rem;
+  }
+  /* Controls zone: on mobile, natural flow below the content — no pinning */
+  .hp-modal-rail-controls {
+    position: static;
+    flex-shrink: unset;
+    border-top: none;
+    padding: 0.5rem 1.5rem 2rem;
+    gap: 0.5rem;
+  }
+  /* Register Interest CTA: natural flow at bottom of rail on mobile */
+  .hp-modal-register-btn:not(.hidden) {
+    width: 100%;
+    border-radius: 0;
+    margin-top: 1.5rem;
+    padding: 1.1rem 1.5rem;
+    font-size: 0.72rem;
+  }
+    /* Hide the rail's own tabs/arrows on mobile — replaced by stage controls */
+  .hp-modal-rail-nav-group {
+    display: none;
+  }
+
+  /* Stage controls bar: single combined row on mobile */
+  .hp-modal-stage-controls {
+    order: 0; /* stage=-1, controls=0, rail=1 */
+    display: flex; /* override the global display:none */
+    flex-direction: column;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    width: 100%;
+    background: var(--hp-teal-deep);
+    border-bottom: 1px solid rgba(242,237,230,0.12);
+    padding: 0.55rem 1rem;
+    flex-shrink: 0;
+  }
+  /* Single combined row: ← [tabs] → all on one line */
+  .hp-modal-stage-combined-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    width: 100%;
+  }
+  /* Tabs fill the space between the two arrows */
+  .hp-modal-stage-combined-row .hp-modal-stage-tabs {
+    flex: 1;
+  }
+  .hp-modal-stage-controls.hidden {
+    display: none;
+  }
+  .hp-modal-stage-tabs {
+    display: flex;
+    gap: 0;
+    border: 1px solid rgba(242,237,230,0.25);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .hp-modal-stage-tab {
+    flex: 1;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    font-size: 0.6rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(242,237,230,0.55);
+    background: transparent;
+    border: none;
+    padding: 0.5rem 0.85rem;
+    cursor: pointer;
+    transition: background 0.18s, color 0.18s;
+  }
+  .hp-modal-stage-tab.active {
+    background: rgba(242,237,230,0.15);
+    color: var(--hp-linen);
+  }
+  /* Stage nav row — no longer used in the combined-row layout, kept for safety */
+  .hp-modal-stage-nav {
+    display: none;
+  }
+  .hp-modal-stage-arrow {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 200;
+    font-size: 1rem;
+    color: rgba(242, 237, 230, 0.65);
+    background: rgba(242, 237, 230, 0.08);
+    border: 1px solid rgba(242, 237, 230, 0.18);
+    width: 2.2rem;
+    height: 2.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+  .hp-modal-stage-arrow:hover {
+    background: rgba(77, 138, 142, 0.35);
+    color: rgba(242, 237, 230, 0.97);
+  }
+  /* Counter hidden on mobile — replaced by dot indicators on the image */
+  .hp-modal-stage-counter {
+    display: none;
+  }
+  /* Plans: natural height, no overflow clip */
+  .hp-modal-plans {
+    flex: none;
+    height: auto;
+    overflow: visible;
+    padding: 1.5rem;
+    gap: 1.5rem;
+  }
+  .hp-modal-plan-img {
+    padding: 1rem;
+  }
+
+  .hp-modal-axo-img {
+    padding: 1.25rem;
+  }
+}
+
+/* ─── Modal VIDEO stage ─────────────────────────────────────────────────── */
+
+/* Full-stage video panel — replaces the image slider when VIDEO tab is active */
+.hp-modal-video-stage {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #0d0c0b;
+  overflow: hidden;
+  gap: 0.75rem;
+  padding-bottom: 0.5rem;
+}
+
+/* Fallback link — always visible, opens reel in Instagram app/browser */
+.hp-modal-video-fallback {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(242, 237, 230, 0.55);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(242, 237, 230, 0.25);
+  padding-bottom: 1px;
+  transition: color 0.2s;
+  flex-shrink: 0;
+}
+.hp-modal-video-fallback:hover {
+  color: rgba(242, 237, 230, 0.9);
+}
+
+/* Square (1:1) wrapper — fills full stage width, height = width */
+.hp-modal-video-wrap.square {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  display: block;
+  background: #0d0c0b;
+  position: relative;
+}
+.hp-modal-video-wrap.square .hp-modal-video-iframe {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  height: auto;
+  display: block;
+}
+/* Native <video> inside square wrapper */
+.hp-modal-video-wrap.square .hp-modal-video-player {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  display: block;
+}
+
+/* Landscape (16:9) wrapper — fills the full stage width, letterboxed vertically */
+.hp-modal-video-wrap.landscape {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #0d0c0b;
+}
+.hp-modal-video-iframe {
+  border: none;
+  display: block;
+}
+.hp-modal-video-wrap.landscape .hp-modal-video-iframe {
+  width: 100%;
+  /* 16:9 height relative to the stage width */
+  aspect-ratio: 16 / 9;
+  height: auto;
+  max-height: 100%;
+}
+
+/* Native video player — fills the landscape wrapper */
+.hp-modal-video-player {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  background: #0d0c0b;
+}
+.hp-modal-video-wrap.landscape .hp-modal-video-player {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  height: auto;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+/* Mute button — bottom-right corner of the video */
+.hp-modal-video-mute-btn {
+  position: absolute;
+  bottom: 0.85rem;
+  right: 0.85rem;
+  width: 2.2rem;
+  height: 2.2rem;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.45);
+  border: 1px solid rgba(242, 237, 230, 0.35);
+  color: rgba(242, 237, 230, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease;
+  z-index: 10;
+  padding: 0;
+  flex-shrink: 0;
+}
+.hp-modal-video-mute-btn svg {
+  width: 1rem;
+  height: 1rem;
+}
+.hp-modal-video-mute-btn:hover {
+  background: rgba(0, 0, 0, 0.65);
+  border-color: rgba(242, 237, 230, 0.65);
+  color: rgba(242, 237, 230, 1);
+}
+
+/* Replay button — centred over the video when it ends */
+.hp-modal-video-replay-btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 4rem;
+  height: 4rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 10;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.18s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.18s ease;
+  opacity: 0.9;
+}
+.hp-modal-video-replay-btn svg {
+  width: 4rem;
+  height: 4rem;
+}
+.hp-modal-video-replay-btn:hover {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1.08);
+}
+
+/* Portrait (9:16) wrapper — centred pillar */
+.hp-modal-video-wrap.portrait {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #0d0c0b;
+}
+.hp-modal-video-wrap.portrait .hp-modal-video-iframe {
+  width: min(340px, 90vw);
+  aspect-ratio: 9 / 16;
+  height: auto;
+  max-height: 100%;
+}
+
+/* Hide the image slider when video tab is active */
+.hp-modal-gallery-slider.hidden {
+  display: none !important;
+}
+
+/* On mobile, when VIDEO tab is active, let the square video drive the height */
+@media (max-width: 767px) {
+  .hp-modal-stage.video-active {
+    height: auto;
+    min-height: 0;
+    max-height: none;
+    flex: none;
+    overflow: visible;
+  }
+  /* Override absolute positioning so the video stage flows in the document */
+  .hp-modal-stage.video-active .hp-modal-video-stage {
+    position: relative;
+    inset: auto;
+    width: 100%;
+    height: auto;
+  }
+  /* Square video wrap fills full width on mobile */
+  .hp-modal-stage.video-active .hp-modal-video-wrap.square {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1 / 1;
+  }
+  .hp-modal-stage.video-active .hp-modal-video-wrap.square .hp-modal-video-player {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    display: block;
+  }
+}
+/* On tablet (768-1023), keep fixed height for landscape video */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .hp-modal-stage.video-active {
+    height: 58svh;
+    min-height: 260px;
+    max-height: 420px;
+    flex: none;
+  }
+}
+
+/* ─── SCROLL INDICATOR
+ */
+
+.hp-scroll-indicator {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.hp-scroll-text {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+  font-size: 0.55rem;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: rgba(242, 237, 230, 0.35);
+}
+
+.hp-scroll-line {
+  width: 1px;
+  height: 28px;
+  background: rgba(242, 237, 230, 0.2);
+  animation: scrollPulse 2s ease-in-out infinite;
+}
+
+@keyframes scrollPulse {
+  0%, 100% { opacity: 0.2; transform: scaleY(1); }
+  50% { opacity: 0.6; transform: scaleY(1.2); }
+}
+
+   /* REDUCED MOTION
+ */
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .hp-safari .hp-safari-image,
+  .hp-safari .hp-safari-text {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .hp-hero-bg {
+    animation: none;
+  }
+  .hp-scroll-line {
+    animation: none;
+  }
+}
+
+   THE INSPIRATION SECTION
+   /* Parchment bg, palm shadow overlay, brochure collage
+ */
+.hp-inspiration {
+  position: relative;
+  background: #EDE8DF;
+  overflow: hidden;
+  padding: 6rem 5vw;
+}
+
+
+.hp-inspiration-inner {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0; /* matches hp-lifestyle gap: 0 */
+  align-items: start;
+  max-width: none;
+  margin: 0;
+}
+
+.hp-inspiration-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  padding-left: 2.5rem; /* mirrors hp-lifestyle-text padding-right */
+  padding-top: 1rem;
+}
+
+.hp-inspiration-headline {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+  font-size: clamp(1.5rem, 2.4vw, 2.6rem);
+  letter-spacing: -0.01em;
+  line-height: 1.18;
+  color: var(--hp-charcoal);
+  margin: 0.6rem 0 1.8rem;
+}
+
+.hp-inspiration-body {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+  font-size: 1.0rem;
+  line-height: 1.9;
+  color: rgba(28, 25, 23, 0.72);
+  max-width: 52ch;
+  margin-bottom: 1.25rem;
+}
+
+/* Collage — tall door left, ceramics + wood stacked right */
+.hp-inspiration-collage {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  grid-template-rows: 1fr;
+  gap: 0.6rem;
+  height: clamp(360px, 50vw, 560px);
+}
+
+.hp-inspiration-img {
+  overflow: hidden;
+}
+
+.hp-inspiration-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.hp-inspiration-img:hover img {
+  transform: scale(1.03);
+}
+
+.hp-inspiration-img--door {
+  grid-row: 1 / 2;
+}
+
+.hp-inspiration-img-pair {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.hp-inspiration-img--ceramics,
+.hp-inspiration-img--wood {
+  flex: 1;
+}
+
+@media (max-width: 900px) {
+  .hp-inspiration {
+    padding: 3rem 1.5rem;
+  }
+  .hp-inspiration-inner {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  .hp-inspiration-text {
+    padding-left: 0;
+    padding-top: 0;
+  }
+  .hp-inspiration-collage {
+    height: 280px;
+  }
+}
+
+
+
+
+
+/* ── Curlicue accent — logo flourish used as a single decorative device ── */
+/* Card curlicue divider — curlicue flanked by tapered gold rules, sits below the card title */
+.hp-curlicue-accent {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  margin: 0.5rem 0 1.5rem;
+  opacity: 0.9;
+}
+/* Tapered rule: thick at the curlicue end, fading to a fine point at the outer edge.
+   Left rule: fades from transparent (left) to gold (right, curlicue side).
+   Right rule: fades from gold (left, curlicue side) to transparent (right). */
+.hp-curlicue-rule {
+  flex: 1;
+  height: 1.5px;
+  display: block;
+  border-radius: 1px;
+  /* Left rule: fades from transparent (outer) to full gold #B8922A (inner, curlicue side).
+     Inner end matches the curlicue PNG ink colour exactly (rgba 184,146,42 = #B8922A at full opacity). */
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    rgba(184, 146, 42, 0.12) 20%,
+    rgba(184, 146, 42, 1) 100%
+  );
+}
+/* Right rule — full gold at inner left, fades to transparent at outer right */
+.hp-curlicue-accent .hp-curlicue-rule:last-child {
+  background: linear-gradient(
+    to right,
+    rgba(184, 146, 42, 1) 0%,
+    rgba(184, 146, 42, 0.12) 80%,
+    transparent 100%
+  );
+}
+/* Curlicue image: tips aligned with rule midline.
+   The PNG (420×180) has ink only in rows 24–70; tips sit at ~row 51.
+   At md (24px rendered), the tips are 5.2px above the image centre.
+   margin-top: 5.2px pushes the image down so the tips land on the rule midline. */
+.hp-curlicue-accent img {
+  display: block;
+  flex-shrink: 0;
+  margin-top: 5.2px;
+  align-self: center;
+}
+.hp-plan-card:nth-child(3) .hp-curlicue-rule:first-child {
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    rgba(201, 168, 76, 0.12) 20%,
+    rgba(201, 168, 76, 1) 100%
+  );
+}
+.hp-plan-card:nth-child(3) .hp-curlicue-rule:last-child {
+  background: linear-gradient(
+    to right,
+    rgba(201, 168, 76, 1) 0%,
+    rgba(201, 168, 76, 0.12) 80%,
+    transparent 100%
+  );
+}
+
+/* Developer band curlicue — white, below headline, left-aligned */
+.hp-developer-curlicue {
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 1rem;
+  opacity: 0.85;
+}
+
+/* hp-footer-curlicue removed — curlicue no longer used in footer */
+
+/* ── Palm Shadow Decorative Element ── */
+/* Inspired by the Hola Paje brochure: a soft, blurred palm frond shadow
+   cast on a warm linen wall. Used as a background texture on plain copy panels.
+   mix-blend-mode: multiply ensures the shadow blends naturally with the linen
+   background, reading as light and atmosphere rather than a flat overlay.
+   pointer-events: none ensures it never interferes with text selection. */
+
+.hp-palm-shadow {
+  position: absolute;
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+  mix-blend-mode: multiply;
+  object-fit: cover;
+}
+
+/* Overview body — shadow fills the section as a background texture */
+.hp-overview-body--frond {
+  position: relative;
+  overflow: hidden;
+}
+.hp-palm-shadow--overview {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.55;
+  object-fit: cover;
+  object-position: top left;
+}
+
+/* Place section — palm shadow fills the entire section as background texture */
+.hp-place--frond {
+  position: relative;
+  overflow: hidden;
+}
+.hp-palm-shadow--place {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.38;
+  object-fit: cover;
+  object-position: top left;
+}
+
+/* Inspiration section — palm shadow fills the section text column as background texture */
+.hp-inspiration--frond {
+  position: relative;
+  overflow: hidden;
+}
+.hp-palm-shadow--inspiration {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.28;
+  object-fit: cover;
+  object-position: center center;
+}
+
+/* On mobile — stacked layout, shadow fills full width of the section */
+@media (max-width: 768px) {
+  .hp-palm-shadow--overview {
+    opacity: 0.38;
+  }
+  .hp-palm-shadow--place {
+    width: 100%;
+    height: 100%;
+    opacity: 0.38;
+    object-position: top left;
+  }
+  .hp-palm-shadow--inspiration {
+    width: 100%;
+    height: 100%;
+    opacity: 0.22;
+    object-position: center center;
+  }
+}
+
+/* On tablet and desktop — hide overview palm shadow (narrow strip, doesn't work in two-column layout) */
+/* Place and Inspiration shadows are kept — they work well in the side-by-side layout */
+@media (min-width: 769px) {
+  .hp-palm-shadow--overview {
+    display: none;
+  }
+}
+
+/* On tablet (iPad) — place and inspiration shadows */
+@media (min-width: 769px) and (max-width: 1100px) {
+  .hp-palm-shadow--place {
+    width: 100%;
+    opacity: 0.38;
+  }
+  .hp-palm-shadow--inspiration {
+    width: 100%;
+    opacity: 0.26;
+  }
+}
+
+/* ─── CONTACT FORM MODAL ─────────────────────────────────────────────────── */
+/* Standalone overlay that opens when "Register Interest" is clicked.         */
+/* Sits above the villa modal (z-index 400+). Teal/linen/Montserrat palette.  */
+
+.hp-cfm-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 400;
+  background: rgba(14, 20, 20, 0.72);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  opacity: 0;
+  pointer-events: none;
+  /* Fade in slightly slower than the panel; fade out faster */
+  transition: opacity 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+.hp-cfm-backdrop.open {
+  opacity: 1;
+  pointer-events: auto;
+  transition: opacity 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+/* Centred panel */
+.hp-cfm-panel {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  z-index: 401;
+  /* Closed state: slightly below centre + scaled down + invisible */
+  transform: translate(-50%, -46%) scale(0.95);
+  opacity: 0;
+  pointer-events: none;
+  /* Close: fast fade-out + scale-down */
+  transition:
+    transform 0.22s cubic-bezier(0.55, 0, 1, 0.45),
+    opacity 0.18s ease-in;
+  width: min(560px, 92vw);
+  max-height: 90svh;
+  overflow-y: auto;
+  background: var(--hp-teal-deep);
+  padding: 3rem 3rem 2.5rem;
+  scrollbar-width: none;
+}
+.hp-cfm-panel::-webkit-scrollbar { display: none; }
+.hp-cfm-panel.open {
+  /* Open state: centred, full size, fully visible */
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 1;
+  pointer-events: auto;
+  /* Open: smooth scale-up with snappy ease-out, opacity slightly behind */
+  transition:
+    transform 0.42s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 0.32s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+/* Close button */
+.hp-cfm-close {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background: rgba(242, 237, 230, 0.08);
+  border: 1px solid rgba(242, 237, 230, 0.2);
+  color: rgba(242, 237, 230, 0.65);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.8rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+.hp-cfm-close:hover {
+  background: rgba(242, 237, 230, 0.15);
+  color: rgba(242, 237, 230, 0.95);
+}
+
+/* Typography */
+.hp-cfm-eyebrow {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: 0.6rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--hp-gold);
+  margin-bottom: 0.5rem;
+}
+.hp-cfm-title {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+  font-size: 1.55rem;
+  letter-spacing: 0.04em;
+  color: rgba(242, 237, 230, 0.97);
+  margin-bottom: 0.5rem;
+  line-height: 1.2;
+}
+.hp-cfm-subtitle {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+  font-size: 0.78rem;
+  color: rgba(242, 237, 230, 0.55);
+  line-height: 1.65;
+  margin-bottom: 1.75rem;
+}
+
+/* Form layout */
+.hp-cfm-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.hp-cfm-row {
+  display: flex;
+  gap: 1rem;
+}
+.hp-cfm-row .hp-cfm-field {
+  flex: 1;
+}
+.hp-cfm-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+.hp-cfm-field--full {
+  width: 100%;
+}
+.hp-cfm-field label {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: 0.58rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(242, 237, 230, 0.5);
+}
+.hp-cfm-optional {
+  font-weight: 300;
+  letter-spacing: 0.1em;
+  text-transform: none;
+  color: rgba(242, 237, 230, 0.3);
+}
+.hp-cfm-field input,
+.hp-cfm-field textarea {
+  background: rgba(242, 237, 230, 0.07);
+  border: 1px solid rgba(242, 237, 230, 0.18);
+  color: rgba(242, 237, 230, 0.92);
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+  font-size: 0.82rem;
+  padding: 0.6rem 0.75rem;
+  outline: none;
+  width: 100%;
+  box-sizing: border-box;
+  border-radius: 0;
+  -webkit-appearance: none;
+  transition: border-color 0.2s ease, background 0.2s ease;
+  resize: none;
+}
+.hp-cfm-field input::placeholder,
+.hp-cfm-field textarea::placeholder {
+  color: rgba(242, 237, 230, 0.22);
+}
+.hp-cfm-field input:focus,
+.hp-cfm-field textarea:focus {
+  border-color: rgba(77, 138, 142, 0.8);
+  background: rgba(242, 237, 230, 0.1);
+}
+
+/* Consent checkbox */
+.hp-cfm-consent {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  cursor: pointer;
+}
+.hp-cfm-consent input[type="checkbox"] {
+  width: 1rem;
+  height: 1rem;
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+  accent-color: var(--hp-teal-light);
+  cursor: pointer;
+}
+.hp-cfm-consent span {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+  font-size: 0.72rem;
+  color: rgba(242, 237, 230, 0.5);
+  line-height: 1.6;
+}
+.hp-cfm-consent span a {
+  color: rgba(242, 237, 230, 0.7);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.hp-cfm-consent span a:hover {
+  color: var(--hp-gold);
+}
+
+/* Submit button */
+.hp-cfm-submit {
+  width: 100%;
+  background: var(--hp-teal-light);
+  border: 1px solid var(--hp-teal-light);
+  color: rgba(242, 237, 230, 0.97);
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: 0.62rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  padding: 0.9rem 1rem;
+  cursor: pointer;
+  transition: background 0.25s ease, border-color 0.25s ease, letter-spacing 0.25s ease, opacity 0.2s ease;
+  margin-top: 0.25rem;
+}
+.hp-cfm-submit:hover:not(:disabled) {
+  letter-spacing: 0.34em;
+}
+.hp-cfm-submit:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+.hp-cfm-submit--outline {
+  background: transparent;
+  border-color: rgba(242, 237, 230, 0.3);
+  color: rgba(242, 237, 230, 0.65);
+  margin-top: 1.5rem;
+}
+.hp-cfm-submit--outline:hover {
+  border-color: rgba(242, 237, 230, 0.6);
+  color: rgba(242, 237, 230, 0.9);
+  letter-spacing: 0.34em;
+}
+
+/* Thank-you state */
+.hp-cfm-thanks {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 0;
+}
+
+.hp-cfm-error {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.78rem;
+  color: rgba(255, 160, 140, 0.9);
+  margin-top: -0.25rem;
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.02em;
+}
+
+/* Spinner inside submit button */
+.hp-cfm-spinner-wrap {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+}
+
+.hp-cfm-spinner {
+  width: 1.1em;
+  height: 1.1em;
+  flex-shrink: 0;
+  animation: hp-cfm-spin 0.75s linear infinite;
+  transform-origin: center;
+}
+
+@keyframes hp-cfm-spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hp-cfm-spinner {
+    animation: none;
+    opacity: 0.6;
+  }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .hp-cfm-panel {
+    padding: 2.5rem 1.75rem 2rem;
+  }
+  .hp-cfm-row {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .hp-cfm-title {
+    font-size: 1.25rem;
+  }
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
+   THANK YOU PAGE  (/thank-you)
+   Lead generation campaign destination
+   ═══════════════════════════════════════════════════════════════ */
+
+.hp-ty-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #0D0C0B;
+  font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  color: #F2EDE6;
+}
+
+/* ── Minimal nav ── */
+.hp-ty-nav {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  padding: 2rem clamp(1.5rem, 5vw, 4rem);
+}
+
+.hp-ty-logo {
+  height: 52px;
+  width: auto;
+  display: block;
+}
+
+/* ── Hero / main ── */
+.hp-ty-main {
+  position: relative;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  min-height: 88vh;
+  overflow: hidden;
+}
+
+.hp-ty-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.hp-ty-bg-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+  display: block;
+}
+
+.hp-ty-bg-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to right,
+    rgba(13, 12, 11, 0.82) 0%,
+    rgba(13, 12, 11, 0.55) 55%,
+    rgba(13, 12, 11, 0.30) 100%
+  );
+}
+
+/* ── Content panel ── */
+.hp-ty-content {
+  position: relative;
+  z-index: 1;
+  padding: clamp(7rem, 14vh, 12rem) clamp(1.5rem, 7vw, 7rem) clamp(4rem, 8vh, 7rem);
+  max-width: 640px;
+}
+
+.hp-ty-eyebrow {
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: #C9A96E;
+  margin: 0 0 1.4rem;
+}
+
+.hp-ty-headline {
+  font-size: clamp(2.4rem, 5.5vw, 4rem);
+  font-weight: 300;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  color: #F2EDE6;
+  margin: 0 0 1.6rem;
+}
+
+.hp-ty-body {
+  font-size: clamp(0.88rem, 1.2vw, 1rem);
+  font-weight: 300;
+  line-height: 1.75;
+  color: rgba(242, 237, 230, 0.78);
+  margin: 0 0 2.4rem;
+  max-width: 460px;
+}
+
+/* ── CTAs ── */
+.hp-ty-ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 3rem;
+}
+
+.hp-ty-btn {
+  display: inline-block;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 0.9rem 2rem;
+  transition: opacity 160ms cubic-bezier(0.23, 1, 0.32, 1),
+              transform 160ms cubic-bezier(0.23, 1, 0.32, 1);
+  cursor: pointer;
+}
+
+.hp-ty-btn:active {
+  transform: scale(0.97);
+}
+
+.hp-ty-btn--primary {
+  background-color: #2D6B6B;
+  color: #F2EDE6;
+  border: 1px solid #2D6B6B;
+}
+
+.hp-ty-btn--primary:hover {
+  opacity: 0.88;
+}
+
+.hp-ty-btn--outline {
+  background-color: transparent;
+  color: #F2EDE6;
+  border: 1px solid rgba(242, 237, 230, 0.45);
+}
+
+.hp-ty-btn--outline:hover {
+  border-color: rgba(242, 237, 230, 0.8);
+}
+
+/* ── Stats row ── */
+.hp-ty-stats {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.hp-ty-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.hp-ty-stat-num {
+  font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+  font-weight: 300;
+  color: #C9A96E;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.hp-ty-stat-label {
+  font-size: 0.6rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(242, 237, 230, 0.5);
+}
+
+.hp-ty-stat-divider {
+  width: 1px;
+  height: 2.4rem;
+  background-color: rgba(242, 237, 230, 0.2);
+  flex-shrink: 0;
+}
+
+/* ── Footer ── */
+.hp-ty-footer {
+  background-color: #0D0C0B;
+  border-top: 1px solid rgba(242, 237, 230, 0.08);
+  padding: 2rem clamp(1.5rem, 5vw, 4rem);
+}
+
+.hp-ty-footer-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.hp-ty-floton-logo {
+  height: 22px;
+  width: auto;
+  opacity: 0.55;
+  display: block;
+}
+
+.hp-ty-footer-copy {
+  font-size: 0.65rem;
+  font-weight: 300;
+  letter-spacing: 0.06em;
+  color: rgba(242, 237, 230, 0.4);
+  margin: 0;
+}
+
+.hp-ty-footer-link {
+  color: rgba(242, 237, 230, 0.4);
+  text-decoration: none;
+  transition: color 160ms ease;
+}
+
+.hp-ty-footer-link:hover {
+  color: rgba(242, 237, 230, 0.75);
+}
+
+/* ── Mobile ── */
+@media (max-width: 600px) {
+  .hp-ty-content {
+    max-width: 100%;
+  }
+
+  .hp-ty-ctas {
+    flex-direction: column;
+  }
+
+  .hp-ty-btn {
+    text-align: center;
+  }
+
+  .hp-ty-stats {
+    gap: 1.2rem;
+  }
+
+  .hp-ty-footer-inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
+   LANDING PAGE — /landing-meta
+   High-conversion paid media page. No nav. Aerial hero. Trust icons.
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Page wrapper */
+.lp-page {
+  background-color: #f5f0e8;
+  color: #1a1a1a;
+  font-family: 'Montserrat', sans-serif;
+  min-height: 100vh;
+}
+
+/* ── HEADER ── */
+.lp-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 20;
+  padding: 1.75rem clamp(1.5rem, 5vw, 4rem);
+  display: flex;
+  align-items: center;
+}
+.lp-logo {
+  height: 52px;
+  width: auto;
+  object-fit: contain;
+}
+/* Text fallback logo — shown when image fails */
+.lp-logo-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+  gap: 0.1em;
+}
+.lp-logo-text-hola {
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  color: #fff;
+}
+.lp-logo-text-paje {
+  font-size: 0.62rem;
+  font-weight: 400;
+  letter-spacing: 0.45em;
+  color: #c9a96e;
+}
+
+/* ── HERO ── */
+.lp-hero {
+  position: relative;
+  width: 100%;
+  min-height: 100svh;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+}
+.lp-hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+.lp-hero-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 40%;
+  display: block;
+}
+.lp-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(10, 10, 10, 0.25) 0%,
+    rgba(10, 10, 10, 0.15) 40%,
+    rgba(10, 10, 10, 0.65) 80%,
+    rgba(10, 10, 10, 0.82) 100%
+  );
+}
+.lp-hero-content {
+  position: relative;
+  z-index: 2;
+  padding: clamp(3rem, 8vw, 6rem) clamp(1.5rem, 7vw, 7rem) clamp(3.5rem, 7vw, 5.5rem);
+  max-width: 860px;
+}
+.lp-eyebrow {
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #c9a96e;
+  margin: 0 0 1.2rem;
+}
+.lp-headline {
+  font-size: clamp(2.4rem, 5.5vw, 4.2rem);
+  font-weight: 300;
+  line-height: 1.12;
+  letter-spacing: -0.01em;
+  color: #fff;
+  margin: 0 0 1.2rem;
+}
+.lp-subheadline {
+  font-size: clamp(0.9rem, 1.6vw, 1.1rem);
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  color: rgba(255, 255, 255, 0.78);
+  margin: 0 0 2.4rem;
+  max-width: 520px;
+}
+
+/* ── BUTTONS ── */
+.lp-ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.lp-btn {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 0.9rem 2.2rem;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: background 180ms ease-out, color 180ms ease-out, border-color 180ms ease-out, transform 160ms ease-out;
+  white-space: nowrap;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.lp-btn:active {
+  transform: scale(0.97);
+}
+.lp-btn--primary {
+  background: #c9a96e;
+  color: #1a1a1a;
+  border-color: #c9a96e;
+}
+.lp-btn--primary:hover {
+  background: #b8944f;
+  border-color: #b8944f;
+}
+.lp-btn--outline {
+  background: transparent;
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.6);
+}
+.lp-btn--outline:hover {
+  border-color: #fff;
+  background: rgba(255, 255, 255, 0.08);
+}
+.lp-btn--ghost {
+  background: transparent;
+  color: #1a1a1a;
+  border-color: rgba(26, 26, 26, 0.4);
+}
+.lp-btn--ghost:hover {
+  border-color: #1a1a1a;
+  background: rgba(26, 26, 26, 0.05);
+}
+
+/* ── TRUST ICONS ── */
+.lp-trust {
+  background: #1a2e2a;
+  padding: clamp(2.5rem, 5vw, 4rem) clamp(1.5rem, 7vw, 7rem);
+}
+.lp-trust-inner {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 0;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.lp-trust-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1rem;
+  padding: 0 1.5rem;
+}
+.lp-trust-icon {
+  width: 56px;
+  height: 56px;
+  border: 1px solid rgba(201, 169, 110, 0.5);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #c9a96e;
+  flex-shrink: 0;
+}
+.lp-trust-icon--yield {
+  font-family: 'Montserrat', sans-serif;
+}
+.lp-trust-yield-num {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #c9a96e;
+  letter-spacing: -0.02em;
+}
+.lp-trust-label {
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(245, 240, 232, 0.75);
+  line-height: 1.5;
+  margin: 0;
+}
+.lp-trust-divider {
+  width: 1px;
+  height: 60px;
+  background: rgba(201, 169, 110, 0.25);
+  align-self: center;
+  flex-shrink: 0;
+}
+
+/* ── INVESTOR PROTECTION COPY ── */
+.lp-protection {
+  background: #f5f0e8;
+  padding: clamp(3.5rem, 7vw, 6rem) clamp(1.5rem, 7vw, 7rem);
+}
+.lp-protection-inner {
+  max-width: 700px;
+  margin: 0 auto;
+  text-align: center;
+}
+.lp-protection-eyebrow {
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #c9a96e;
+  margin: 0 0 1.2rem;
+}
+.lp-protection-headline {
+  font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+  font-weight: 300;
+  line-height: 1.2;
+  color: #1a1a1a;
+  margin: 0 0 1.4rem;
+}
+.lp-protection-body {
+  font-size: clamp(0.88rem, 1.4vw, 1rem);
+  font-weight: 400;
+  line-height: 1.75;
+  color: #4a4a4a;
+  margin: 0 0 2.4rem;
+}
+.lp-protection-body strong {
+  color: #1a1a1a;
+  font-weight: 600;
+}
+.lp-protection-ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+}
+
+/* ── FOOTER ── */
+.lp-footer {
+  background: #111;
+  padding: 2.5rem clamp(1.5rem, 7vw, 7rem);
+}
+.lp-footer-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  text-align: center;
+}
+.lp-floton-logo {
+  height: 22px;
+  width: auto;
+  opacity: 0.7;
+}
+.lp-footer-copy {
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  color: rgba(255, 255, 255, 0.4);
+  margin: 0;
+}
+.lp-footer-link {
+  color: rgba(255, 255, 255, 0.5);
+  text-decoration: none;
+}
+.lp-footer-link:hover {
+  color: #c9a96e;
+}
+.lp-footer-disclaimer {
+  font-size: 0.62rem;
+  color: rgba(255, 255, 255, 0.25);
+  max-width: 640px;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ── FORM MODAL ── */
+.lp-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: rgba(10, 10, 10, 0.75);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  animation: lp-fade-in 200ms ease-out;
+}
+@keyframes lp-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.lp-modal {
+  background: #f5f0e8;
+  width: 100%;
+  max-width: 560px;
+  max-height: 90svh;
+  overflow-y: auto;
+  animation: lp-modal-in 220ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+@keyframes lp-modal-in {
+  from { opacity: 0; transform: scale(0.96) translateY(8px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+.lp-modal-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 2rem 2rem 1.2rem;
+  border-bottom: 1px solid rgba(26, 26, 26, 0.1);
+}
+.lp-modal-eyebrow {
+  font-size: 0.62rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #c9a96e;
+  margin: 0 0 0.5rem;
+}
+.lp-modal-title {
+  font-size: 1.35rem;
+  font-weight: 300;
+  color: #1a1a1a;
+  margin: 0 0 0.4rem;
+  line-height: 1.2;
+}
+.lp-modal-subtitle {
+  font-size: 0.8rem;
+  color: #6a6a6a;
+  margin: 0;
+  line-height: 1.5;
+}
+.lp-modal-close {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #6a6a6a;
+  padding: 0.25rem;
+  flex-shrink: 0;
+  transition: color 150ms ease-out;
+}
+.lp-modal-close:hover {
+  color: #1a1a1a;
+}
+.lp-modal-form {
+  padding: 1.5rem 2rem 2rem;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+  .lp-trust-inner {
+    flex-wrap: wrap;
+    gap: 2rem;
+  }
+  .lp-trust-item {
+    flex: 0 0 calc(50% - 1rem);
+    padding: 0 0.5rem;
+  }
+  .lp-trust-divider {
+    display: none;
+  }
+  .lp-hero-content {
+    padding-bottom: 3rem;
+  }
+  .lp-protection-ctas {
+    flex-direction: column;
+    align-items: center;
+  }
+  .lp-btn {
+    width: 100%;
+    max-width: 320px;
+  }
+  .lp-modal-header {
+    padding: 1.5rem 1.5rem 1rem;
+  }
+  .lp-modal-form {
+    padding: 1rem 1.5rem 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .lp-trust-item {
+    flex: 0 0 100%;
+  }
+  .lp-ctas {
+    flex-direction: column;
+  }
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
+   LANDING PAGE — /landing-meta — Deep long-form lead gen page
+   Design language: matches main Hola Paje site exactly
+   Palette: linen #F2EDE6, charcoal #1C1917, gold #B8922A, mid #6B6560
+   Typography: Montserrat 100–300 display / 300–400 body (NO bold headlines)
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ── Page shell ── */
+.lp-page {
+  background: var(--hp-linen);
+  color: var(--hp-charcoal);
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 200;
+  min-height: 100vh;
+}
+
+/* ── Logo-only header ── */
+.lp-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 20;
+  padding: 2rem 3rem;
+  display: flex;
+  align-items: center;
+}
+
+.lp-logo-lockup {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  font-family: 'Montserrat', sans-serif;
+  line-height: 1;
+}
+
+.lp-logo-hola {
+  font-size: 1.45rem;
+  font-weight: 200;
+  color: #ffffff;
+  letter-spacing: 0.35em;
+}
+
+.lp-logo-paje {
+  font-size: 0.7rem;
+  font-weight: 300;
+  color: rgba(255,255,255,0.65);
+  letter-spacing: 0.55em;
+  margin-top: 0.15rem;
+}
+
+/* ── Hero ── */
+.lp-hero {
+  position: relative;
+  height: 100vh;
+  min-height: 600px;
+  display: flex;
+  align-items: flex-end;
+}
+
+.lp-hero-bg {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.lp-hero-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+  display: block;
+}
+
+.lp-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(28,25,23,0.15) 0%,
+    rgba(28,25,23,0.05) 40%,
+    rgba(28,25,23,0.55) 80%,
+    rgba(28,25,23,0.75) 100%
+  );
+}
+
+.lp-hero-content {
+  position: relative;
+  z-index: 2;
+  padding: 0 clamp(1.5rem, 6vw, 6rem) clamp(3rem, 6vw, 5rem);
+  max-width: 780px;
+}
+
+.lp-eyebrow {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 400;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.6);
+  margin: 0 0 1.25rem;
+}
+
+/* ── Hero headline — Montserrat 100, matching main site hero weight ── */
+.lp-hero-headline {
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(2.4rem, 5.5vw, 4.2rem);
+  font-weight: 100;
+  line-height: 1.06;
+  letter-spacing: -0.01em;
+  color: #ffffff;
+  margin: 0 0 1.1rem;
+  text-shadow: 0 2px 32px rgba(0,0,0,0.4);
+}
+
+.lp-hero-sub {
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(0.9rem, 1.6vw, 1.15rem);
+  font-weight: 300;
+  color: rgba(255,255,255,0.75);
+  letter-spacing: 0.06em;
+  margin: 0 0 2.5rem;
+}
+
+.lp-hero-ctas {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* ── Buttons — matching main site hp-btn style ── */
+.lp-btn {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 0.85rem 2rem;
+  border-radius: 0;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+.lp-btn:active {
+  transform: scale(0.98);
+}
+
+.lp-btn--primary {
+  background: var(--hp-linen);
+  color: var(--hp-charcoal);
+  border: 1px solid var(--hp-linen);
+}
+
+.lp-btn--primary:hover {
+  background: var(--hp-linen-dark);
+  border-color: var(--hp-linen-dark);
+}
+
+.lp-btn--outline {
+  background: transparent;
+  color: #ffffff;
+  border: 1px solid rgba(255,255,255,0.55);
+}
+
+.lp-btn--outline:hover {
+  border-color: #ffffff;
+  background: rgba(255,255,255,0.08);
+}
+
+.lp-btn--charcoal {
+  background: var(--hp-charcoal);
+  color: var(--hp-linen);
+  border: 1px solid var(--hp-charcoal);
+}
+
+.lp-btn--charcoal:hover {
+  background: var(--hp-charcoal-mid);
+  border-color: var(--hp-charcoal-mid);
+}
+
+.lp-btn--mt {
+  margin-top: 2.5rem;
+}
+
+/* ── Trust pillars — elegant horizontal stat treatment, linen background ── */
+.lp-trust {
+  background: var(--hp-charcoal);
+  padding: 3rem clamp(1.5rem, 6vw, 5rem);
+}
+
+.lp-trust-inner {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.lp-trust-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 0 2rem;
+  gap: 0.75rem;
+}
+
+/* Hola Paje trust treatment: thin gold rule above, numeral or icon below — no circles */
+.lp-trust-rule {
+  width: 2rem;
+  height: 1px;
+  background: var(--hp-gold);
+  flex-shrink: 0;
+}
+
+.lp-trust-icon-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--hp-gold);
+  height: 36px;
+}
+
+.lp-trust-yield-display {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.8rem;
+  font-weight: 100;
+  color: var(--hp-gold);
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+.lp-trust-label {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 400;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(242,237,230,0.6);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.lp-trust-divider {
+  width: 1px;
+  background: rgba(184,146,42,0.2);
+  align-self: stretch;
+  flex-shrink: 0;
+  margin: 0.5rem 0;
+}
+
+/* ── Stat line ── */
+.lp-stat-line {
+  background: var(--hp-gold);
+  color: var(--hp-charcoal);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  text-align: center;
+  padding: 0.9rem 1rem;
+}
+
+/* ── Generic section wrapper ── */
+.lp-section {
+  padding: 5.5rem clamp(1.5rem, 6vw, 5rem);
+}
+
+.lp-section--linen {
+  background: var(--hp-linen);
+  color: var(--hp-charcoal);
+}
+
+.lp-section--linen-dark {
+  background: var(--hp-linen-dark);
+  color: var(--hp-charcoal);
+}
+
+.lp-section--charcoal {
+  background: var(--hp-charcoal);
+  color: var(--hp-linen);
+}
+
+.lp-section-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* Eyebrow label — matching main site .hp-section-label */
+.lp-section-eyebrow {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--hp-mid);
+  margin: 0 0 1.5rem;
+}
+
+.lp-section--charcoal .lp-section-eyebrow {
+  color: rgba(242,237,230,0.45);
+}
+
+.lp-section-eyebrow--gold {
+  color: var(--hp-gold);
+}
+
+/* Section headline — Montserrat 100, matching main site display style */
+.lp-section-headline {
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(1.9rem, 3.5vw, 3.2rem);
+  font-weight: 100;
+  line-height: 1.08;
+  letter-spacing: -0.01em;
+  margin: 0 0 2rem;
+}
+
+.lp-section--linen .lp-section-headline,
+.lp-section--linen-dark .lp-section-headline {
+  color: var(--hp-charcoal);
+}
+
+.lp-section--charcoal .lp-section-headline {
+  color: var(--hp-linen);
+}
+
+/* Body copy — Montserrat 300 */
+.lp-section-body {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 300;
+  line-height: 1.8;
+  max-width: 680px;
+  margin: 0 0 1.25rem;
+}
+
+.lp-section--linen .lp-section-body,
+.lp-section--linen-dark .lp-section-body {
+  color: var(--hp-charcoal);
+}
+
+.lp-section--charcoal .lp-section-body {
+  color: rgba(242,237,230,0.75);
+}
+
+.lp-section-body--lead {
+  font-size: 1.05rem;
+  font-weight: 300;
+}
+
+.lp-section-body--muted {
+  opacity: 0.7;
+}
+
+/* ── Amenities ── */
+.lp-amenities {
+  margin-top: 2.5rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(28,25,23,0.1);
+}
+
+.lp-section--charcoal .lp-amenities {
+  border-top-color: rgba(242,237,230,0.12);
+}
+
+.lp-amenities-label {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--hp-gold);
+  margin: 0 0 1rem;
+}
+
+.lp-amenities-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 2.5rem;
+}
+
+.lp-amenities-list li {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 300;
+  color: var(--hp-charcoal);
+  padding-left: 1rem;
+  position: relative;
+}
+
+.lp-amenities-list li::before {
+  content: '—';
+  position: absolute;
+  left: 0;
+  color: var(--hp-gold);
+}
+
+/* ── Investment protection cards — linen background, thin border ── */
+.lp-protection-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 2.5rem;
+}
+
+.lp-protection-card {
+  background: rgba(242,237,230,0.06);
+  border: 1px solid rgba(184,146,42,0.2);
+  padding: 2.25rem 1.75rem;
+}
+
+/* Hola Paje icon treatment: thin gold rule, no circle badge */
+.lp-protection-card-icon {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.lp-protection-card-rule {
+  width: 2rem;
+  height: 1px;
+  background: var(--hp-gold);
+  flex-shrink: 0;
+}
+
+.lp-protection-card-icon-svg {
+  color: var(--hp-gold);
+  flex-shrink: 0;
+}
+
+.lp-protection-card-yield {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2rem;
+  font-weight: 100;
+  color: var(--hp-gold);
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+.lp-protection-card-title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  color: var(--hp-linen);
+  margin: 0 0 0.75rem;
+  line-height: 1.4;
+}
+
+.lp-protection-card-body {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 300;
+  line-height: 1.75;
+  color: rgba(242,237,230,0.6);
+  margin: 0;
+}
+
+/* ── Why grid ── */
+.lp-why-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2.5rem 4rem;
+  margin-top: 2.5rem;
+}
+
+.lp-why-item {
+  display: flex;
+  gap: 1.25rem;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.92rem;
+  font-weight: 300;
+  line-height: 1.75;
+  color: var(--hp-charcoal);
+}
+
+.lp-why-bullet {
+  color: var(--hp-gold);
+  font-weight: 300;
+  flex-shrink: 0;
+  margin-top: 0.05em;
+}
+
+.lp-why-item strong {
+  font-weight: 500;
+  display: block;
+  margin-bottom: 0.3rem;
+  font-size: 0.88rem;
+  letter-spacing: 0.04em;
+}
+
+/* ── Villa cards — linen background ── */
+.lp-villas-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 2.5rem;
+}
+
+.lp-villa-card {
+  background: var(--hp-linen);
+  border: 1px solid rgba(28,25,23,0.1);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.lp-villa-card-img-wrap {
+  width: 100%;
+  aspect-ratio: 4/3;
+  overflow: hidden;
+}
+
+.lp-villa-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.lp-villa-card:hover .lp-villa-card-img {
+  transform: scale(1.04);
+}
+
+.lp-villa-card-body {
+  padding: 1.75rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  border-top: 1px solid rgba(28,25,23,0.08);
+}
+
+.lp-villa-card-type {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--hp-gold);
+  margin: 0;
+}
+
+.lp-villa-card-price {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 200;
+  color: var(--hp-charcoal);
+  margin: 0.2rem 0 0;
+  letter-spacing: -0.01em;
+}
+
+.lp-villa-card-specs {
+  list-style: none;
+  padding: 0;
+  margin: 0.75rem 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.lp-villa-card-specs li {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 300;
+  color: var(--hp-mid);
+  padding-left: 0.9rem;
+  position: relative;
+}
+
+.lp-villa-card-specs li::before {
+  content: '·';
+  position: absolute;
+  left: 0;
+  color: var(--hp-gold);
+}
+
+.lp-villa-card-desc {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 300;
+  line-height: 1.7;
+  color: var(--hp-mid);
+  margin: 0.75rem 0 0;
+}
+
+/* ── Three steps — linen cards, thin border ── */
+.lp-steps {
+  display: flex;
+  align-items: flex-start;
+  gap: 0;
+  margin-top: 2.5rem;
+}
+
+.lp-step {
+  flex: 1;
+  padding: 2.25rem 2rem;
+  background: var(--hp-linen-dark);
+  border: 1px solid rgba(28,25,23,0.08);
+}
+
+.lp-step-num {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2.8rem;
+  font-weight: 100;
+  color: var(--hp-gold);
+  line-height: 1;
+  display: block;
+  margin-bottom: 1rem;
+  letter-spacing: -0.03em;
+}
+
+.lp-step-title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  color: var(--hp-charcoal);
+  margin: 0 0 0.6rem;
+}
+
+.lp-step-body {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 300;
+  line-height: 1.7;
+  color: var(--hp-mid);
+  margin: 0;
+}
+
+.lp-step-arrow {
+  font-size: 1.2rem;
+  color: var(--hp-gold);
+  padding: 3rem 1rem 0;
+  flex-shrink: 0;
+  align-self: flex-start;
+  font-weight: 100;
+}
+
+/* ── Form section — charcoal background, matching main site enquire section ── */
+.lp-form-section {
+  background: var(--hp-charcoal);
+  padding: 5.5rem clamp(1.5rem, 6vw, 5rem);
+  scroll-margin-top: 2rem;
+}
+
+.lp-form-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  align-items: start;
+}
+
+.lp-form-copy {
+  color: var(--hp-linen);
+}
+
+.lp-form-headline {
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(1.8rem, 3vw, 2.8rem);
+  font-weight: 100;
+  color: var(--hp-linen);
+  line-height: 1.08;
+  letter-spacing: -0.01em;
+  margin: 0 0 1.5rem;
+}
+
+.lp-form-body {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.92rem;
+  font-weight: 300;
+  line-height: 1.8;
+  color: rgba(242,237,230,0.65);
+  margin: 0 0 2rem;
+}
+
+.lp-form-trust-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.lp-form-trust-list li {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 300;
+  color: rgba(242,237,230,0.6);
+  letter-spacing: 0.02em;
+}
+
+.lp-form-trust-list li span {
+  color: var(--hp-gold);
+  margin-right: 0.5rem;
+}
+
+/* Form embed wrapper — no heavy border, just subtle separation */
+.lp-form-embed {
+  background: rgba(242,237,230,0.04);
+  border: 1px solid rgba(184,146,42,0.15);
+  padding: 2rem;
+}
+
+/* ── Footer ── */
+.lp-footer {
+  background: var(--hp-charcoal);
+  border-top: 1px solid rgba(242,237,230,0.08);
+  padding: 2.5rem clamp(1.5rem, 6vw, 5rem);
+}
+
+.lp-footer-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.lp-footer-brand {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(242,237,230,0.4);
+  margin: 0;
+}
+
+.lp-footer-contact {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 300;
+  color: rgba(242,237,230,0.55);
+  margin: 0;
+}
+
+.lp-footer-copy {
+  margin: 0;
+}
+
+.lp-footer-link {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 300;
+  color: rgba(242,237,230,0.45);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.lp-footer-link:hover {
+  color: var(--hp-gold);
+}
+
+.lp-footer-disclaimer {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 300;
+  line-height: 1.65;
+  color: rgba(242,237,230,0.3);
+  margin: 0.5rem 0 0;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   RESPONSIVE — landing page deep long-form
+   ═══════════════════════════════════════════════════════════════ */
+@media (max-width: 900px) {
+  .lp-protection-cards {
+    grid-template-columns: 1fr;
+  }
+  .lp-why-grid {
+    grid-template-columns: 1fr;
+    gap: 1.75rem;
+  }
+  .lp-villas-grid {
+    grid-template-columns: 1fr;
+  }
+  .lp-steps {
+    flex-direction: column;
+  }
+  .lp-step-arrow {
+    transform: rotate(90deg);
+    padding: 0.5rem 2rem;
+    align-self: center;
+  }
+  .lp-form-inner {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+  .lp-trust-inner {
+    flex-wrap: wrap;
+    gap: 1.5rem 0;
+  }
+  .lp-trust-item {
+    flex: 0 0 50%;
+  }
+  .lp-trust-divider {
+    display: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .lp-header {
+    padding: 1.5rem 1.5rem;
+  }
+  .lp-section {
+    padding: 3.5rem 1.25rem;
+  }
+  .lp-form-section {
+    padding: 3.5rem 1.25rem;
+  }
+  .lp-hero-ctas {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .lp-btn--mt {
+    margin-top: 1.75rem;
+  }
+  .lp-trust-item {
+    flex: 0 0 100%;
+  }
+  .lp-form-embed {
+    padding: 1rem;
+  }
+}

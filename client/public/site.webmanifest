@@ -1,0 +1,21 @@
+{
+  "name": "Hola Paje Luxury Residences",
+  "short_name": "Hola Paje",
+  "description": "Luxury villa residences in Paje, Zanzibar",
+  "start_url": "/",
+  "display": "browser",
+  "background_color": "#1C1917",
+  "theme_color": "#1C1917",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
