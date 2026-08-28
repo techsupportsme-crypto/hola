@@ -30,6 +30,24 @@ pnpm check
 pnpm build
 ```
 
+## Deploying to Vercel
+
+The repo is Vercel-ready: `vercel.json` builds the static site with `vite build`
+(output in `dist/public`) and rewrites all routes to the SPA. All media is
+self-hosted under `client/public/manus-storage/`. Import the GitHub repo at
+https://vercel.com/new and deploy — no framework preset changes needed.
+
+The contact-form fallback posts to the serverless function `api/enquiry.ts`,
+which emails leads via [Resend](https://resend.com). Set these environment
+variables in the Vercel project for it to work:
+
+- `RESEND_API_KEY` — Resend API key
+- `ENQUIRY_TO_EMAIL` — address that receives leads
+- `ENQUIRY_FROM_EMAIL` — verified sender (optional; defaults to `onboarding@resend.dev`)
+
+The brochure/villa enquiry gates use HighLevel iframes (app.flotonzanzibar.com)
+and work without any configuration.
+
 The development server runs on `http://localhost:3000` by default.
 
 ---
@@ -57,18 +75,18 @@ client/
 
 ## Sections
 
-| Section | Anchor | Description |
-|---|---|---|
-| Hero | — | Full-bleed Ken Burns image, tagline, scroll indicator |
-| Overview | `#overview` | Project introduction with kitesurf mood image |
-| Destination | `#destination` | Zanzibar proposition, image grid, Paje sub-section |
-| Lifestyle | `#lifestyle` | Commercial hub amenities with image grid |
-| Villa Collection | `#villas` | Three villa types with tab switcher and modal trigger |
-| Inspiration | — | Full-bleed dark texture interlude |
-| Investment | `#investment` | Three investment pathways (own, grow, earn) |
-| Developer | — | Floton Africa credentials |
-| Contact | `#contact` | Enquiry form with consent checkbox |
-| Footer | — | Navigation, legal, copyright |
+| Section          | Anchor         | Description                                           |
+| ---------------- | -------------- | ----------------------------------------------------- |
+| Hero             | —              | Full-bleed Ken Burns image, tagline, scroll indicator |
+| Overview         | `#overview`    | Project introduction with kitesurf mood image         |
+| Destination      | `#destination` | Zanzibar proposition, image grid, Paje sub-section    |
+| Lifestyle        | `#lifestyle`   | Commercial hub amenities with image grid              |
+| Villa Collection | `#villas`      | Three villa types with tab switcher and modal trigger |
+| Inspiration      | —              | Full-bleed dark texture interlude                     |
+| Investment       | `#investment`  | Three investment pathways (own, grow, earn)           |
+| Developer        | —              | Floton Africa credentials                             |
+| Contact          | `#contact`     | Enquiry form with consent checkbox                    |
+| Footer           | —              | Navigation, legal, copyright                          |
 
 ---
 
@@ -94,14 +112,14 @@ The form (`#contact`) collects: First Name, Last Name, Email, Mobile, Country, V
 
 All design tokens live in `client/src/index.css` under `:root`. Key values:
 
-| Token | Value | Usage |
-|---|---|---|
-| `--hp-linen` | `#F5F0E8` | Primary background |
-| `--hp-charcoal` | `#1A1714` | Primary text and dark sections |
-| `--hp-bronze` | `#957355` | Accent rules, active states |
-| `--hp-sage` | `#7A8C6E` | Developer section background |
-| `--font-display` | Cormorant Garamond | All H1–H3 display headings |
-| `--font-body` | Montserrat | Navigation, labels, body copy |
+| Token            | Value              | Usage                          |
+| ---------------- | ------------------ | ------------------------------ |
+| `--hp-linen`     | `#F5F0E8`          | Primary background             |
+| `--hp-charcoal`  | `#1A1714`          | Primary text and dark sections |
+| `--hp-bronze`    | `#957355`          | Accent rules, active states    |
+| `--hp-sage`      | `#7A8C6E`          | Developer section background   |
+| `--font-display` | Cormorant Garamond | All H1–H3 display headings     |
+| `--font-body`    | Montserrat         | Navigation, labels, body copy  |
 
 ---
 

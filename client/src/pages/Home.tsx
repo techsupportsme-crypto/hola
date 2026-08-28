@@ -5,19 +5,18 @@
  * All copy from approved copy deck. Investment copy: kitesurf metaphor, locked June 2026.
  */
 
-import { useState, useCallback, useEffect, useRef } from 'react';
-import { useLocation } from 'wouter';
-import { Navigation } from '@/components/Navigation';
-import { VillaModal } from '@/components/VillaModal';
-import { ContactFormModal } from '@/components/ContactFormModal';
-import { villas } from '@/lib/villaData';
-import type { VillaType } from '@/lib/villaData';
-import { useScrollReveal } from '@/hooks/useScrollReveal';
+import { useState, useCallback, useEffect, useRef } from "react";
+import { useLocation } from "wouter";
+import { Navigation } from "@/components/Navigation";
+import { VillaModal } from "@/components/VillaModal";
+import { ContactFormModal } from "@/components/ContactFormModal";
+import { villas } from "@/lib/villaData";
+import type { VillaType } from "@/lib/villaData";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 
-import { HeroCrossfade } from '@/components/HeroCrossfade';
-import { useAuth } from '@/_core/hooks/useAuth';
-import { HolaCurlicue } from '@/components/HolaCurlicue';
-import ZanzibarMap from '@/components/ZanzibarMap';
+import { HeroCrossfade } from "@/components/HeroCrossfade";
+import { HolaCurlicue } from "@/components/HolaCurlicue";
+import ZanzibarMap from "@/components/ZanzibarMap";
 
 // ── Wildebeest video panel with crossfade-loop and unmute toggle ──
 function WildebeestVideoPanel() {
@@ -62,28 +61,48 @@ function WildebeestVideoPanel() {
         loop={false}
         onTimeUpdate={handleTimeUpdate}
         onEnded={handleEnded}
-        className={`hp-safari-video${fading ? ' hp-safari-video--fading' : ''}`}
+        className={`hp-safari-video${fading ? " hp-safari-video--fading" : ""}`}
         aria-label="Wildebeest migration across the Serengeti at dusk, with hot air balloons"
       />
       <button
         className="hp-video-unmute-btn"
         onClick={toggleMute}
-        aria-label={muted ? 'Unmute video' : 'Mute video'}
+        aria-label={muted ? "Unmute video" : "Mute video"}
         type="button"
       >
         {muted ? (
           // Speaker with X (muted)
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
-            <line x1="23" y1="9" x2="17" y2="15"/>
-            <line x1="17" y1="9" x2="23" y2="15"/>
+          <svg
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.8"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            aria-hidden="true"
+          >
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
+            <line x1="23" y1="9" x2="17" y2="15" />
+            <line x1="17" y1="9" x2="23" y2="15" />
           </svg>
         ) : (
           // Speaker with waves (unmuted)
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
-            <path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
-            <path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>
+          <svg
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.8"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            aria-hidden="true"
+          >
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
+            <path d="M15.54 8.46a5 5 0 0 1 0 7.07" />
+            <path d="M19.07 4.93a10 10 0 0 1 0 14.14" />
           </svg>
         )}
       </button>
@@ -91,11 +110,7 @@ function WildebeestVideoPanel() {
   );
 }
 
-
 export default function Home() {
-  // Initialise auth state hook without rendering user-specific state in this page.
-  useAuth();
-
   const [activeVilla, setActiveVilla] = useState<VillaType | null>(null);
   const [brochureModalOpen, setBrochureModalOpen] = useState(false);
 
@@ -107,11 +122,11 @@ export default function Home() {
 
   // Load HighLevel form embed script once for the inline enquiry iframe.
   useEffect(() => {
-    const scriptSrc = 'https://app.flotonzanzibar.com/js/form_embed.js';
+    const scriptSrc = "https://app.flotonzanzibar.com/js/form_embed.js";
 
     if (document.querySelector(`script[src="${scriptSrc}"]`)) return;
 
-    const script = document.createElement('script');
+    const script = document.createElement("script");
     script.src = scriptSrc;
     script.async = true;
     document.body.appendChild(script);
@@ -120,20 +135,20 @@ export default function Home() {
   // Listen for HighLevel homepage enquiry form submission and redirect to /thank-you.
   useEffect(() => {
     const handleMessage = (event: MessageEvent) => {
-      if (typeof event.data !== 'object' || event.data === null) return;
+      if (typeof event.data !== "object" || event.data === null) return;
       const isSubmission =
-        event.data.type === 'form_submitted' ||
-        event.data.event === 'form_submitted' ||
+        event.data.type === "form_submitted" ||
+        event.data.event === "form_submitted" ||
         event.data.formSubmitted === true;
       if (!isSubmission) return;
-      navigate('/thank-you');
+      navigate("/thank-you");
     };
-    window.addEventListener('message', handleMessage);
-    return () => window.removeEventListener('message', handleMessage);
+    window.addEventListener("message", handleMessage);
+    return () => window.removeEventListener("message", handleMessage);
   }, [navigate]);
 
   const openVilla = useCallback((villaId: string) => {
-    const found = villas.find((v) => v.id === villaId) ?? null;
+    const found = villas.find(v => v.id === villaId) ?? null;
     setActiveVilla(found);
   }, []);
 
@@ -142,8 +157,8 @@ export default function Home() {
   }, []);
 
   const scrollToContact = useCallback(() => {
-    const el = document.getElementById('contact');
-    if (el) el.scrollIntoView({ behavior: 'smooth' });
+    const el = document.getElementById("contact");
+    if (el) el.scrollIntoView({ behavior: "smooth" });
   }, []);
 
   return (
@@ -151,7 +166,7 @@ export default function Home() {
       {/* ── NAVIGATION ── */}
       <Navigation onVillaOpen={openVilla} onBrochureClick={openBrochureModal} />
 
-            {/* ── OPENING SEQUENCE: Scroll-pinned crossfade hero ── */}
+      {/* ── OPENING SEQUENCE: Scroll-pinned crossfade hero ── */}
       <HeroCrossfade />
 
       {/* ── BEACH ARRIVAL IMAGE — emotional landing after the hero ── */}
@@ -173,7 +188,8 @@ export default function Home() {
         {/* Stats bar — dark band between beach image and body copy, acts as headline */}
         <div className="hp-overview-stats-bar reveal">
           <h2 className="hp-overview-headline hp-overview-headline--bar">
-            A considered address<br />
+            A considered address
+            <br />
             on the Indian Ocean.
           </h2>
           <div className="hp-overview-stats">
@@ -199,12 +215,18 @@ export default function Home() {
           <div className="hp-overview-body-inner">
             <div>
               <p className="hp-body-text reveal reveal-delay-2">
-                Hola Paje is a boutique collection of fifty 2 and 3-bedroomed villas in Paje, on the southeast coast of Zanzibar. Developed by Floton Africa, these exclusive residences will set a new standard of luxury in this sought-after location.
+                Hola Paje is a boutique collection of fifty 2 and 3-bedroomed
+                villas in Paje, on the southeast coast of Zanzibar. Developed by
+                Floton Africa, these exclusive residences will set a new
+                standard of luxury in this sought-after location.
               </p>
             </div>
             <div>
               <p className="hp-body-text reveal reveal-delay-2">
-                Each residence is designed to dissolve the line between interior and exterior — private pools, open-plan living, open-air bathrooms — and provide direct access to one of the Indian Ocean's most desirable stretches of coastline.
+                Each residence is designed to dissolve the line between interior
+                and exterior — private pools, open-plan living, open-air
+                bathrooms — and provide direct access to one of the Indian
+                Ocean's most desirable stretches of coastline.
               </p>
             </div>
           </div>
@@ -221,11 +243,17 @@ export default function Home() {
       >
         <div className="hp-safari-text">
           <h2 className="hp-safari-headline">
-            The only island<br />
+            The only island
+            <br />
             that does all of this.
           </h2>
           <p className="hp-safari-body">
-            Zanzibar offers something few destinations can rival: the Indian Ocean on one side, and the African wilderness on the other. From Paje, the Serengeti and the Great Migration are less than an hour away by air. Kilimanjaro sits on the horizon. Stone Town — a UNESCO World Heritage Site shaped by centuries of trade and culture — is within easy reach.
+            Zanzibar offers something few destinations can rival: the Indian
+            Ocean on one side, and the African wilderness on the other. From
+            Paje, the Serengeti and the Great Migration are less than an hour
+            away by air. Kilimanjaro sits on the horizon. Stone Town — a UNESCO
+            World Heritage Site shaped by centuries of trade and culture — is
+            within easy reach.
           </p>
         </div>
         <div className="hp-safari-image hp-safari-video-wrap">
@@ -237,7 +265,10 @@ export default function Home() {
             className="hp-safari-video"
             aria-label="Traditional Zanzibar dhow sailing toward Stone Town harbour at golden hour"
           >
-            <source src="/manus-storage/dhow-v3-final_92f526ff.mp4" type="video/mp4" />
+            <source
+              src="/manus-storage/dhow-v3-final_92f526ff.mp4"
+              type="video/mp4"
+            />
           </video>
         </div>
       </section>
@@ -250,24 +281,23 @@ export default function Home() {
         <WildebeestVideoPanel />
         <div className="hp-safari-text">
           <h2 className="hp-safari-headline">
-            35 kms from the mainland.<br />
-            A world away from ordinary.
+            35 kms from the mainland.
+            <br />A world away from ordinary.
           </h2>
           <p className="hp-safari-body">
-            World-class nature. Barefoot luxury. Cultural depth. International accessibility.
+            World-class nature. Barefoot luxury. Cultural depth. International
+            accessibility.
           </p>
           <p className="hp-safari-body">
-            It is this rare combination that continues to draw a new generation of global travellers, lifestyle buyers and long-term investors to Zanzibar.
+            It is this rare combination that continues to draw a new generation
+            of global travellers, lifestyle buyers and long-term investors to
+            Zanzibar.
           </p>
         </div>
       </section>
 
       {/* ── PLACE / VILLAGE ── */}
-      <section
-        id="place"
-        className="hp-place"
-        aria-label="Paje, Zanzibar"
-      >
+      <section id="place" className="hp-place" aria-label="Paje, Zanzibar">
         <div className="hp-place-text hp-place--frond">
           {/* Palm shadow — inside text column so it works on both desktop and mobile stacked layout */}
           <img
@@ -277,23 +307,32 @@ export default function Home() {
             className="hp-palm-shadow hp-palm-shadow--place"
           />
           <h2 className="hp-place-headline reveal">
-            Paje. The village<br />
+            Paje. The village
+            <br />
             the world is discovering.
           </h2>
           <p className="hp-place-body reveal reveal-delay-2">
-            Paje is the kind of place that changes people’s plans. What begins as a holiday becomes a conversation about staying longer, investing smarter, owning something rare.
+            Paje is the kind of place that changes people’s plans. What begins
+            as a holiday becomes a conversation about staying longer, investing
+            smarter, owning something rare.
           </p>
           <p className="hp-place-body reveal reveal-delay-3">
-            Paje sits on Zanzibar’s south-east coast, where a shallow lagoon and consistent south-east trade winds have made it the Indian Ocean’s most celebrated kitesurf destination. The village has grown quietly around that reputation — boutique hotels, open-air restaurants, and a community that has retained its character.
+            Paje sits on Zanzibar’s south-east coast, where a shallow lagoon and
+            consistent south-east trade winds have made it the Indian Ocean’s
+            most celebrated kitesurf destination. The village has grown quietly
+            around that reputation — boutique hotels, open-air restaurants, and
+            a community that has retained its character.
           </p>
           <p className="hp-place-body reveal reveal-delay-4">
-            Zanzibar International Airport is 45 minutes away. Direct routes from Nairobi, Dubai, Doha, and Istanbul are now operating. The island received more than 917,000 visitors in 2025.
+            Zanzibar International Airport is 45 minutes away. Direct routes
+            from Nairobi, Dubai, Doha, and Istanbul are now operating. The
+            island received more than 917,000 visitors in 2025.
           </p>
         </div>
 
         <div className="hp-place-image-pair">
           <div className="hp-place-image hp-place-image--map">
-                        {/* Custom SVG map — ZanzibarMap v2, no CDN dependency */}
+            {/* Custom SVG map — ZanzibarMap v2, no CDN dependency */}
             <ZanzibarMap className="hp-map-svg-component" />
           </div>
         </div>
@@ -317,9 +356,12 @@ export default function Home() {
 
         {/* Three-column portrait card grid */}
         <div className="hp-villa-grid">
-          {villas.map((villa) => {
-            const totalArea = villa.areas.find((a) => a.isTotal);
-            const bedrooms = villa.tabLabel === 'Contemporary Villa' ? '3 bedrooms' : '2 bedrooms';
+          {villas.map(villa => {
+            const totalArea = villa.areas.find(a => a.isTotal);
+            const bedrooms =
+              villa.tabLabel === "Contemporary Villa"
+                ? "3 bedrooms"
+                : "2 bedrooms";
             const bathrooms = `${villa.bathrooms} bathrooms`;
             return (
               <button
@@ -334,12 +376,18 @@ export default function Home() {
                     src={villa.heroImage}
                     alt={villa.heroImageAlt}
                     loading="lazy"
-                    style={villa.id === 'island' ? { objectPosition: 'center bottom' } : undefined}
+                    style={
+                      villa.id === "island"
+                        ? { objectPosition: "center bottom" }
+                        : undefined
+                    }
                   />
                   <div className="hp-villa-card-overlay" aria-hidden="true" />
                   {/* Villa name at bottom of image */}
                   <div className="hp-villa-card-name-bar">
-                    <span className="hp-villa-card-name">{villa.tabLabel.toUpperCase()}</span>
+                    <span className="hp-villa-card-name">
+                      {villa.tabLabel.toUpperCase()}
+                    </span>
                   </div>
                 </div>
 
@@ -352,7 +400,9 @@ export default function Home() {
                     <li>Private pool</li>
                   </ul>
                   <div className="hp-villa-card-footer">
-                    <span className="hp-villa-card-price">{villa.fromPrice}</span>
+                    <span className="hp-villa-card-price">
+                      {villa.fromPrice}
+                    </span>
                     <span className="hp-villa-card-cta">Enter Villa</span>
                   </div>
                 </div>
@@ -362,7 +412,7 @@ export default function Home() {
         </div>
       </section>
 
-            {/* ── THE INSPIRATION ── */}
+      {/* ── THE INSPIRATION ── */}
       <section
         id="inspiration"
         className="hp-inspiration hp-inspiration--frond"
@@ -406,20 +456,24 @@ export default function Home() {
           <div className="hp-inspiration-text">
             <p className="hp-section-label reveal">The Inspiration</p>
             <h2 className="hp-inspiration-headline reveal">
-              The island<br />wrote the brief
+              The island
+              <br />
+              wrote the brief
             </h2>
             <p className="hp-inspiration-body reveal reveal-delay-2">
-              The inspiration behind this design comes from the natural beauty and soul of
-              Zanzibar — its landscapes, textures, and coastal serenity.
+              The inspiration behind this design comes from the natural beauty
+              and soul of Zanzibar — its landscapes, textures, and coastal
+              serenity.
             </p>
             <p className="hp-inspiration-body reveal reveal-delay-3">
-              The architects drew from the island's rich environment, blending organic forms,
-              earthy materials, and open spaces that reflect the rhythm of nature.
+              The architects drew from the island's rich environment, blending
+              organic forms, earthy materials, and open spaces that reflect the
+              rhythm of nature.
             </p>
             <p className="hp-inspiration-body reveal reveal-delay-4">
-              Every detail is shaped by the harmony between land, sea, and culture, creating
-              a timeless connection to the island itself. A design rooted in place, inspired
-              by the essence of Zanzibar.
+              Every detail is shaped by the harmony between land, sea, and
+              culture, creating a timeless connection to the island itself. A
+              design rooted in place, inspired by the essence of Zanzibar.
             </p>
           </div>
         </div>
@@ -434,25 +488,75 @@ export default function Home() {
         <div className="hp-lifestyle-text">
           <p className="hp-section-label reveal">The Lifestyle Centre</p>
           <h2 className="hp-lifestyle-headline reveal">
-            A village within<br />
+            A village within
+            <br />
             the village.
           </h2>
           <p className="hp-lifestyle-body reveal reveal-delay-2">
-            Most developments give you a gate and a pool. Hola gives you something rarer — a place
-            where life actually happens.
+            Most developments give you a gate and a pool. Hola gives you
+            something rarer — a place where life actually happens.
           </p>
           <p className="hp-lifestyle-body reveal reveal-delay-3">
-            At the centre sits a commercial hub designed around the way people live here. A
-            supermarket stocked for real cooking. A gym that earns the visit. A café where you
-            linger. Co-working space for the days when work doesn't stop because the view is good.
+            At the centre sits a commercial hub designed around the way people
+            live here. A supermarket stocked for real cooking. A gym that earns
+            the visit. A café where you linger. Co-working space for the days
+            when work doesn't stop because the view is good.
           </p>
           <ul className="hp-lifestyle-amenities reveal reveal-delay-4">
-            <li><img src="/manus-storage/curlicue-gold_209ccd87.png" className="hp-lifestyle-bullet" aria-hidden="true" alt="" />Boutique Retail</li>
-            <li><img src="/manus-storage/curlicue-gold_209ccd87.png" className="hp-lifestyle-bullet" aria-hidden="true" alt="" />Supermarket</li>
-            <li><img src="/manus-storage/curlicue-gold_209ccd87.png" className="hp-lifestyle-bullet" aria-hidden="true" alt="" />Fitness Centre</li>
-            <li><img src="/manus-storage/curlicue-gold_209ccd87.png" className="hp-lifestyle-bullet" aria-hidden="true" alt="" />Restaurants &amp; Cafés</li>
-            <li><img src="/manus-storage/curlicue-gold_209ccd87.png" className="hp-lifestyle-bullet" aria-hidden="true" alt="" />Co-working Hub</li>
-            <li><img src="/manus-storage/curlicue-gold_209ccd87.png" className="hp-lifestyle-bullet" aria-hidden="true" alt="" />Sea-view Terrace</li>
+            <li>
+              <img
+                src="/manus-storage/curlicue-gold_209ccd87.png"
+                className="hp-lifestyle-bullet"
+                aria-hidden="true"
+                alt=""
+              />
+              Boutique Retail
+            </li>
+            <li>
+              <img
+                src="/manus-storage/curlicue-gold_209ccd87.png"
+                className="hp-lifestyle-bullet"
+                aria-hidden="true"
+                alt=""
+              />
+              Supermarket
+            </li>
+            <li>
+              <img
+                src="/manus-storage/curlicue-gold_209ccd87.png"
+                className="hp-lifestyle-bullet"
+                aria-hidden="true"
+                alt=""
+              />
+              Fitness Centre
+            </li>
+            <li>
+              <img
+                src="/manus-storage/curlicue-gold_209ccd87.png"
+                className="hp-lifestyle-bullet"
+                aria-hidden="true"
+                alt=""
+              />
+              Restaurants &amp; Cafés
+            </li>
+            <li>
+              <img
+                src="/manus-storage/curlicue-gold_209ccd87.png"
+                className="hp-lifestyle-bullet"
+                aria-hidden="true"
+                alt=""
+              />
+              Co-working Hub
+            </li>
+            <li>
+              <img
+                src="/manus-storage/curlicue-gold_209ccd87.png"
+                className="hp-lifestyle-bullet"
+                aria-hidden="true"
+                alt=""
+              />
+              Sea-view Terrace
+            </li>
           </ul>
         </div>
 
@@ -477,15 +581,14 @@ export default function Home() {
                 src="/manus-storage/gym-treadmill_19d117ee.webp"
                 alt="Resident running on treadmill in the Hola Paje gym"
                 loading="lazy"
-                style={{ objectPosition: 'center 30%' }}
+                style={{ objectPosition: "center 30%" }}
               />
             </div>
           </div>
         </div>
       </section>
 
-
-            {/* ── OWNING ── */}
+      {/* ── OWNING ── */}
       <section
         id="owning"
         className="hp-owning"
@@ -495,21 +598,33 @@ export default function Home() {
         <div className="hp-owning-header">
           <p className="hp-section-label reveal">Ownership</p>
           <h2 className="hp-owning-headline reveal">
-            Own it the way<br />that works for you.
+            Own it the way
+            <br />
+            that works for you.
           </h2>
           <p className="hp-owning-intro reveal reveal-delay-2">
-            Three purchase structures are available. Each is designed to give you flexibility across the 24-month construction period, with full ownership — and full management programme activation — from the date of handover in 2028.
+            Three purchase structures are available. Each is designed to give
+            you flexibility across the 24-month construction period, with full
+            ownership — and full management programme activation — from the date
+            of handover in 2028.
           </p>
         </div>
 
         {/* Payment plan cards */}
         <div className="hp-owning-plans">
-
           {/* Option 1 */}
-          <div className="hp-plan-card reveal hp-plan-card--riffle" data-plan-num="01" style={{'--riffle-delay': '0ms'} as React.CSSProperties}>
+          <div
+            className="hp-plan-card reveal hp-plan-card--riffle"
+            data-plan-num="01"
+            style={{ "--riffle-delay": "0ms" } as React.CSSProperties}
+          >
             <div className="hp-plan-card-header">
               <span className="hp-plan-number">Construction Linked</span>
-              <h3 className="hp-plan-title">Progress<br/>Plan</h3>
+              <h3 className="hp-plan-title">
+                Progress
+                <br />
+                Plan
+              </h3>
               {/* Curlicue — logo flourish as gold accent on dark teal */}
               <div className="hp-curlicue-accent" aria-hidden="true">
                 <span className="hp-curlicue-rule" />
@@ -520,32 +635,51 @@ export default function Home() {
             <ul className="hp-plan-rows">
               <li className="hp-plan-row">
                 <span className="hp-plan-pct">20%</span>
-                <span className="hp-plan-desc">Reservation fee upon signing of the Purchase and Sale Agreement.</span>
+                <span className="hp-plan-desc">
+                  Reservation fee upon signing of the Purchase and Sale
+                  Agreement.
+                </span>
               </li>
               <li className="hp-plan-row">
                 <span className="hp-plan-pct">20%</span>
-                <span className="hp-plan-desc">Upon completion of foundation footings.</span>
+                <span className="hp-plan-desc">
+                  Upon completion of foundation footings.
+                </span>
               </li>
               <li className="hp-plan-row">
                 <span className="hp-plan-pct">30%</span>
-                <span className="hp-plan-desc">Upon completion of the roof concrete structure.</span>
+                <span className="hp-plan-desc">
+                  Upon completion of the roof concrete structure.
+                </span>
               </li>
               <li className="hp-plan-row">
                 <span className="hp-plan-pct">20%</span>
-                <span className="hp-plan-desc">Upon completion of first-fix electrical and plumbing.</span>
+                <span className="hp-plan-desc">
+                  Upon completion of first-fix electrical and plumbing.
+                </span>
               </li>
               <li className="hp-plan-row">
                 <span className="hp-plan-pct">10%</span>
-                <span className="hp-plan-desc">Upon completion of the pre-handover inspection.</span>
+                <span className="hp-plan-desc">
+                  Upon completion of the pre-handover inspection.
+                </span>
               </li>
             </ul>
           </div>
 
           {/* Option 2 */}
-          <div className="hp-plan-card reveal hp-plan-card--riffle" data-plan-num="02" style={{'--riffle-delay': '120ms'} as React.CSSProperties}>
+          <div
+            className="hp-plan-card reveal hp-plan-card--riffle"
+            data-plan-num="02"
+            style={{ "--riffle-delay": "120ms" } as React.CSSProperties}
+          >
             <div className="hp-plan-card-header">
               <span className="hp-plan-number">Investors&rsquo; Favourite</span>
-              <h3 className="hp-plan-title">Instalment<br/>Plan</h3>
+              <h3 className="hp-plan-title">
+                Instalment
+                <br />
+                Plan
+              </h3>
               {/* Curlicue accent */}
               <div className="hp-curlicue-accent" aria-hidden="true">
                 <span className="hp-curlicue-rule" />
@@ -560,7 +694,10 @@ export default function Home() {
               </li>
               <li className="hp-plan-row">
                 <span className="hp-plan-pct">80%</span>
-                <span className="hp-plan-desc">Balance spread over equal monthly or quarterly instalments during the 24-month construction period.</span>
+                <span className="hp-plan-desc">
+                  Balance spread over equal monthly or quarterly instalments
+                  during the 24-month construction period.
+                </span>
               </li>
             </ul>
             <div className="hp-plan-callout">
@@ -571,10 +708,18 @@ export default function Home() {
           </div>
 
           {/* Option 3 */}
-          <div className="hp-plan-card hp-plan-card--highlight reveal hp-plan-card--riffle" data-plan-num="03" style={{'--riffle-delay': '240ms'} as React.CSSProperties}>
+          <div
+            className="hp-plan-card hp-plan-card--highlight reveal hp-plan-card--riffle"
+            data-plan-num="03"
+            style={{ "--riffle-delay": "240ms" } as React.CSSProperties}
+          >
             <div className="hp-plan-card-header">
               <span className="hp-plan-number">Maximum Value</span>
-              <h3 className="hp-plan-title">Cash &amp;<br/>Discount</h3>
+              <h3 className="hp-plan-title">
+                Cash &amp;
+                <br />
+                Discount
+              </h3>
               {/* Curlicue accent */}
               <div className="hp-curlicue-accent" aria-hidden="true">
                 <span className="hp-curlicue-rule" />
@@ -585,26 +730,31 @@ export default function Home() {
             <ul className="hp-plan-rows">
               <li className="hp-plan-row">
                 <span className="hp-plan-pct">90%</span>
-                <span className="hp-plan-desc">Upfront payment on signing.</span>
+                <span className="hp-plan-desc">
+                  Upfront payment on signing.
+                </span>
               </li>
               <li className="hp-plan-row hp-plan-row--discount">
                 <span className="hp-plan-pct hp-plan-pct--discount">10%</span>
-                <span className="hp-plan-desc">Discount applied to total purchase price.</span>
+                <span className="hp-plan-desc">
+                  Discount applied to total purchase price.
+                </span>
               </li>
             </ul>
             <div className="hp-plan-callout">
               <span className="hp-plan-callout-label">Save</span>
-              <span className="hp-plan-callout-number hp-plan-callout-number--gold">10%</span>
+              <span className="hp-plan-callout-number hp-plan-callout-number--gold">
+                10%
+              </span>
               <span className="hp-plan-callout-label">on total price</span>
             </div>
           </div>
-
         </div>
 
         <p className="hp-owning-note reveal reveal-delay-4">
-          Payment plans and construction milestones are subject to the Sale Agreement and may be adjusted according to the construction programme.
+          Payment plans and construction milestones are subject to the Sale
+          Agreement and may be adjusted according to the construction programme.
         </p>
-
       </section>
 
       {/* ── INTERSTITIAL VIDEO — turtle ── */}
@@ -617,7 +767,10 @@ export default function Home() {
           className="hp-interstitial-img hp-interstitial-video"
           aria-label="Sea turtle gliding through sunlit Indian Ocean waters off Zanzibar"
         >
-          <source src="/manus-storage/turtle-loop-cropped_48970c3c.mp4" type="video/mp4" />
+          <source
+            src="/manus-storage/turtle-loop-cropped_48970c3c.mp4"
+            type="video/mp4"
+          />
         </video>
       </div>
 
@@ -631,22 +784,30 @@ export default function Home() {
         <div className="hp-developer-headline-bar reveal">
           <div className="hp-developer-headline-left">
             <p className="hp-developer-band-eyebrow">Floton Africa</p>
-            <h3 className="hp-developer-band-headline">A developer that delivers.</h3>
+            <h3 className="hp-developer-band-headline">
+              A developer that delivers.
+            </h3>
           </div>
           <div className="hp-developer-band-stats">
             <div className="hp-developer-band-stat">
               <span className="hp-developer-band-num">140+</span>
-              <span className="hp-developer-band-label">Active &amp; delivered units</span>
+              <span className="hp-developer-band-label">
+                Active &amp; delivered units
+              </span>
             </div>
             <div className="hp-developer-band-divider" aria-hidden="true" />
             <div className="hp-developer-band-stat">
               <span className="hp-developer-band-num">12+</span>
-              <span className="hp-developer-band-label">Years in East African development</span>
+              <span className="hp-developer-band-label">
+                Years in East African development
+              </span>
             </div>
             <div className="hp-developer-band-divider" aria-hidden="true" />
             <div className="hp-developer-band-stat">
               <span className="hp-developer-band-num">$64M</span>
-              <span className="hp-developer-band-label">In projects under active development</span>
+              <span className="hp-developer-band-label">
+                In projects under active development
+              </span>
             </div>
           </div>
         </div>
@@ -654,13 +815,26 @@ export default function Home() {
         <div className="hp-developer-body-grid">
           <div className="hp-developer-left reveal reveal-delay-2">
             <p className="hp-developer-body">
-              Floton Africa is a real estate development company with an active portfolio across Zanzibar. Two completed developments in Paje — The Emerald and Emerald Square — have been fully handed over to owners. Hola Paje and YOLO Residences are the company's most ambitious projects to date.
+              Floton Africa is a real estate development company with an active
+              portfolio across Zanzibar. Two completed developments in Paje —
+              The Emerald and Emerald Square — have been fully handed over to
+              owners. Hola Paje and YOLO Residences are the company's most
+              ambitious projects to date.
             </p>
             <p className="hp-developer-body">
-              Both completed developments are available for inspection. We actively encourage buyers to visit, speak to existing owners, and verify every claim independently. Confidence is built through what you can see and confirm, not through brochures alone.
+              Both completed developments are available for inspection. We
+              actively encourage buyers to visit, speak to existing owners, and
+              verify every claim independently. Confidence is built through what
+              you can see and confirm, not through brochures alone.
             </p>
             <p className="hp-developer-body">
-              Floton Africa has operated in Tanzania since 2014, holding Class 1 licensing as a construction and real estate developer. The company's in-house construction expertise and established on-ground presence support more than $64 million in active developments in Zanzibar — giving investors the confidence of a developer with a genuine, verifiable track record in one of East Africa's fastest-growing coastal property markets.
+              Floton Africa has operated in Tanzania since 2014, holding Class 1
+              licensing as a construction and real estate developer. The
+              company's in-house construction expertise and established
+              on-ground presence support more than $64 million in active
+              developments in Zanzibar — giving investors the confidence of a
+              developer with a genuine, verifiable track record in one of East
+              Africa's fastest-growing coastal property markets.
             </p>
             <div className="hp-developer-logo-block hp-developer-logo-block--left">
               <img
@@ -679,29 +853,41 @@ export default function Home() {
                 alt="A previous Floton Africa development — luxury villa with private pool, Zanzibar"
                 className="hp-developer-portfolio-img"
               />
-              <p className="hp-developer-img-caption">A PREVIOUS FLOTON AFRICA DEVELOPMENT</p>
+              <p className="hp-developer-img-caption">
+                A PREVIOUS FLOTON AFRICA DEVELOPMENT
+              </p>
             </div>
           </div>
         </div>
       </section>
 
-            {/* ── WHY BUY AT LAUNCH ── */}
+      {/* ── WHY BUY AT LAUNCH ── */}
       <section className="hp-launch-section" aria-label="Why buy at launch">
         {/* Eyebrow + headline block */}
         <div className="hp-launch-top reveal">
           <p className="hp-launch-kicker">First mover advantage</p>
           <h2 className="hp-launch-hero">
-            <span className="hp-launch-hero-line">Three compelling reasons</span>
+            <span className="hp-launch-hero-line">
+              Three compelling reasons
+            </span>
             <span className="hp-launch-hero-line">to buy at launch.</span>
           </h2>
         </div>
         {/* Three benefit cards */}
         <div className="hp-launch-cards">
           {/* Card 1 — Selection */}
-          <div className="hp-launch-card reveal hp-launch-card--riffle" data-launch-num="01" style={{'--riffle-delay': '0ms'} as React.CSSProperties}>
+          <div
+            className="hp-launch-card reveal hp-launch-card--riffle"
+            data-launch-num="01"
+            style={{ "--riffle-delay": "0ms" } as React.CSSProperties}
+          >
             <div className="hp-launch-card-header">
               <span className="hp-launch-card-eyebrow">Selection</span>
-              <h3 className="hp-launch-card-title">First<br/>Choice.</h3>
+              <h3 className="hp-launch-card-title">
+                First
+                <br />
+                Choice.
+              </h3>
               <div className="hp-curlicue-accent" aria-hidden="true">
                 <span className="hp-curlicue-rule" />
                 <HolaCurlicue size="md" />
@@ -709,13 +895,24 @@ export default function Home() {
               </div>
             </div>
             <div className="hp-launch-stat">50</div>
-            <p className="hp-launch-card-body">Residences in total. First to reserve has first choice of unit, aspect, and villa type — across all three collections.</p>
+            <p className="hp-launch-card-body">
+              Residences in total. First to reserve has first choice of unit,
+              aspect, and villa type — across all three collections.
+            </p>
           </div>
           {/* Card 2 — Saving */}
-          <div className="hp-launch-card hp-launch-card--accent reveal hp-launch-card--riffle" data-launch-num="02" style={{'--riffle-delay': '120ms'} as React.CSSProperties}>
+          <div
+            className="hp-launch-card hp-launch-card--accent reveal hp-launch-card--riffle"
+            data-launch-num="02"
+            style={{ "--riffle-delay": "120ms" } as React.CSSProperties}
+          >
             <div className="hp-launch-card-header">
               <span className="hp-launch-card-eyebrow">Saving</span>
-              <h3 className="hp-launch-card-title">Best<br/>Price.</h3>
+              <h3 className="hp-launch-card-title">
+                Best
+                <br />
+                Price.
+              </h3>
               <div className="hp-curlicue-accent" aria-hidden="true">
                 <span className="hp-curlicue-rule" />
                 <HolaCurlicue size="md" />
@@ -723,13 +920,24 @@ export default function Home() {
               </div>
             </div>
             <div className="hp-launch-stat">$10,000</div>
-            <p className="hp-launch-card-body">Launch-period discount applied on reservation. Available throughout the launch window. Enquire for details.</p>
+            <p className="hp-launch-card-body">
+              Launch-period discount applied on reservation. Available
+              throughout the launch window. Enquire for details.
+            </p>
           </div>
           {/* Card 3 — Growth */}
-          <div className="hp-launch-card reveal hp-launch-card--riffle" data-launch-num="03" style={{'--riffle-delay': '240ms'} as React.CSSProperties}>
+          <div
+            className="hp-launch-card reveal hp-launch-card--riffle"
+            data-launch-num="03"
+            style={{ "--riffle-delay": "240ms" } as React.CSSProperties}
+          >
             <div className="hp-launch-card-header">
               <span className="hp-launch-card-eyebrow">Growth</span>
-              <h3 className="hp-launch-card-title">Greatest<br/>Reward.</h3>
+              <h3 className="hp-launch-card-title">
+                Greatest
+                <br />
+                Reward.
+              </h3>
               <div className="hp-curlicue-accent" aria-hidden="true">
                 <span className="hp-curlicue-rule" />
                 <HolaCurlicue size="md" />
@@ -737,7 +945,11 @@ export default function Home() {
               </div>
             </div>
             <div className="hp-launch-stat">40%</div>
-            <p className="hp-launch-card-body">Projected capital appreciation from launch to completion in 2028 — based on the actual performance of Floton Africa's previous Paje villa developments.</p>
+            <p className="hp-launch-card-body">
+              Projected capital appreciation from launch to completion in 2028 —
+              based on the actual performance of Floton Africa's previous Paje
+              villa developments.
+            </p>
           </div>
         </div>
       </section>
@@ -751,7 +963,11 @@ export default function Home() {
         {/* Column 1: headline → contact details → image → dual CTA buttons */}
         <div className="hp-contact-info">
           <h2 className="hp-contact-left-headline reveal">
-            Start the conversation<br />that leads to your<br />private villa in Paje.
+            Start the conversation
+            <br />
+            that leads to your
+            <br />
+            private villa in Paje.
           </h2>
 
           {/* Contact details: WhatsApp + Email — directly under headline */}
@@ -763,8 +979,19 @@ export default function Home() {
               rel="noopener noreferrer"
               aria-label="WhatsApp or call +255 650 322 222"
             >
-              <svg className="hp-contact-detail-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+              <svg
+                className="hp-contact-detail-icon"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
               </svg>
               <span>WhatsApp or call +255 650 322 222</span>
             </a>
@@ -773,9 +1000,20 @@ export default function Home() {
               className="hp-contact-detail-item"
               aria-label="Email invest@flotonafrica.com"
             >
-              <svg className="hp-contact-detail-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-                <polyline points="22,6 12,13 2,6"/>
+              <svg
+                className="hp-contact-detail-icon"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                <polyline points="22,6 12,13 2,6" />
               </svg>
               <span>invest@flotonafrica.com</span>
             </a>
@@ -786,30 +1024,28 @@ export default function Home() {
               src="/manus-storage/Screenshot2026-05-14at15.26.28_0daa0784.png"
               alt="Kitesurfer at sunset on the lagoon at Paje, Zanzibar"
               loading="lazy"
-                        />
+            />
           </div>
-
-
         </div>
         {/* Column 2: HighLevel form + Download Brochure */}
         <div
           className="hp-contact-form-col"
-          style={{ position: 'relative', zIndex: 5 }}
+          style={{ position: "relative", zIndex: 5 }}
         >
           <iframe
             src="https://app.flotonzanzibar.com/widget/form/9l5fiiloIWCfq4TtQ2q9"
             style={{
-              width: '100%',
-              height: '760px',
-              minHeight: '760px',
-              border: '0',
-              borderRadius: '8px',
-              display: 'block',
-              position: 'relative',
+              width: "100%",
+              height: "760px",
+              minHeight: "760px",
+              border: "0",
+              borderRadius: "8px",
+              display: "block",
+              position: "relative",
               zIndex: 10,
-              pointerEvents: 'auto',
-              background: 'transparent',
-              overflow: 'hidden',
+              pointerEvents: "auto",
+              background: "transparent",
+              overflow: "hidden",
             }}
             id="inline-9l5fiiloIWCfq4TtQ2q9"
             data-layout="{'id':'INLINE'}"
@@ -838,11 +1074,14 @@ export default function Home() {
       </section>
 
       {/* ── CGI DISCLAIMER ── */}
-      <p className="hp-cgi-disclaimer-text">* All computer-generated imagery of Hola Paje Luxury Residences serves as an artistic guide only and should not be interpreted as a literal representation of the final development.</p>
+      <p className="hp-cgi-disclaimer-text">
+        * All computer-generated imagery of Hola Paje Luxury Residences serves
+        as an artistic guide only and should not be interpreted as a literal
+        representation of the final development.
+      </p>
 
       {/* ── FOOTER ── */}
       <footer className="hp-footer" role="contentinfo">
-
         {/* Floton Africa — pride of place, centred */}
         <div className="hp-footer-brand">
           <a
@@ -862,30 +1101,78 @@ export default function Home() {
 
         {/* Social icons — centred */}
         <div className="hp-footer-social" aria-label="Social media links">
-          <a href="https://www.facebook.com/share/18akn7AgMv/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" className="hp-footer-social-link" aria-label="Facebook">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-              <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+          <a
+            href="https://www.facebook.com/share/18akn7AgMv/?mibextid=wwXIfr"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hp-footer-social-link"
+            aria-label="Facebook"
+          >
+            <svg
+              width="22"
+              height="22"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              aria-hidden="true"
+            >
+              <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
             </svg>
           </a>
-          <a href="https://www.instagram.com/holapajezanzibar?igsh=Y3Y0NDRkbG9vcDV3" target="_blank" rel="noopener noreferrer" className="hp-footer-social-link" aria-label="Instagram">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
-              <circle cx="12" cy="12" r="4"/>
-              <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none"/>
+          <a
+            href="https://www.instagram.com/holapajezanzibar?igsh=Y3Y0NDRkbG9vcDV3"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hp-footer-social-link"
+            aria-label="Instagram"
+          >
+            <svg
+              width="22"
+              height="22"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              aria-hidden="true"
+            >
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+              <circle cx="12" cy="12" r="4" />
+              <circle
+                cx="17.5"
+                cy="6.5"
+                r="0.5"
+                fill="currentColor"
+                stroke="none"
+              />
             </svg>
           </a>
-          <a href="https://www.linkedin.com/company/floton-africa-zanzibar/" target="_blank" rel="noopener noreferrer" className="hp-footer-social-link" aria-label="LinkedIn">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
-              <rect x="2" y="9" width="4" height="12"/>
-              <circle cx="4" cy="4" r="2"/>
+          <a
+            href="https://www.linkedin.com/company/floton-africa-zanzibar/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hp-footer-social-link"
+            aria-label="LinkedIn"
+          >
+            <svg
+              width="22"
+              height="22"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              aria-hidden="true"
+            >
+              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+              <rect x="2" y="9" width="4" height="12" />
+              <circle cx="4" cy="4" r="2" />
             </svg>
           </a>
         </div>
 
         {/* Privacy Policy — centred */}
         <nav className="hp-footer-links" aria-label="Footer navigation">
-          <a href="/privacy-policy" className="hp-footer-link">Privacy Policy</a>
+          <a href="/privacy-policy" className="hp-footer-link">
+            Privacy Policy
+          </a>
         </nav>
 
         {/* Divider */}
@@ -893,9 +1180,7 @@ export default function Home() {
 
         {/* Bottom: copyright left, machete centred */}
         <div className="hp-footer-bottom">
-          <p className="hp-footer-credit">
-            &copy; 2026 Floton Africa Limited
-          </p>
+          <p className="hp-footer-credit">&copy; 2026 Floton Africa Limited</p>
           <a
             href="https://www.machete.co.za"
             target="_blank"
@@ -911,7 +1196,6 @@ export default function Home() {
           </a>
           <div className="hp-footer-bottom-spacer" aria-hidden="true" />
         </div>
-
       </footer>
 
       {/* ── WHATSAPP FLOATING BUTTON ── */}
