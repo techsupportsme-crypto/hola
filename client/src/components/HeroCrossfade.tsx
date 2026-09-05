@@ -27,7 +27,7 @@ const PANELS: HeroPanel[] = [
     src: "/manus-storage/Kitesurfhero-4x_4ad00f95.webp",
     alt: "Kitesurf at sunset on the Indian Ocean, Paje, Zanzibar",
     lines: [
-      { text: "Seven in the morning." },
+      { text: "Six in the morning." },
       { text: "The tide is in." },
       { text: "And the kites are up." },
     ],

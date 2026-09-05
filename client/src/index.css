@@ -63,23 +63,23 @@
   --radius: 0;
 
   /* Hola Paje palette */
-  --hp-linen: #F2EDE6;
-  --hp-linen-dark: #EAE0D4;
-  --hp-charcoal: #1C1917;
-  --hp-charcoal-mid: #2A2522;
-  --hp-mid: #6B6560;
-  --hp-light: #9A9490;
+  --hp-linen: #f2ede6;
+  --hp-linen-dark: #eae0d4;
+  --hp-charcoal: #1c1917;
+  --hp-charcoal-mid: #2a2522;
+  --hp-mid: #6b6560;
+  --hp-light: #9a9490;
   /* Teal accent — Indian Ocean shallow water */
-  --hp-teal: #3A6B6E;
-  --hp-teal-deep: #2A5558;
-  --hp-teal-light: #4D8A8E;
+  --hp-teal: #3a6b6e;
+  --hp-teal-deep: #2a5558;
+  --hp-teal-light: #4d8a8e;
   --hp-teal-muted: rgba(58, 107, 110, 0.15);
   /* Gold — warm editorial accent, payment plan callouts, eyebrows */
-  --hp-gold: #B8922A;
-  --hp-gold-muted: #9B7C4A;
+  --hp-gold: #b8922a;
+  --hp-gold-muted: #9b7c4a;
   --hp-gold-pale: rgba(184, 146, 42, 0.12);
   /* Bronze/gold — legacy alias */
-  --hp-bronze: #9B7C4A;
+  --hp-bronze: #9b7c4a;
 
   /* Semantic tokens */
   --background: var(--hp-linen);
@@ -132,7 +132,7 @@
   body {
     background: var(--hp-linen);
     color: var(--hp-charcoal);
-    font-family: 'Montserrat', sans-serif;
+    font-family: "Montserrat", sans-serif;
     font-weight: 200;
     font-size: 15px;
     line-height: 1.75;
@@ -184,7 +184,7 @@
   }
 }
 
-   /* SCROLL REVEAL UTILITY
+/* SCROLL REVEAL UTILITY
  */
 
 /* ── WAVE HEADLINE ANIMATION ── */
@@ -197,8 +197,9 @@
 .wh-line {
   opacity: 0;
   transform: translateY(32px);
-  transition: opacity 1s cubic-bezier(0.23, 1, 0.32, 1),
-              transform 1s cubic-bezier(0.23, 1, 0.32, 1);
+  transition:
+    opacity 1s cubic-bezier(0.23, 1, 0.32, 1),
+    transform 1s cubic-bezier(0.23, 1, 0.32, 1);
   /* delay is set inline via JS */
   will-change: opacity, transform;
 }
@@ -241,8 +242,9 @@
 .reveal {
   opacity: 0;
   transform: translateY(28px);
-  transition: opacity 0.9s cubic-bezier(0.23, 1, 0.32, 1),
-              transform 0.9s cubic-bezier(0.23, 1, 0.32, 1);
+  transition:
+    opacity 0.9s cubic-bezier(0.23, 1, 0.32, 1),
+    transform 0.9s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 .reveal.visible {
@@ -250,16 +252,25 @@
   transform: translateY(0);
 }
 
-.reveal-delay-1 { transition-delay: 0.12s; }
-.reveal-delay-2 { transition-delay: 0.24s; }
-.reveal-delay-3 { transition-delay: 0.36s; }
-.reveal-delay-4 { transition-delay: 0.48s; }
+.reveal-delay-1 {
+  transition-delay: 0.12s;
+}
+.reveal-delay-2 {
+  transition-delay: 0.24s;
+}
+.reveal-delay-3 {
+  transition-delay: 0.36s;
+}
+.reveal-delay-4 {
+  transition-delay: 0.48s;
+}
 
 /* Plan card riffle — slides up from below with a slight tilt, each card uses inline animationDelay */
 .hp-plan-card--riffle {
   transform: translateY(48px) rotate(1.5deg);
-  transition: opacity 0.55s cubic-bezier(0.23, 1, 0.32, 1),
-              transform 0.55s cubic-bezier(0.23, 1, 0.32, 1);
+  transition:
+    opacity 0.55s cubic-bezier(0.23, 1, 0.32, 1),
+    transform 0.55s cubic-bezier(0.23, 1, 0.32, 1);
   transition-delay: var(--riffle-delay, 0ms);
 }
 .hp-plan-card--riffle.visible {
@@ -267,7 +278,7 @@
   transform: translateY(0) rotate(0deg);
 }
 
-   /* NAVIGATION
+/* NAVIGATION
  */
 
 .hp-nav {
@@ -283,7 +294,10 @@
   align-items: center;
   justify-content: space-between;
   padding: 0 5vw;
-  transition: background 0.4s ease, backdrop-filter 0.4s ease, height 0.4s ease;
+  transition:
+    background 0.4s ease,
+    backdrop-filter 0.4s ease,
+    height 0.4s ease;
 }
 /* Mobile: reduce nav height and logo so they sit on one row */
 @media (max-width: 1023px) {
@@ -321,7 +335,9 @@
   height: 4.8rem;
   width: auto;
   display: block;
-  transition: opacity 200ms ease, height 0.4s ease;
+  transition:
+    opacity 200ms ease,
+    height 0.4s ease;
 }
 
 .hp-nav.scrolled .hp-nav-logo {
@@ -348,7 +364,7 @@
 }
 
 .hp-nav-link {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 500;
   font-size: 0.95rem;
   letter-spacing: 0.18em;
@@ -388,8 +404,9 @@
   opacity: 0;
   pointer-events: none;
   transform: translateY(-4px);
-  transition: opacity 0.22s cubic-bezier(0.23, 1, 0.32, 1),
-              transform 0.22s cubic-bezier(0.23, 1, 0.32, 1);
+  transition:
+    opacity 0.22s cubic-bezier(0.23, 1, 0.32, 1),
+    transform 0.22s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 /* Thin rule that appears under the nav when sub-row is open */
@@ -401,7 +418,7 @@
 }
 
 .hp-nav-villa-item {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 300;
   font-size: 0.78rem;
   letter-spacing: 0.22em;
@@ -430,7 +447,7 @@
 
 .hp-nav-cta {
   display: none;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 500;
   font-size: 0.78rem;
   letter-spacing: 0.18em;
@@ -439,7 +456,9 @@
   text-decoration: none;
   border: 1px solid rgba(58, 107, 110, 0.45);
   padding: 0.55rem 1.4rem;
-  transition: border-color 0.25s ease, color 0.25s ease;
+  transition:
+    border-color 0.25s ease,
+    color 0.25s ease;
   white-space: nowrap;
 }
 
@@ -471,7 +490,10 @@
   border-radius: 1px;
   /* Dark charcoal by default — nav is transparent over linen background */
   background: rgba(28, 25, 23, 0.85);
-  transition: transform 0.3s ease, opacity 0.3s ease, background 0.4s ease;
+  transition:
+    transform 0.3s ease,
+    opacity 0.3s ease,
+    background 0.4s ease;
 }
 /* When nav is scrolled (dark background), switch lines to light */
 .hp-nav.scrolled .hp-nav-hamburger span {
@@ -506,7 +528,7 @@
 }
 
 .hp-mobile-menu-link {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 100;
   font-size: clamp(1.4rem, 5vw, 2rem);
   letter-spacing: 0.2em;
@@ -534,10 +556,10 @@
   line-height: 1;
 }
 
-   /* HERO — FULL BLEED
+/* HERO — FULL BLEED
  */
 
-      /* OPENING SEQUENCE — THREE STACKED FULL-HEIGHT PANELS
+/* OPENING SEQUENCE — THREE STACKED FULL-HEIGHT PANELS
  */
 
 /* Page wrapper — simple full-width wrapper.
@@ -585,8 +607,20 @@
   padding: 0 5vw;
   background: var(--hp-linen);
   /* Gradient fade above and below so it blends into both sections */
-  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 30%, black 70%, transparent 100%);
-  mask-image: linear-gradient(to bottom, transparent 0%, black 30%, black 70%, transparent 100%);
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    black 30%,
+    black 70%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    black 30%,
+    black 70%,
+    transparent 100%
+  );
   height: 3.5rem;
 }
 
@@ -610,7 +644,9 @@
 }
 
 .hp-section-divider-ornament {
-  transition: opacity 0.6s ease 0.5s, transform 0.6s cubic-bezier(0.23, 1, 0.32, 1) 0.5s;
+  transition:
+    opacity 0.6s ease 0.5s,
+    transform 0.6s cubic-bezier(0.23, 1, 0.32, 1) 0.5s;
   opacity: 0;
   transform: scale(0);
 }
@@ -711,7 +747,6 @@
   }
 }
 
-
 .hp-seq-bg {
   position: absolute;
   inset: 0;
@@ -736,22 +771,40 @@
   }
 }
 
-
-
 .hp-seq-overlay {
   position: absolute;
   inset: 0;
   /* Top vignette (nav legibility) + bottom vignette — desktop: +5% from base */
   background:
-    linear-gradient(to bottom, rgba(28, 25, 23, 0.62) 0%, rgba(28, 25, 23, 0.18) 22%, rgba(28, 25, 23, 0.0) 38%),
-    linear-gradient(to top, rgba(28, 25, 23, 0.57) 0%, rgba(28, 25, 23, 0.27) 15%, rgba(28, 25, 23, 0.0) 25%);
+    linear-gradient(
+      to bottom,
+      rgba(28, 25, 23, 0.62) 0%,
+      rgba(28, 25, 23, 0.18) 22%,
+      rgba(28, 25, 23, 0) 38%
+    ),
+    linear-gradient(
+      to top,
+      rgba(28, 25, 23, 0.57) 0%,
+      rgba(28, 25, 23, 0.27) 15%,
+      rgba(28, 25, 23, 0) 25%
+    );
 }
 @media (max-width: 767px) {
   .hp-seq-overlay {
     /* Mobile: +10% from base */
     background:
-      linear-gradient(to bottom, rgba(28, 25, 23, 0.62) 0%, rgba(28, 25, 23, 0.18) 22%, rgba(28, 25, 23, 0.0) 38%),
-      linear-gradient(to top, rgba(28, 25, 23, 0.62) 0%, rgba(28, 25, 23, 0.32) 15%, rgba(28, 25, 23, 0.0) 25%);
+      linear-gradient(
+        to bottom,
+        rgba(28, 25, 23, 0.62) 0%,
+        rgba(28, 25, 23, 0.18) 22%,
+        rgba(28, 25, 23, 0) 38%
+      ),
+      linear-gradient(
+        to top,
+        rgba(28, 25, 23, 0.62) 0%,
+        rgba(28, 25, 23, 0.32) 15%,
+        rgba(28, 25, 23, 0) 25%
+      );
   }
 }
 
@@ -767,7 +820,7 @@
     to top,
     rgba(255, 248, 235, 0.55) 0%,
     rgba(255, 248, 235, 0.18) 30%,
-    rgba(255, 248, 235, 0.0) 65%
+    rgba(255, 248, 235, 0) 65%
   );
 }
 
@@ -778,7 +831,7 @@
 }
 
 .hp-seq-eyebrow {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 500;
   font-size: 0.72rem;
   letter-spacing: 0.32em;
@@ -788,7 +841,7 @@
 }
 
 .hp-seq-headline {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 300;
   font-size: clamp(1.8rem, 3.2vw, 3.8rem);
   line-height: 1.14;
@@ -804,7 +857,7 @@
 }
 
 .hp-seq-body {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 300;
   font-size: clamp(0.78rem, 1.1vw, 0.88rem);
   line-height: 1.75;
@@ -815,7 +868,7 @@
 
 .hp-seq-cta {
   display: inline-block;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 300;
   font-size: 0.62rem;
   letter-spacing: 0.32em;
@@ -824,7 +877,9 @@
   text-decoration: none;
   border-bottom: 1px solid rgba(242, 237, 230, 0.3);
   padding-bottom: 0.25rem;
-  transition: color 0.25s ease, border-color 0.25s ease;
+  transition:
+    color 0.25s ease,
+    border-color 0.25s ease;
 }
 
 .hp-seq-cta:hover {
@@ -844,7 +899,7 @@
 
 /* Villa beat CSS removed — replaced by hp-opening-sequence */
 
-   /* OVERVIEW — TWO COLUMN EDITORIAL
+/* OVERVIEW — TWO COLUMN EDITORIAL
  */
 
 /* ── OVERVIEW — full-bleed map banner + editorial copy panel ── */
@@ -862,7 +917,7 @@
   aspect-ratio: 16 / 9;
   overflow: hidden;
   flex-shrink: 0;
-  background: #0D1A18; /* ocean fallback colour */
+  background: #0d1a18; /* ocean fallback colour */
 }
 @media (max-width: 767px) {
   .hp-overview-banner {
@@ -901,7 +956,7 @@
     transparent 32%,
     rgba(22, 20, 18, 0.6) 55%,
     rgba(22, 20, 18, 0.97) 80%,
-    rgba(22, 20, 18, 1.0) 100%
+    rgba(22, 20, 18, 1) 100%
   );
   pointer-events: none;
 }
@@ -918,7 +973,8 @@
   bottom: 0;
   left: 0;
   right: 0;
-  padding: clamp(2.5rem, 5vw, 4rem) clamp(1.5rem, 6vw, 6rem) clamp(2rem, 4vw, 3.5rem);
+  padding: clamp(2.5rem, 5vw, 4rem) clamp(1.5rem, 6vw, 6rem)
+    clamp(2rem, 4vw, 3.5rem);
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
@@ -933,7 +989,7 @@
 }
 
 .hp-overview-headline {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 100;
   font-size: clamp(1.8rem, 3.5vw, 3.8rem);
   line-height: 1.12;
@@ -962,7 +1018,7 @@
   /* no extra padding needed — dividers carry the spacing */
 }
 .hp-overview-stat-num {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 100;
   font-size: clamp(1.8rem, 3.5vw, 3.8rem); /* matches hp-overview-headline */
   line-height: 1;
@@ -971,22 +1027,26 @@
 }
 @media (max-width: 767px) {
   .hp-overview-stat-num {
-    font-size: clamp(1.7rem, 7vw, 2.6rem); /* matches mobile hp-overview-headline */
+    font-size: clamp(
+      1.7rem,
+      7vw,
+      2.6rem
+    ); /* matches mobile hp-overview-headline */
   }
 }
 .hp-overview-stat-label {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 400;
   font-size: 0.72rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.55);
+  color: rgba(255, 255, 255, 0.55);
   white-space: nowrap;
 }
 .hp-overview-stat-divider {
   width: 1px;
   min-height: 4.5rem;
-  background: rgba(255,255,255,0.22);
+  background: rgba(255, 255, 255, 0.22);
   flex-shrink: 0;
   align-self: center;
   margin-left: clamp(1.5rem, 3vw, 3rem);
@@ -996,7 +1056,7 @@
 /* Brochure download button — used in contact section and nav */
 .hp-brochure-btn {
   display: inline-block;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 500;
   font-size: 0.65rem;
   letter-spacing: 0.22em;
@@ -1008,7 +1068,9 @@
   text-decoration: none;
   margin-top: 1.5rem;
   margin-bottom: 0.5rem;
-  transition: background 0.2s ease, color 0.2s ease;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
 }
 .hp-brochure-btn:hover {
   background: var(--hp-gold);
@@ -1048,13 +1110,14 @@
   background-color: var(--hp-linen);
   position: relative;
   /* Equal left/right padding so the grid midpoint = page midpoint */
-  padding: clamp(3.5rem, 5vw, 5.5rem) clamp(2.5rem, 7vw, 7rem) clamp(3rem, 4vw, 4.5rem);
+  padding: clamp(3.5rem, 5vw, 5.5rem) clamp(2.5rem, 7vw, 7rem)
+    clamp(3rem, 4vw, 4.5rem);
 }
 .hp-overview-body::before {
-  content: '';
+  content: "";
   position: absolute;
   inset: 0;
-  background-image: url('https://d2xsxph8kpxj0f.cloudfront.net/310519663202916011/SDqhtPCWEq4aL9UNBxfK3Z/sandbank-texture-VHp9fEWnLeFaEzZpHTCCGa.webp');
+  background-image: url("https://d2xsxph8kpxj0f.cloudfront.net/310519663202916011/SDqhtPCWEq4aL9UNBxfK3Z/sandbank-texture-VHp9fEWnLeFaEzZpHTCCGa.webp");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -1081,7 +1144,7 @@
 }
 
 .hp-section-label {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 500;
   font-size: 0.72rem;
   letter-spacing: 0.28em;
@@ -1091,9 +1154,9 @@
 }
 
 .hp-body-text {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 300;
-  font-size: 1.0rem;
+  font-size: 1rem;
   line-height: 1.9;
   color: rgba(28, 25, 23, 0.72);
   max-width: 52ch;
@@ -1104,7 +1167,7 @@
   margin-top: 1.25rem; /* spacing only when stacked in the same column (mobile) */
 }
 
-   /* PLACE — FULL BLEED WITH SPARSE TEXT
+/* PLACE — FULL BLEED WITH SPARSE TEXT
  */
 
 .hp-place {
@@ -1135,7 +1198,7 @@
 }
 
 .hp-place-headline {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 300;
   font-size: clamp(1.5rem, 2.4vw, 2.6rem);
   line-height: 1.18;
@@ -1143,9 +1206,9 @@
   margin-bottom: 2rem;
 }
 .hp-place-body {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 300;
-  font-size: 1.0rem;
+  font-size: 1rem;
   line-height: 1.9;
   color: rgba(28, 25, 23, 0.72);
   max-width: 52ch;
@@ -1202,7 +1265,7 @@
 }
 /* Map image variant — dark background, image fills naturally */
 .hp-place-image--map {
-  background: #0D1A18;
+  background: #0d1a18;
   flex: 2;
   overflow: hidden;
   position: relative;
@@ -1239,7 +1302,7 @@
   }
 }
 
-   /* SAFARI / DESTINATION SECTION
+/* SAFARI / DESTINATION SECTION
  */
 
 .hp-safari {
@@ -1298,7 +1361,7 @@
 }
 
 .hp-safari-headline {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 300;
   font-size: clamp(1.8rem, 4vw, 2.6rem);
   line-height: 1.18;
@@ -1306,7 +1369,7 @@
   margin-bottom: 2rem;
 }
 .hp-safari-body {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 300;
   font-size: 1.05rem;
   line-height: 1.9;
@@ -1332,16 +1395,15 @@
 }
 
 .hp-safari-stat-value {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 300;
   font-size: 1.6rem;
   color: var(--hp-teal-deep);
   letter-spacing: 0.02em;
 }
 
-
 .hp-safari-stat-label {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 300;
   font-size: 0.75rem;
   letter-spacing: 0.12em;
@@ -1354,14 +1416,16 @@
 .hp-safari .hp-safari-image {
   opacity: 0;
   transform: translateX(-40px);
-  transition: opacity 0.9s cubic-bezier(0.23, 1, 0.32, 1),
-              transform 0.9s cubic-bezier(0.23, 1, 0.32, 1);
+  transition:
+    opacity 0.9s cubic-bezier(0.23, 1, 0.32, 1),
+    transform 0.9s cubic-bezier(0.23, 1, 0.32, 1);
 }
 .hp-safari .hp-safari-text {
   opacity: 0;
   transform: translateX(40px);
-  transition: opacity 0.9s cubic-bezier(0.23, 1, 0.32, 1) 0.15s,
-              transform 0.9s cubic-bezier(0.23, 1, 0.32, 1) 0.15s;
+  transition:
+    opacity 0.9s cubic-bezier(0.23, 1, 0.32, 1) 0.15s,
+    transform 0.9s cubic-bezier(0.23, 1, 0.32, 1) 0.15s;
 }
 /* Reversed panels: image from right, text from left */
 .hp-safari--reverse .hp-safari-image {
@@ -1433,7 +1497,9 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: background 0.2s ease, border-color 0.2s ease;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease;
   z-index: 5;
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
@@ -1442,7 +1508,7 @@
 .hp-video-unmute-btn:hover {
   background: rgba(184, 146, 42, 0.35);
   border-color: rgba(184, 146, 42, 0.6);
-  color: #F2EDE6;
+  color: #f2ede6;
 }
 
 @media (max-width: 900px) {
@@ -1454,7 +1520,7 @@
   }
 }
 
-   /* VILLAS — THREE-COLUMN PORTRAIT CARD GRID
+/* VILLAS — THREE-COLUMN PORTRAIT CARD GRID
  */
 
 .hp-villa-collection {
@@ -1476,7 +1542,7 @@
 }
 
 .hp-villa-collection-headline {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 300;
   font-size: clamp(1.5rem, 2.4vw, 2.6rem);
   line-height: 1.18;
@@ -1567,12 +1633,12 @@
   background: linear-gradient(
     to top,
     rgba(42, 85, 88, 0.75) 0%,
-    rgba(42, 85, 88, 0.0) 100%
+    rgba(42, 85, 88, 0) 100%
   );
 }
 
 .hp-villa-card-name {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 600;
   font-size: 0.82rem;
   letter-spacing: 0.22em;
@@ -1600,7 +1666,7 @@
 }
 
 .hp-villa-card-spec-list li {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 300;
   font-size: 0.82rem;
   color: var(--hp-charcoal);
@@ -1609,7 +1675,7 @@
 }
 
 .hp-villa-card-spec-list li::before {
-  content: '— ';
+  content: "— ";
   color: var(--hp-gold-muted);
   font-size: 0.7rem;
   font-weight: 400;
@@ -1627,7 +1693,7 @@
 }
 
 .hp-villa-card-price {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 500;
   font-size: 0.78rem;
   letter-spacing: 0.04em;
@@ -1636,7 +1702,7 @@
 }
 
 .hp-villa-card-cta {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 500;
   font-size: 0.62rem;
   letter-spacing: 0.22em;
@@ -1648,7 +1714,10 @@
   white-space: nowrap;
   flex-shrink: 0;
   cursor: pointer;
-  transition: background 0.25s ease, border-color 0.25s ease, letter-spacing 0.25s ease;
+  transition:
+    background 0.25s ease,
+    border-color 0.25s ease,
+    letter-spacing 0.25s ease;
 }
 .hp-villa-card:hover .hp-villa-card-cta {
   background: var(--hp-teal-light);
@@ -1656,7 +1725,7 @@
   letter-spacing: 0.3em;
 }
 
-   /* INVESTMENT — DARK FULL-BLEED
+/* INVESTMENT — DARK FULL-BLEED
  */
 
 /* ── LIFESTYLE / COMMERCIAL CENTRE ── */
@@ -1690,7 +1759,7 @@
 }
 
 .hp-lifestyle-headline {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 300;
   font-size: clamp(1.5rem, 2.4vw, 2.6rem);
   line-height: 1.18;
@@ -1700,9 +1769,9 @@
 }
 
 .hp-lifestyle-body {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 300;
-  font-size: 1.0rem;
+  font-size: 1rem;
   line-height: 1.9;
   color: var(--hp-charcoal);
   max-width: 52ch;
@@ -1719,7 +1788,7 @@
 }
 
 .hp-lifestyle-amenities li {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 400;
   font-size: 0.75rem;
   letter-spacing: 0.1em;
@@ -1757,8 +1826,7 @@
   object-fit: cover;
   display: block;
   transform: scale(1.06);
-  transition:
-    transform 1.1s cubic-bezier(0.23, 1, 0.32, 1);
+  transition: transform 1.1s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 .hp-lifestyle-img-main.visible img {
@@ -1786,8 +1854,7 @@
   object-fit: cover;
   display: block;
   transform: scale(1.06);
-  transition:
-    transform 1.1s cubic-bezier(0.23, 1, 0.32, 1);
+  transition: transform 1.1s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 .hp-lifestyle-img-sub.visible img {
@@ -1824,7 +1891,7 @@
   }
 }
 .hp-owning-headline {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 300;
   font-size: clamp(1.5rem, 2.4vw, 2.6rem);
   line-height: 1.1;
@@ -1832,9 +1899,9 @@
   letter-spacing: -0.01em;
 }
 .hp-owning-intro {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 300;
-  font-size: 1.0rem;
+  font-size: 1rem;
   line-height: 1.9;
   color: rgba(28, 25, 23, 0.72);
   max-width: 52ch;
@@ -1842,7 +1909,7 @@
 /* Payment plan cards */
 .hp-owning-plans {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   grid-auto-rows: 1fr;
   gap: 2rem;
   margin-bottom: 2rem;
@@ -1879,9 +1946,9 @@
   }
 }
 .hp-plan-card {
-  background: #2A5558;
+  background: #2a5558;
   border: none;
-  color: #F2EDE6;
+  color: #f2ede6;
   padding: 2.8rem 2.2rem 2.2rem;
   display: flex;
   flex-direction: column;
@@ -1893,13 +1960,13 @@
 }
 /* Thin gold top bar */
 .hp-plan-card::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   height: 3px;
-  background: linear-gradient(90deg, #B8922A 0%, #D4AC50 60%, #B8922A 100%);
+  background: linear-gradient(90deg, #b8922a 0%, #d4ac50 60%, #b8922a 100%);
 }
 /* Large ghost number — decorative watermark in top-right */
 .hp-plan-card::after {
@@ -1907,7 +1974,7 @@
   position: absolute;
   top: -0.5rem;
   right: 1rem;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 800;
   font-size: clamp(5rem, 10vw, 8rem);
   line-height: 1;
@@ -1917,17 +1984,25 @@
   user-select: none;
 }
 .hp-plan-card:nth-child(1) {
-  background: #2A5558;
+  background: #2a5558;
 }
 .hp-plan-card:nth-child(2) {
-  background: #234A4D;
+  background: #234a4d;
 }
 /* Card 3 — topographic light-and-shade: radial highlight top-left, deep shadow bottom-right */
 .hp-plan-card:nth-child(3) {
   background:
-    radial-gradient(ellipse 80% 60% at 15% 10%, rgba(200,168,80,0.13) 0%, transparent 60%),
-    radial-gradient(ellipse 60% 50% at 85% 90%, rgba(10,28,30,0.55) 0%, transparent 65%),
-    #1C3E41;
+    radial-gradient(
+      ellipse 80% 60% at 15% 10%,
+      rgba(200, 168, 80, 0.13) 0%,
+      transparent 60%
+    ),
+    radial-gradient(
+      ellipse 60% 50% at 85% 90%,
+      rgba(10, 28, 30, 0.55) 0%,
+      transparent 65%
+    ),
+    #1c3e41;
 }
 .hp-plan-card-header {
   display: flex;
@@ -1936,29 +2011,29 @@
   margin-bottom: 0;
 }
 .hp-plan-number {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 500;
   font-size: 0.82rem;
   letter-spacing: 0.3em;
-  color: #B8922A;
+  color: #b8922a;
   text-transform: uppercase;
 }
 .hp-plan-card:nth-child(3) .hp-plan-number {
-  color: #C9A84C;
+  color: #c9a84c;
 }
 /* BIG plan title — the headline that commands the card */
 .hp-plan-title {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 300;
   font-size: clamp(1.6rem, 2.8vw, 2.4rem);
   line-height: 1.05;
   letter-spacing: -0.02em;
   text-transform: uppercase;
-  color: #F2EDE6;
+  color: #f2ede6;
   margin: 0;
 }
 .hp-plan-card:nth-child(3) .hp-plan-title {
-  color: #F2EDE6;
+  color: #f2ede6;
 }
 .hp-plan-rows {
   list-style: none;
@@ -1981,22 +2056,22 @@
   border-top-color: rgba(242, 237, 230, 0.15);
 }
 .hp-plan-pct {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 400;
   font-size: 0.95rem;
-  color: #F2EDE6;
+  color: #f2ede6;
   letter-spacing: 0.02em;
   padding-top: 0.05rem;
 }
 .hp-plan-card:nth-child(3) .hp-plan-pct {
-  color: #F2EDE6;
+  color: #f2ede6;
 }
 .hp-plan-pct--discount {
-  color: #B8922A;
+  color: #b8922a;
   font-weight: 500;
 }
 .hp-plan-desc {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 300;
   font-size: 0.82rem;
   line-height: 1.75;
@@ -2015,7 +2090,7 @@
   border-top: 1px solid rgba(242, 237, 230, 0.12);
 }
 .hp-plan-callout-label {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 300;
   font-size: 0.65rem;
   letter-spacing: 0.2em;
@@ -2023,7 +2098,7 @@
   color: rgba(242, 237, 230, 0.55);
 }
 .hp-plan-callout-number {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 100;
   font-size: clamp(2.8rem, 5vw, 4.5rem);
   line-height: 1;
@@ -2031,12 +2106,12 @@
   letter-spacing: -0.03em;
 }
 .hp-plan-callout-number--gold {
-  color: #B8922A;
+  color: #b8922a;
   opacity: 1;
   font-weight: 200;
 }
 .hp-owning-note {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 300;
   font-size: 0.78rem;
   letter-spacing: 0.04em;
@@ -2051,17 +2126,21 @@
    WHY BUY AT LAUNCH — standalone dark section
    ═══════════════════════════════════════════════════ */
 .hp-launch-section {
-  background: #0D2426;
+  background: #0d2426;
   padding: 7rem 5vw 6rem;
   overflow: hidden;
   position: relative;
 }
 /* Subtle radial glow in the top-left corner */
 .hp-launch-section::before {
-  content: '';
+  content: "";
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse 60% 50% at 0% 0%, rgba(184,146,42,0.12) 0%, transparent 70%);
+  background: radial-gradient(
+    ellipse 60% 50% at 0% 0%,
+    rgba(184, 146, 42, 0.12) 0%,
+    transparent 70%
+  );
   pointer-events: none;
 }
 /* Top block: kicker + hero headline */
@@ -2071,7 +2150,7 @@
 }
 /* Eyebrow — now a proper statement line */
 .hp-launch-kicker {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 500;
   font-size: 0.82rem;
   letter-spacing: 0.28em;
@@ -2082,13 +2161,13 @@
 }
 /* Hero headline — lighter weight, consistent with site */
 .hp-launch-hero {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 300;
   font-size: clamp(1.5rem, 2.4vw, 2.6rem);
   line-height: 1.18;
   letter-spacing: -0.01em;
   text-transform: none;
-  color: #F2EDE6;
+  color: #f2ede6;
   margin: 0;
   display: flex;
   flex-direction: column;
@@ -2101,7 +2180,7 @@
 }
 /* When headline is all-white, override the gold variant */
 .hp-launch-hero .hp-launch-hero-line {
-  color: #F2EDE6;
+  color: #f2ede6;
 }
 /* Three benefit cards */
 .hp-launch-cards {
@@ -2120,8 +2199,9 @@
 .hp-launch-card--riffle {
   opacity: 0;
   transform: translateY(48px) rotate(1.5deg);
-  transition: opacity 0.55s cubic-bezier(0.23, 1, 0.32, 1),
-              transform 0.55s cubic-bezier(0.23, 1, 0.32, 1);
+  transition:
+    opacity 0.55s cubic-bezier(0.23, 1, 0.32, 1),
+    transform 0.55s cubic-bezier(0.23, 1, 0.32, 1);
   transition-delay: var(--riffle-delay, 0ms);
 }
 .hp-launch-card--riffle.visible {
@@ -2129,30 +2209,41 @@
   transform: translateY(0) rotate(0deg);
 }
 .hp-launch-card {
-  background: #2A5558;
+  background: #2a5558;
   border: none;
-  border-top: 3px solid rgba(184,146,42,0.45);
+  border-top: 3px solid rgba(184, 146, 42, 0.45);
   padding: 2.4rem 2rem 2.2rem;
   display: flex;
   flex-direction: column;
   gap: 0;
   position: relative;
   overflow: hidden;
-  transition: border-top-color 250ms ease, background 250ms ease, transform 250ms cubic-bezier(0.23,1,0.32,1);
+  transition:
+    border-top-color 250ms ease,
+    background 250ms ease,
+    transform 250ms cubic-bezier(0.23, 1, 0.32, 1);
 }
 /* Left-to-right teal gradient shift — mirrors payment plan card treatment */
 .hp-launch-card:nth-child(1) {
-  background: #2A5558;
+  background: #2a5558;
 }
 .hp-launch-card:nth-child(2) {
-  background: #234A4D;
+  background: #234a4d;
   border-top-color: var(--hp-gold);
 }
 .hp-launch-card:nth-child(3) {
   background:
-    radial-gradient(ellipse 80% 60% at 15% 10%, rgba(200,168,80,0.13) 0%, transparent 60%),
-    radial-gradient(ellipse 60% 50% at 85% 90%, rgba(10,28,30,0.55) 0%, transparent 65%),
-    #1C3E41;
+    radial-gradient(
+      ellipse 80% 60% at 15% 10%,
+      rgba(200, 168, 80, 0.13) 0%,
+      transparent 60%
+    ),
+    radial-gradient(
+      ellipse 60% 50% at 85% 90%,
+      rgba(10, 28, 30, 0.55) 0%,
+      transparent 65%
+    ),
+    #1c3e41;
 }
 /* Ghost number watermark — top right, same treatment as payment plan cards */
 .hp-launch-card::after {
@@ -2160,7 +2251,7 @@
   position: absolute;
   top: -0.5rem;
   right: 1rem;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 800;
   font-size: clamp(5rem, 10vw, 8rem);
   line-height: 1;
@@ -2170,8 +2261,8 @@
   user-select: none;
 }
 .hp-launch-card:hover {
-  background: #2F5F62;
-  border-top-color: rgba(184,146,42,0.75);
+  background: #2f5f62;
+  border-top-color: rgba(184, 146, 42, 0.75);
   transform: translateY(-3px);
 }
 /* --accent modifier now only controls the gold top border — background is handled by nth-child above */
@@ -2190,7 +2281,7 @@
 }
 /* Eyebrow inside card */
 .hp-launch-card-eyebrow {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 500;
   font-size: 0.78rem;
   letter-spacing: 0.3em;
@@ -2200,18 +2291,18 @@
 }
 /* Card title */
 .hp-launch-card-title {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 300;
   font-size: clamp(1.5rem, 2.4vw, 2.6rem);
   line-height: 1.18;
   letter-spacing: -0.01em;
-  color: #F2EDE6;
+  color: #f2ede6;
   margin: 0;
   text-transform: none;
 }
 /* Big stat — the key figure on each card */
 .hp-launch-stat {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 100;
   font-size: clamp(3.2rem, 5.5vw, 5.5rem);
   line-height: 1;
@@ -2222,11 +2313,11 @@
 }
 /* Card body copy */
 .hp-launch-card-body {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 300;
   font-size: 1rem;
   line-height: 1.85;
-  color: rgba(242,237,230,0.75);
+  color: rgba(242, 237, 230, 0.75);
   margin: 0;
   margin-top: auto;
 }
@@ -2266,7 +2357,7 @@
     margin-top: 3.5px;
   }
 }
-   /* DEVELOPER
+/* DEVELOPER
  */
 
 .hp-developer {
@@ -2278,10 +2369,10 @@
 }
 
 .hp-developer::before {
-  content: '';
+  content: "";
   position: absolute;
   inset: 0;
-  background-image: url('/manus-storage/zanzibar-door_f9ce03da.png');
+  background-image: url("/manus-storage/zanzibar-door_f9ce03da.png");
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
@@ -2320,7 +2411,7 @@
   min-width: 200px;
 }
 .hp-developer-band-eyebrow {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 500;
   font-size: 0.72rem;
   letter-spacing: 0.28em;
@@ -2329,7 +2420,7 @@
   margin-bottom: 0.75rem;
 }
 .hp-developer-band-headline {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 100; /* matches overview headline weight */
   font-size: clamp(1.8rem, 3.5vw, 3.8rem); /* matches hp-overview-headline */
   line-height: 1.12;
@@ -2355,7 +2446,7 @@
   padding-right: 0;
 }
 .hp-developer-band-num {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 100;
   font-size: clamp(1.8rem, 3.5vw, 3.8rem); /* matches overview stat nums */
   line-height: 1;
@@ -2364,7 +2455,7 @@
   display: block;
 }
 .hp-developer-band-label {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 400;
   font-size: 0.68rem;
   letter-spacing: 0.22em;
@@ -2377,7 +2468,7 @@
 .hp-developer-band-divider {
   width: 1px;
   min-height: 5rem;
-  background: rgba(255,255,255,0.22);
+  background: rgba(255, 255, 255, 0.22);
   flex-shrink: 0;
   align-self: center;
 }
@@ -2405,10 +2496,18 @@
     padding-left: 0;
   }
   .hp-developer-band-num {
-    font-size: clamp(1.7rem, 7vw, 2.6rem); /* matches mobile overview stat nums */
+    font-size: clamp(
+      1.7rem,
+      7vw,
+      2.6rem
+    ); /* matches mobile overview stat nums */
   }
   .hp-developer-band-headline {
-    font-size: clamp(1.7rem, 7vw, 2.6rem); /* matches mobile overview headline */
+    font-size: clamp(
+      1.7rem,
+      7vw,
+      2.6rem
+    ); /* matches mobile overview headline */
   }
 }
 /* ── Legacy stat bar (kept for reference, no longer used) ── */
@@ -2417,7 +2516,7 @@
   align-items: center;
   justify-content: center;
   gap: 0;
-  background: #2A5558;
+  background: #2a5558;
   padding: 3.5rem 5vw;
   margin-left: -5vw;
   margin-right: -5vw;
@@ -2444,16 +2543,16 @@
   flex-shrink: 0;
 }
 .hp-developer-stat {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 100;
   font-size: clamp(2.8rem, 5vw, 5rem);
-  color: #B8922A;
+  color: #b8922a;
   line-height: 1;
   letter-spacing: -0.02em;
   display: block;
 }
 .hp-developer-stat-label {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 300;
   font-size: 0.68rem;
   letter-spacing: 0.14em;
@@ -2472,9 +2571,9 @@
 }
 
 .hp-developer-body {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 300;
-  font-size: 1.0rem;
+  font-size: 1rem;
   line-height: 1.9;
   color: rgba(28, 25, 23, 0.72);
   max-width: 52ch;
@@ -2485,7 +2584,7 @@
 }
 
 .hp-developer-right-headline {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 300;
   font-size: clamp(1.5rem, 2.4vw, 2.6rem);
   line-height: 1.2;
@@ -2518,7 +2617,7 @@
 }
 
 .hp-developer-img-caption {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 400;
   font-size: 0.7rem;
   letter-spacing: 0.16em;
@@ -2544,7 +2643,7 @@
 }
 
 .hp-developer-credentials {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 400;
   font-size: 0.7rem;
   letter-spacing: 0.16em;
@@ -2588,7 +2687,7 @@
   }
 }
 
-   /* INTERSTITIAL IMAGE BREAK
+/* INTERSTITIAL IMAGE BREAK
  */
 
 .hp-interstitial-image {
@@ -2639,7 +2738,7 @@
   }
 }
 
-   /* ENQUIRE / CONTACT
+/* ENQUIRE / CONTACT
  */
 
 .hp-contact {
@@ -2689,7 +2788,7 @@
 }
 
 .hp-contact-left-headline {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 300;
   font-size: clamp(1.5rem, 2.4vw, 2.6rem);
   line-height: 1.2;
@@ -2719,7 +2818,7 @@
   font-size: 0.72rem;
 }
 .hp-btn--charcoal {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 400;
   font-size: 0.72rem;
   letter-spacing: 0.18em;
@@ -2729,7 +2828,9 @@
   border: 1px solid var(--hp-charcoal);
   padding: 0.85rem 1.5rem;
   cursor: pointer;
-  transition: background 0.2s ease, color 0.2s ease;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
   border-radius: 0;
 }
 .hp-btn--charcoal:hover {
@@ -2758,7 +2859,7 @@
   border-bottom: 1px solid rgba(28, 25, 23, 0.12);
   text-decoration: none;
   color: var(--hp-charcoal);
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 300;
   font-size: 0.88rem;
   letter-spacing: 0.03em;
@@ -2792,7 +2893,7 @@
 }
 
 .hp-contact-way-label {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 400;
   font-size: 0.72rem;
   letter-spacing: 0.2em;
@@ -2803,7 +2904,7 @@
 }
 
 .hp-contact-way-text {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 200;
   font-size: 0.88rem;
   line-height: 1.7;
@@ -2814,7 +2915,9 @@
   color: var(--hp-charcoal);
   text-decoration: none;
   border-bottom: 1px solid rgba(58, 107, 110, 0.5);
-  transition: color 0.2s ease, border-color 0.2s ease;
+  transition:
+    color 0.2s ease,
+    border-color 0.2s ease;
 }
 
 .hp-contact-way-text a:hover {
@@ -2824,7 +2927,7 @@
 
 /* Form */
 .hp-form-headline {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 400;
   font-size: 0.78rem;
   letter-spacing: 0.22em;
@@ -2834,7 +2937,7 @@
 }
 
 .hp-form-precopy {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 300;
   font-size: 0.82rem;
   color: rgba(28, 25, 23, 0.62);
@@ -2869,7 +2972,7 @@
 }
 
 .hp-field-label {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 500;
   font-size: 0.72rem;
   letter-spacing: 0.28em;
@@ -2884,7 +2987,7 @@
   border: none;
   border-bottom: 1.5px solid rgba(28, 25, 23, 0.28);
   color: var(--hp-charcoal);
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 300;
   font-size: 0.92rem;
   padding: 0.75rem 0;
@@ -2919,7 +3022,7 @@
 .hp-field-select option {
   background: var(--hp-linen);
   color: var(--hp-charcoal);
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 300;
   font-size: 0.85rem;
   letter-spacing: 0.04em;
@@ -2942,7 +3045,7 @@
   border: none;
   border-bottom: 1px solid rgba(28, 25, 23, 0.18);
   color: var(--hp-charcoal);
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 300;
   font-size: 0.85rem;
   letter-spacing: 0.02em;
@@ -2996,14 +3099,16 @@
 }
 
 .hp-custom-select-option {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 300;
   font-size: 0.82rem;
   letter-spacing: 0.04em;
   color: rgba(28, 25, 23, 0.72);
   padding: 0.65rem 1rem;
   cursor: pointer;
-  transition: background 0.15s ease, color 0.15s ease;
+  transition:
+    background 0.15s ease,
+    color 0.15s ease;
 }
 
 .hp-custom-select-option:hover {
@@ -3035,7 +3140,9 @@
   background: transparent;
   cursor: pointer;
   position: relative;
-  transition: border-color 0.2s ease, background 0.2s ease;
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease;
 }
 
 .hp-consent-checkbox:checked {
@@ -3044,7 +3151,7 @@
 }
 
 .hp-consent-checkbox:checked::after {
-  content: '';
+  content: "";
   position: absolute;
   top: 1px;
   left: 3px;
@@ -3061,7 +3168,7 @@
 }
 
 .hp-consent-label {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 300;
   font-size: 0.78rem;
   line-height: 1.7;
@@ -3072,7 +3179,9 @@
   color: rgba(58, 107, 110, 0.85);
   text-decoration: none;
   border-bottom: 1px solid rgba(58, 107, 110, 0.3);
-  transition: color 0.2s ease, border-color 0.2s ease;
+  transition:
+    color 0.2s ease,
+    border-color 0.2s ease;
 }
 
 .hp-consent-label a:hover {
@@ -3086,7 +3195,7 @@
   background: var(--hp-teal-deep);
   border: 1.5px solid var(--hp-teal-deep);
   color: rgba(242, 237, 230, 0.95);
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 500;
   font-size: 0.72rem;
   letter-spacing: 0.32em;
@@ -3105,7 +3214,7 @@
 }
 
 .hp-submit-btn::after {
-  content: '';
+  content: "";
   position: absolute;
   inset: 0;
   background: var(--hp-teal-light);
@@ -3162,7 +3271,7 @@
 }
 
 .hp-form-success-title {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 300;
   font-size: clamp(1.6rem, 2.6vw, 2.4rem);
   line-height: 1.2;
@@ -3172,7 +3281,7 @@
 }
 
 .hp-form-success-body {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 300;
   font-size: 1rem;
   color: rgba(28, 25, 23, 0.62);
@@ -3180,7 +3289,7 @@
   max-width: 38ch;
 }
 
-   /* FOOTER
+/* FOOTER
  */
 
 .hp-footer {
@@ -3222,7 +3331,7 @@
   text-decoration: none;
   display: flex;
   align-items: center;
-  opacity: 0.70;
+  opacity: 0.7;
   transition: opacity 0.2s ease;
 }
 
@@ -3281,12 +3390,12 @@
 }
 
 .hp-footer-link {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 300;
   font-size: 0.72rem;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: rgba(242, 237, 230, 0.40);
+  color: rgba(242, 237, 230, 0.4);
   text-decoration: none;
   position: relative;
   padding-bottom: 2px;
@@ -3295,7 +3404,7 @@
 
 /* Underline grows from left on hover */
 .hp-footer-link::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: 0;
   left: 0;
@@ -3320,41 +3429,14 @@
   margin-bottom: 2rem;
 }
 
-/* Bottom row — copyright left, Machete centred, spacer right */
+/* Bottom row — copyright */
 .hp-footer-bottom {
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  align-items: center;
-  gap: 1rem;
-}
-
-.hp-footer-machete {
-  text-decoration: none;
   display: flex;
   align-items: center;
-  justify-content: center;
-  opacity: 0.35;
-  transition: opacity 0.2s ease;
-}
-
-.hp-footer-machete:hover {
-  opacity: 0.60;
-}
-
-.hp-footer-machete-img {
-  height: 1.2rem;
-  width: auto;
-  max-width: 220px;
-  display: block;
-  opacity: 0.50;
-}
-
-.hp-footer-bottom-spacer {
-  /* Right spacer to balance the copyright on the left */
 }
 
 .hp-footer-credit {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 300;
   font-size: 0.75rem;
   letter-spacing: 0.06em;
@@ -3363,7 +3445,7 @@
 
 .hp-cgi-disclaimer-text {
   background: var(--hp-linen-dark);
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 300;
   font-size: 0.78rem;
   letter-spacing: 0;
@@ -3374,7 +3456,7 @@
   line-height: 1.7;
 }
 
-   /* WHATSAPP BUTTON
+/* WHATSAPP BUTTON
  */
 
 .hp-whatsapp {
@@ -3391,7 +3473,10 @@
   align-items: center;
   justify-content: center;
   box-shadow: 0 4px 20px rgba(28, 25, 23, 0.45);
-  transition: transform 0.2s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.2s ease, border-color 0.2s ease;
+  transition:
+    transform 0.2s cubic-bezier(0.23, 1, 0.32, 1),
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
   text-decoration: none;
 }
 
@@ -3405,7 +3490,7 @@
   transform: scale(0.96);
 }
 
-   /* VILLA MODAL
+/* VILLA MODAL
  */
 
 .hp-modal-backdrop {
@@ -3459,7 +3544,9 @@
   padding: 0;
 }
 
-.hp-modal-rail::-webkit-scrollbar { display: none; }
+.hp-modal-rail::-webkit-scrollbar {
+  display: none;
+}
 
 /* Scrollable upper zone inside the rail */
 .hp-modal-rail-scroll {
@@ -3471,7 +3558,9 @@
   padding: 5rem 3rem 1.5rem;
   min-height: 0;
 }
-.hp-modal-rail-scroll::-webkit-scrollbar { display: none; }
+.hp-modal-rail-scroll::-webkit-scrollbar {
+  display: none;
+}
 
 /* Right stage */
 .hp-modal-stage {
@@ -3493,7 +3582,7 @@
   border: 1px solid rgba(242, 237, 230, 0.18);
   border-radius: 50%;
   color: rgba(242, 237, 230, 0.85);
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 300;
   font-size: 1rem;
   cursor: pointer;
@@ -3503,7 +3592,10 @@
   align-items: center;
   justify-content: center;
   line-height: 1;
-  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease;
 }
 .hp-modal-close:hover {
   background: rgba(201, 169, 110, 0.25);
@@ -3518,7 +3610,7 @@
 }
 
 .hp-modal-villa-label {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 600;
   font-size: 0.88rem;
   letter-spacing: 0.18em;
@@ -3528,7 +3620,7 @@
 }
 
 .hp-modal-villa-name {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 300;
   font-size: clamp(1.4rem, 2.2vw, 1.9rem); /* reduced per brief */
   color: rgba(242, 237, 230, 0.97);
@@ -3537,7 +3629,7 @@
 }
 
 .hp-modal-statement {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 300;
   font-size: 0.88rem;
   line-height: 1.7; /* slightly tighter line-height */
@@ -3560,7 +3652,7 @@
 }
 
 .hp-modal-area-table td {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 300;
   font-size: 0.88rem; /* raised to match body copy */
   color: rgba(242, 237, 230, 0.65);
@@ -3586,7 +3678,7 @@
   background: var(--hp-teal-light);
   border: 1px solid var(--hp-teal-light);
   color: rgba(242, 237, 230, 0.97);
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 500;
   font-size: 0.6rem;
   letter-spacing: 0.28em;
@@ -3594,7 +3686,11 @@
   /* Match the height of the tab buttons above */
   padding: 0.65rem 0.5rem;
   cursor: pointer;
-  transition: background 0.25s ease, border-color 0.25s ease, color 0.25s ease, letter-spacing 0.25s ease;
+  transition:
+    background 0.25s ease,
+    border-color 0.25s ease,
+    color 0.25s ease,
+    letter-spacing 0.25s ease;
   position: relative;
   flex-shrink: 0;
   /* No auto margins — sits directly below the nav/tab group */
@@ -3631,7 +3727,9 @@
 .hp-modal-rail-nav-group {
   display: flex;
   flex-direction: column;
-  transition: opacity 0.22s ease, max-height 0.32s cubic-bezier(0.23, 1, 0.32, 1);
+  transition:
+    opacity 0.22s ease,
+    max-height 0.32s cubic-bezier(0.23, 1, 0.32, 1);
   max-height: 260px;
   overflow: hidden;
 }
@@ -3647,8 +3745,9 @@
   overflow: hidden;
   max-height: 0;
   opacity: 0;
-  transition: max-height 0.38s cubic-bezier(0.23, 1, 0.32, 1),
-              opacity 0.28s cubic-bezier(0.23, 1, 0.32, 1);
+  transition:
+    max-height 0.38s cubic-bezier(0.23, 1, 0.32, 1),
+    opacity 0.28s cubic-bezier(0.23, 1, 0.32, 1);
   pointer-events: none;
 }
 .hp-modal-enquiry-panel.open {
@@ -3662,7 +3761,7 @@
 }
 /* Back link */
 .hp-modal-enquiry-back {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 400;
   font-size: 0.62rem;
   letter-spacing: 0.18em;
@@ -3698,7 +3797,7 @@
   gap: 0.35rem;
 }
 .hp-modal-enquiry-field label {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 500;
   font-size: 0.58rem;
   letter-spacing: 0.2em;
@@ -3709,12 +3808,14 @@
   background: rgba(242, 237, 230, 0.07);
   border: 1px solid rgba(242, 237, 230, 0.2);
   color: rgba(242, 237, 230, 0.92);
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 300;
   font-size: 0.78rem;
   padding: 0.5rem 0.65rem;
   outline: none;
-  transition: border-color 0.2s ease, background 0.2s ease;
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease;
   width: 100%;
   box-sizing: border-box;
   border-radius: 0;
@@ -3734,7 +3835,7 @@
   flex: 1;
 }
 .hp-modal-enquiry-thanks-msg {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 300;
   font-size: 0.88rem;
   color: rgba(242, 237, 230, 0.8);
@@ -3759,7 +3860,7 @@
 }
 .hp-modal-rail-tab {
   flex: 1;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 400;
   font-size: 0.6rem;
   letter-spacing: 0.22em;
@@ -3770,7 +3871,10 @@
   cursor: pointer;
   padding: 0.65rem 0.5rem;
   text-align: center;
-  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease;
 }
 .hp-modal-rail-tab.active {
   color: rgba(242, 237, 230, 0.97);
@@ -3790,7 +3894,7 @@
   margin-bottom: 0.5rem;
 }
 .hp-modal-rail-arrow {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 200;
   font-size: 1rem;
   color: rgba(242, 237, 230, 0.65);
@@ -3803,7 +3907,10 @@
   justify-content: center;
   cursor: pointer;
   flex-shrink: 0;
-  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease;
 }
 .hp-modal-rail-arrow:hover {
   background: rgba(77, 138, 142, 0.35);
@@ -3811,7 +3918,7 @@
   border-color: var(--hp-teal-light);
 }
 .hp-modal-rail-counter {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 300;
   font-size: 0.6rem;
   letter-spacing: 0.18em;
@@ -3843,7 +3950,9 @@
   object-position: center;
   opacity: 0;
   transform: translateX(60px);
-  transition: opacity 0.32s cubic-bezier(0.23, 1, 0.32, 1), transform 0.32s cubic-bezier(0.23, 1, 0.32, 1);
+  transition:
+    opacity 0.32s cubic-bezier(0.23, 1, 0.32, 1),
+    transform 0.32s cubic-bezier(0.23, 1, 0.32, 1);
   pointer-events: none;
 }
 .hp-modal-gallery-slide.active {
@@ -3876,7 +3985,9 @@
   height: 5px;
   background: rgba(242, 237, 230, 0.38);
   display: block;
-  transition: background 0.2s ease, transform 0.2s ease;
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
   flex-shrink: 0;
 }
 .hp-modal-overlay-dot.active {
@@ -3960,7 +4071,7 @@
 }
 
 .hp-modal-plans-label {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 400;
   font-size: 0.72rem;
   letter-spacing: 0.2em;
@@ -4058,7 +4169,7 @@
     padding: 1.1rem 1.5rem;
     font-size: 0.72rem;
   }
-    /* Hide the rail's own tabs/arrows on mobile — replaced by stage controls */
+  /* Hide the rail's own tabs/arrows on mobile — replaced by stage controls */
   .hp-modal-rail-nav-group {
     display: none;
   }
@@ -4073,7 +4184,7 @@
     z-index: 10;
     width: 100%;
     background: var(--hp-teal-deep);
-    border-bottom: 1px solid rgba(242,237,230,0.12);
+    border-bottom: 1px solid rgba(242, 237, 230, 0.12);
     padding: 0.55rem 1rem;
     flex-shrink: 0;
   }
@@ -4096,26 +4207,28 @@
   .hp-modal-stage-tabs {
     display: flex;
     gap: 0;
-    border: 1px solid rgba(242,237,230,0.25);
+    border: 1px solid rgba(242, 237, 230, 0.25);
     border-radius: 2px;
     overflow: hidden;
   }
   .hp-modal-stage-tab {
     flex: 1;
-    font-family: 'Montserrat', sans-serif;
+    font-family: "Montserrat", sans-serif;
     font-weight: 500;
     font-size: 0.6rem;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: rgba(242,237,230,0.55);
+    color: rgba(242, 237, 230, 0.55);
     background: transparent;
     border: none;
     padding: 0.5rem 0.85rem;
     cursor: pointer;
-    transition: background 0.18s, color 0.18s;
+    transition:
+      background 0.18s,
+      color 0.18s;
   }
   .hp-modal-stage-tab.active {
-    background: rgba(242,237,230,0.15);
+    background: rgba(242, 237, 230, 0.15);
     color: var(--hp-linen);
   }
   /* Stage nav row — no longer used in the combined-row layout, kept for safety */
@@ -4123,7 +4236,7 @@
     display: none;
   }
   .hp-modal-stage-arrow {
-    font-family: 'Montserrat', sans-serif;
+    font-family: "Montserrat", sans-serif;
     font-weight: 200;
     font-size: 1rem;
     color: rgba(242, 237, 230, 0.65);
@@ -4136,7 +4249,9 @@
     justify-content: center;
     cursor: pointer;
     flex-shrink: 0;
-    transition: background 0.2s ease, color 0.2s ease;
+    transition:
+      background 0.2s ease,
+      color 0.2s ease;
   }
   .hp-modal-stage-arrow:hover {
     background: rgba(77, 138, 142, 0.35);
@@ -4181,7 +4296,7 @@
 
 /* Fallback link — always visible, opens reel in Instagram app/browser */
 .hp-modal-video-fallback {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-size: 0.65rem;
   font-weight: 500;
   letter-spacing: 0.15em;
@@ -4273,7 +4388,9 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: background 0.2s ease, border-color 0.2s ease;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease;
   z-index: 10;
   padding: 0;
   flex-shrink: 0;
@@ -4304,7 +4421,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: transform 0.18s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.18s ease;
+  transition:
+    transform 0.18s cubic-bezier(0.23, 1, 0.32, 1),
+    opacity 0.18s ease;
   opacity: 0.9;
 }
 .hp-modal-video-replay-btn svg {
@@ -4359,7 +4478,9 @@
     height: auto;
     aspect-ratio: 1 / 1;
   }
-  .hp-modal-stage.video-active .hp-modal-video-wrap.square .hp-modal-video-player {
+  .hp-modal-stage.video-active
+    .hp-modal-video-wrap.square
+    .hp-modal-video-player {
     width: 100%;
     height: auto;
     aspect-ratio: 1 / 1;
@@ -4393,7 +4514,7 @@
 }
 
 .hp-scroll-text {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 300;
   font-size: 0.55rem;
   letter-spacing: 0.4em;
@@ -4409,11 +4530,18 @@
 }
 
 @keyframes scrollPulse {
-  0%, 100% { opacity: 0.2; transform: scaleY(1); }
-  50% { opacity: 0.6; transform: scaleY(1.2); }
+  0%,
+  100% {
+    opacity: 0.2;
+    transform: scaleY(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scaleY(1.2);
+  }
 }
 
-   /* REDUCED MOTION
+/* REDUCED MOTION
  */
 
 @media (prefers-reduced-motion: reduce) {
@@ -4436,16 +4564,15 @@
   }
 }
 
-   THE INSPIRATION SECTION
+THE INSPIRATION SECTION
    /* Parchment bg, palm shadow overlay, brochure collage
  */
 .hp-inspiration {
   position: relative;
-  background: #EDE8DF;
+  background: #ede8df;
   overflow: hidden;
   padding: 6rem 5vw;
 }
-
 
 .hp-inspiration-inner {
   position: relative;
@@ -4467,7 +4594,7 @@
 }
 
 .hp-inspiration-headline {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 300;
   font-size: clamp(1.5rem, 2.4vw, 2.6rem);
   letter-spacing: -0.01em;
@@ -4477,9 +4604,9 @@
 }
 
 .hp-inspiration-body {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 300;
-  font-size: 1.0rem;
+  font-size: 1rem;
   line-height: 1.9;
   color: rgba(28, 25, 23, 0.72);
   max-width: 52ch;
@@ -4542,10 +4669,6 @@
     height: 280px;
   }
 }
-
-
-
-
 
 /* ── Curlicue accent — logo flourish used as a single decorative device ── */
 /* Card curlicue divider — curlicue flanked by tapered gold rules, sits below the card title */
@@ -4762,7 +4885,9 @@
   padding: 3rem 3rem 2.5rem;
   scrollbar-width: none;
 }
-.hp-cfm-panel::-webkit-scrollbar { display: none; }
+.hp-cfm-panel::-webkit-scrollbar {
+  display: none;
+}
 .hp-cfm-panel.open {
   /* Open state: centred, full size, fully visible */
   transform: translate(-50%, -50%) scale(1);
@@ -4785,13 +4910,15 @@
   background: rgba(242, 237, 230, 0.08);
   border: 1px solid rgba(242, 237, 230, 0.2);
   color: rgba(242, 237, 230, 0.65);
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-size: 0.8rem;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background 0.2s ease, color 0.2s ease;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
 }
 .hp-cfm-close:hover {
   background: rgba(242, 237, 230, 0.15);
@@ -4800,7 +4927,7 @@
 
 /* Typography */
 .hp-cfm-eyebrow {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 500;
   font-size: 0.6rem;
   letter-spacing: 0.3em;
@@ -4809,7 +4936,7 @@
   margin-bottom: 0.5rem;
 }
 .hp-cfm-title {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 300;
   font-size: 1.55rem;
   letter-spacing: 0.04em;
@@ -4818,7 +4945,7 @@
   line-height: 1.2;
 }
 .hp-cfm-subtitle {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 300;
   font-size: 0.78rem;
   color: rgba(242, 237, 230, 0.55);
@@ -4848,7 +4975,7 @@
   width: 100%;
 }
 .hp-cfm-field label {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 500;
   font-size: 0.58rem;
   letter-spacing: 0.22em;
@@ -4866,7 +4993,7 @@
   background: rgba(242, 237, 230, 0.07);
   border: 1px solid rgba(242, 237, 230, 0.18);
   color: rgba(242, 237, 230, 0.92);
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 300;
   font-size: 0.82rem;
   padding: 0.6rem 0.75rem;
@@ -4875,7 +5002,9 @@
   box-sizing: border-box;
   border-radius: 0;
   -webkit-appearance: none;
-  transition: border-color 0.2s ease, background 0.2s ease;
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease;
   resize: none;
 }
 .hp-cfm-field input::placeholder,
@@ -4904,7 +5033,7 @@
   cursor: pointer;
 }
 .hp-cfm-consent span {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 300;
   font-size: 0.72rem;
   color: rgba(242, 237, 230, 0.5);
@@ -4925,14 +5054,18 @@
   background: var(--hp-teal-light);
   border: 1px solid var(--hp-teal-light);
   color: rgba(242, 237, 230, 0.97);
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 500;
   font-size: 0.62rem;
   letter-spacing: 0.28em;
   text-transform: uppercase;
   padding: 0.9rem 1rem;
   cursor: pointer;
-  transition: background 0.25s ease, border-color 0.25s ease, letter-spacing 0.25s ease, opacity 0.2s ease;
+  transition:
+    background 0.25s ease,
+    border-color 0.25s ease,
+    letter-spacing 0.25s ease,
+    opacity 0.2s ease;
   margin-top: 0.25rem;
 }
 .hp-cfm-submit:hover:not(:disabled) {
@@ -4962,7 +5095,7 @@
 }
 
 .hp-cfm-error {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-size: 0.78rem;
   color: rgba(255, 160, 140, 0.9);
   margin-top: -0.25rem;
@@ -4987,8 +5120,12 @@
 }
 
 @keyframes hp-cfm-spin {
-  from { transform: rotate(0deg); }
-  to   { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -5012,7 +5149,6 @@
   }
 }
 
-
 /* ═══════════════════════════════════════════════════════════════
    THANK YOU PAGE  (/thank-you)
    Lead generation campaign destination
@@ -5022,9 +5158,9 @@
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  background-color: #0D0C0B;
-  font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  color: #F2EDE6;
+  background-color: #0d0c0b;
+  font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: #f2ede6;
 }
 
 /* ── Minimal nav ── */
@@ -5074,7 +5210,7 @@
     to right,
     rgba(13, 12, 11, 0.82) 0%,
     rgba(13, 12, 11, 0.55) 55%,
-    rgba(13, 12, 11, 0.30) 100%
+    rgba(13, 12, 11, 0.3) 100%
   );
 }
 
@@ -5082,7 +5218,8 @@
 .hp-ty-content {
   position: relative;
   z-index: 1;
-  padding: clamp(7rem, 14vh, 12rem) clamp(1.5rem, 7vw, 7rem) clamp(4rem, 8vh, 7rem);
+  padding: clamp(7rem, 14vh, 12rem) clamp(1.5rem, 7vw, 7rem)
+    clamp(4rem, 8vh, 7rem);
   max-width: 640px;
 }
 
@@ -5091,7 +5228,7 @@
   font-weight: 500;
   letter-spacing: 0.28em;
   text-transform: uppercase;
-  color: #C9A96E;
+  color: #c9a96e;
   margin: 0 0 1.4rem;
 }
 
@@ -5100,7 +5237,7 @@
   font-weight: 300;
   line-height: 1.1;
   letter-spacing: -0.01em;
-  color: #F2EDE6;
+  color: #f2ede6;
   margin: 0 0 1.6rem;
 }
 
@@ -5123,15 +5260,16 @@
 
 .hp-ty-btn {
   display: inline-block;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-size: 0.65rem;
   font-weight: 500;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   text-decoration: none;
   padding: 0.9rem 2rem;
-  transition: opacity 160ms cubic-bezier(0.23, 1, 0.32, 1),
-              transform 160ms cubic-bezier(0.23, 1, 0.32, 1);
+  transition:
+    opacity 160ms cubic-bezier(0.23, 1, 0.32, 1),
+    transform 160ms cubic-bezier(0.23, 1, 0.32, 1);
   cursor: pointer;
 }
 
@@ -5140,9 +5278,9 @@
 }
 
 .hp-ty-btn--primary {
-  background-color: #2D6B6B;
-  color: #F2EDE6;
-  border: 1px solid #2D6B6B;
+  background-color: #2d6b6b;
+  color: #f2ede6;
+  border: 1px solid #2d6b6b;
 }
 
 .hp-ty-btn--primary:hover {
@@ -5151,7 +5289,7 @@
 
 .hp-ty-btn--outline {
   background-color: transparent;
-  color: #F2EDE6;
+  color: #f2ede6;
   border: 1px solid rgba(242, 237, 230, 0.45);
 }
 
@@ -5175,7 +5313,7 @@
 .hp-ty-stat-num {
   font-size: clamp(1.8rem, 3.5vw, 2.6rem);
   font-weight: 300;
-  color: #C9A96E;
+  color: #c9a96e;
   line-height: 1;
   letter-spacing: -0.02em;
 }
@@ -5197,7 +5335,7 @@
 
 /* ── Footer ── */
 .hp-ty-footer {
-  background-color: #0D0C0B;
+  background-color: #0d0c0b;
   border-top: 1px solid rgba(242, 237, 230, 0.08);
   padding: 2rem clamp(1.5rem, 5vw, 4rem);
 }
@@ -5259,7 +5397,6 @@
   }
 }
 
-
 /* ═══════════════════════════════════════════════════════════════
    LANDING PAGE — /landing-meta
    High-conversion paid media page. No nav. Aerial hero. Trust icons.
@@ -5269,7 +5406,7 @@
 .lp-page {
   background-color: #f5f0e8;
   color: #1a1a1a;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   min-height: 100vh;
 }
 
@@ -5344,7 +5481,8 @@
 .lp-hero-content {
   position: relative;
   z-index: 2;
-  padding: clamp(3rem, 8vw, 6rem) clamp(1.5rem, 7vw, 7rem) clamp(3.5rem, 7vw, 5.5rem);
+  padding: clamp(3rem, 8vw, 6rem) clamp(1.5rem, 7vw, 7rem)
+    clamp(3.5rem, 7vw, 5.5rem);
   max-width: 860px;
 }
 .lp-eyebrow {
@@ -5379,7 +5517,7 @@
   gap: 1rem;
 }
 .lp-btn {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-size: 0.72rem;
   font-weight: 600;
   letter-spacing: 0.16em;
@@ -5387,7 +5525,11 @@
   padding: 0.9rem 2.2rem;
   border: 1px solid transparent;
   cursor: pointer;
-  transition: background 180ms ease-out, color 180ms ease-out, border-color 180ms ease-out, transform 160ms ease-out;
+  transition:
+    background 180ms ease-out,
+    color 180ms ease-out,
+    border-color 180ms ease-out,
+    transform 160ms ease-out;
   white-space: nowrap;
   text-decoration: none;
   display: inline-flex;
@@ -5459,7 +5601,7 @@
   flex-shrink: 0;
 }
 .lp-trust-icon--yield {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
 }
 .lp-trust-yield-num {
   font-size: 1.05rem;
@@ -5579,8 +5721,12 @@
   animation: lp-fade-in 200ms ease-out;
 }
 @keyframes lp-fade-in {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 .lp-modal {
   background: #f5f0e8;
@@ -5591,8 +5737,14 @@
   animation: lp-modal-in 220ms cubic-bezier(0.23, 1, 0.32, 1);
 }
 @keyframes lp-modal-in {
-  from { opacity: 0; transform: scale(0.96) translateY(8px); }
-  to { opacity: 1; transform: scale(1) translateY(0); }
+  from {
+    opacity: 0;
+    transform: scale(0.96) translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
 }
 .lp-modal-header {
   display: flex;
@@ -5680,7 +5832,6 @@
   }
 }
 
-
 /* ═══════════════════════════════════════════════════════════════
    LANDING PAGE — /landing-meta — Deep long-form lead gen page
    Design language: matches main Hola Paje site exactly
@@ -5692,7 +5843,7 @@
 .lp-page {
   background: var(--hp-linen);
   color: var(--hp-charcoal);
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 200;
   min-height: 100vh;
 }
@@ -5716,7 +5867,7 @@
   gap: 0;
   letter-spacing: 0.28em;
   text-transform: uppercase;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   line-height: 1;
 }
 
@@ -5730,7 +5881,7 @@
 .lp-logo-paje {
   font-size: 0.7rem;
   font-weight: 300;
-  color: rgba(255,255,255,0.65);
+  color: rgba(255, 255, 255, 0.65);
   letter-spacing: 0.55em;
   margin-top: 0.15rem;
 }
@@ -5763,10 +5914,10 @@
   inset: 0;
   background: linear-gradient(
     to bottom,
-    rgba(28,25,23,0.15) 0%,
-    rgba(28,25,23,0.05) 40%,
-    rgba(28,25,23,0.55) 80%,
-    rgba(28,25,23,0.75) 100%
+    rgba(28, 25, 23, 0.15) 0%,
+    rgba(28, 25, 23, 0.05) 40%,
+    rgba(28, 25, 23, 0.55) 80%,
+    rgba(28, 25, 23, 0.75) 100%
   );
 }
 
@@ -5778,32 +5929,32 @@
 }
 
 .lp-eyebrow {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-size: 0.72rem;
   font-weight: 400;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.6);
+  color: rgba(255, 255, 255, 0.6);
   margin: 0 0 1.25rem;
 }
 
 /* ── Hero headline — Montserrat 100, matching main site hero weight ── */
 .lp-hero-headline {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-size: clamp(2.4rem, 5.5vw, 4.2rem);
   font-weight: 100;
   line-height: 1.06;
   letter-spacing: -0.01em;
   color: #ffffff;
   margin: 0 0 1.1rem;
-  text-shadow: 0 2px 32px rgba(0,0,0,0.4);
+  text-shadow: 0 2px 32px rgba(0, 0, 0, 0.4);
 }
 
 .lp-hero-sub {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-size: clamp(0.9rem, 1.6vw, 1.15rem);
   font-weight: 300;
-  color: rgba(255,255,255,0.75);
+  color: rgba(255, 255, 255, 0.75);
   letter-spacing: 0.06em;
   margin: 0 0 2.5rem;
 }
@@ -5816,7 +5967,7 @@
 
 /* ── Buttons — matching main site hp-btn style ── */
 .lp-btn {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-size: 0.72rem;
   font-weight: 500;
   letter-spacing: 0.18em;
@@ -5824,7 +5975,10 @@
   padding: 0.85rem 2rem;
   border-radius: 0;
   cursor: pointer;
-  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -5850,12 +6004,12 @@
 .lp-btn--outline {
   background: transparent;
   color: #ffffff;
-  border: 1px solid rgba(255,255,255,0.55);
+  border: 1px solid rgba(255, 255, 255, 0.55);
 }
 
 .lp-btn--outline:hover {
   border-color: #ffffff;
-  background: rgba(255,255,255,0.08);
+  background: rgba(255, 255, 255, 0.08);
 }
 
 .lp-btn--charcoal {
@@ -5914,7 +6068,7 @@
 }
 
 .lp-trust-yield-display {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-size: 1.8rem;
   font-weight: 100;
   color: var(--hp-gold);
@@ -5923,19 +6077,19 @@
 }
 
 .lp-trust-label {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-size: 0.65rem;
   font-weight: 400;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: rgba(242,237,230,0.6);
+  color: rgba(242, 237, 230, 0.6);
   line-height: 1.6;
   margin: 0;
 }
 
 .lp-trust-divider {
   width: 1px;
-  background: rgba(184,146,42,0.2);
+  background: rgba(184, 146, 42, 0.2);
   align-self: stretch;
   flex-shrink: 0;
   margin: 0.5rem 0;
@@ -5945,7 +6099,7 @@
 .lp-stat-line {
   background: var(--hp-gold);
   color: var(--hp-charcoal);
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-size: 0.72rem;
   font-weight: 500;
   letter-spacing: 0.18em;
@@ -5981,7 +6135,7 @@
 
 /* Eyebrow label — matching main site .hp-section-label */
 .lp-section-eyebrow {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-size: 0.72rem;
   font-weight: 500;
   letter-spacing: 0.28em;
@@ -5991,7 +6145,7 @@
 }
 
 .lp-section--charcoal .lp-section-eyebrow {
-  color: rgba(242,237,230,0.45);
+  color: rgba(242, 237, 230, 0.45);
 }
 
 .lp-section-eyebrow--gold {
@@ -6000,7 +6154,7 @@
 
 /* Section headline — Montserrat 100, matching main site display style */
 .lp-section-headline {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-size: clamp(1.9rem, 3.5vw, 3.2rem);
   font-weight: 100;
   line-height: 1.08;
@@ -6019,7 +6173,7 @@
 
 /* Body copy — Montserrat 300 */
 .lp-section-body {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-size: 0.95rem;
   font-weight: 300;
   line-height: 1.8;
@@ -6033,7 +6187,7 @@
 }
 
 .lp-section--charcoal .lp-section-body {
-  color: rgba(242,237,230,0.75);
+  color: rgba(242, 237, 230, 0.75);
 }
 
 .lp-section-body--lead {
@@ -6049,15 +6203,15 @@
 .lp-amenities {
   margin-top: 2.5rem;
   padding-top: 2rem;
-  border-top: 1px solid rgba(28,25,23,0.1);
+  border-top: 1px solid rgba(28, 25, 23, 0.1);
 }
 
 .lp-section--charcoal .lp-amenities {
-  border-top-color: rgba(242,237,230,0.12);
+  border-top-color: rgba(242, 237, 230, 0.12);
 }
 
 .lp-amenities-label {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-size: 0.65rem;
   font-weight: 500;
   letter-spacing: 0.22em;
@@ -6076,7 +6230,7 @@
 }
 
 .lp-amenities-list li {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-size: 0.88rem;
   font-weight: 300;
   color: var(--hp-charcoal);
@@ -6085,7 +6239,7 @@
 }
 
 .lp-amenities-list li::before {
-  content: '—';
+  content: "—";
   position: absolute;
   left: 0;
   color: var(--hp-gold);
@@ -6100,8 +6254,8 @@
 }
 
 .lp-protection-card {
-  background: rgba(242,237,230,0.06);
-  border: 1px solid rgba(184,146,42,0.2);
+  background: rgba(242, 237, 230, 0.06);
+  border: 1px solid rgba(184, 146, 42, 0.2);
   padding: 2.25rem 1.75rem;
 }
 
@@ -6126,7 +6280,7 @@
 }
 
 .lp-protection-card-yield {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-size: 2rem;
   font-weight: 100;
   color: var(--hp-gold);
@@ -6135,7 +6289,7 @@
 }
 
 .lp-protection-card-title {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-size: 0.88rem;
   font-weight: 400;
   letter-spacing: 0.04em;
@@ -6145,11 +6299,11 @@
 }
 
 .lp-protection-card-body {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-size: 0.88rem;
   font-weight: 300;
   line-height: 1.75;
-  color: rgba(242,237,230,0.6);
+  color: rgba(242, 237, 230, 0.6);
   margin: 0;
 }
 
@@ -6164,7 +6318,7 @@
 .lp-why-item {
   display: flex;
   gap: 1.25rem;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-size: 0.92rem;
   font-weight: 300;
   line-height: 1.75;
@@ -6196,7 +6350,7 @@
 
 .lp-villa-card {
   background: var(--hp-linen);
-  border: 1px solid rgba(28,25,23,0.1);
+  border: 1px solid rgba(28, 25, 23, 0.1);
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -6226,11 +6380,11 @@
   display: flex;
   flex-direction: column;
   gap: 0.4rem;
-  border-top: 1px solid rgba(28,25,23,0.08);
+  border-top: 1px solid rgba(28, 25, 23, 0.08);
 }
 
 .lp-villa-card-type {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-size: 0.65rem;
   font-weight: 500;
   letter-spacing: 0.22em;
@@ -6240,7 +6394,7 @@
 }
 
 .lp-villa-card-price {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-size: 1.25rem;
   font-weight: 200;
   color: var(--hp-charcoal);
@@ -6258,7 +6412,7 @@
 }
 
 .lp-villa-card-specs li {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-size: 0.82rem;
   font-weight: 300;
   color: var(--hp-mid);
@@ -6267,14 +6421,14 @@
 }
 
 .lp-villa-card-specs li::before {
-  content: '·';
+  content: "·";
   position: absolute;
   left: 0;
   color: var(--hp-gold);
 }
 
 .lp-villa-card-desc {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-size: 0.88rem;
   font-weight: 300;
   line-height: 1.7;
@@ -6294,11 +6448,11 @@
   flex: 1;
   padding: 2.25rem 2rem;
   background: var(--hp-linen-dark);
-  border: 1px solid rgba(28,25,23,0.08);
+  border: 1px solid rgba(28, 25, 23, 0.08);
 }
 
 .lp-step-num {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-size: 2.8rem;
   font-weight: 100;
   color: var(--hp-gold);
@@ -6309,7 +6463,7 @@
 }
 
 .lp-step-title {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-size: 0.88rem;
   font-weight: 400;
   letter-spacing: 0.04em;
@@ -6318,7 +6472,7 @@
 }
 
 .lp-step-body {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-size: 0.88rem;
   font-weight: 300;
   line-height: 1.7;
@@ -6356,7 +6510,7 @@
 }
 
 .lp-form-headline {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-size: clamp(1.8rem, 3vw, 2.8rem);
   font-weight: 100;
   color: var(--hp-linen);
@@ -6366,11 +6520,11 @@
 }
 
 .lp-form-body {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-size: 0.92rem;
   font-weight: 300;
   line-height: 1.8;
-  color: rgba(242,237,230,0.65);
+  color: rgba(242, 237, 230, 0.65);
   margin: 0 0 2rem;
 }
 
@@ -6384,10 +6538,10 @@
 }
 
 .lp-form-trust-list li {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-size: 0.82rem;
   font-weight: 300;
-  color: rgba(242,237,230,0.6);
+  color: rgba(242, 237, 230, 0.6);
   letter-spacing: 0.02em;
 }
 
@@ -6398,15 +6552,15 @@
 
 /* Form embed wrapper — no heavy border, just subtle separation */
 .lp-form-embed {
-  background: rgba(242,237,230,0.04);
-  border: 1px solid rgba(184,146,42,0.15);
+  background: rgba(242, 237, 230, 0.04);
+  border: 1px solid rgba(184, 146, 42, 0.15);
   padding: 2rem;
 }
 
 /* ── Footer ── */
 .lp-footer {
   background: var(--hp-charcoal);
-  border-top: 1px solid rgba(242,237,230,0.08);
+  border-top: 1px solid rgba(242, 237, 230, 0.08);
   padding: 2.5rem clamp(1.5rem, 6vw, 5rem);
 }
 
@@ -6420,20 +6574,20 @@
 }
 
 .lp-footer-brand {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-size: 0.65rem;
   font-weight: 500;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: rgba(242,237,230,0.4);
+  color: rgba(242, 237, 230, 0.4);
   margin: 0;
 }
 
 .lp-footer-contact {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-size: 0.82rem;
   font-weight: 300;
-  color: rgba(242,237,230,0.55);
+  color: rgba(242, 237, 230, 0.55);
   margin: 0;
 }
 
@@ -6442,10 +6596,10 @@
 }
 
 .lp-footer-link {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-size: 0.82rem;
   font-weight: 300;
-  color: rgba(242,237,230,0.45);
+  color: rgba(242, 237, 230, 0.45);
   text-decoration: none;
   transition: color 0.2s ease;
 }
@@ -6455,11 +6609,11 @@
 }
 
 .lp-footer-disclaimer {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-size: 0.72rem;
   font-weight: 300;
   line-height: 1.65;
-  color: rgba(242,237,230,0.3);
+  color: rgba(242, 237, 230, 0.3);
   margin: 0.5rem 0 0;
   max-width: 800px;
   margin-left: auto;

@@ -603,8 +603,8 @@ export default function Home() {
             that works for you.
           </h2>
           <p className="hp-owning-intro reveal reveal-delay-2">
-            Three purchase structures are available. Each is designed to give
-            you flexibility across the 24-month construction period, with full
+            Two purchase structures are available. Each is designed to give you
+            flexibility across the 24-month construction period, with full
             ownership — and full management programme activation — from the date
             of handover in 2028.
           </p>
@@ -704,49 +704,6 @@ export default function Home() {
               <span className="hp-plan-callout-label">Spread over</span>
               <span className="hp-plan-callout-number">24</span>
               <span className="hp-plan-callout-label">months</span>
-            </div>
-          </div>
-
-          {/* Option 3 */}
-          <div
-            className="hp-plan-card hp-plan-card--highlight reveal hp-plan-card--riffle"
-            data-plan-num="03"
-            style={{ "--riffle-delay": "240ms" } as React.CSSProperties}
-          >
-            <div className="hp-plan-card-header">
-              <span className="hp-plan-number">Maximum Value</span>
-              <h3 className="hp-plan-title">
-                Cash &amp;
-                <br />
-                Discount
-              </h3>
-              {/* Curlicue accent */}
-              <div className="hp-curlicue-accent" aria-hidden="true">
-                <span className="hp-curlicue-rule" />
-                <HolaCurlicue size="md" color="gold" />
-                <span className="hp-curlicue-rule" />
-              </div>
-            </div>
-            <ul className="hp-plan-rows">
-              <li className="hp-plan-row">
-                <span className="hp-plan-pct">90%</span>
-                <span className="hp-plan-desc">
-                  Upfront payment on signing.
-                </span>
-              </li>
-              <li className="hp-plan-row hp-plan-row--discount">
-                <span className="hp-plan-pct hp-plan-pct--discount">10%</span>
-                <span className="hp-plan-desc">
-                  Discount applied to total purchase price.
-                </span>
-              </li>
-            </ul>
-            <div className="hp-plan-callout">
-              <span className="hp-plan-callout-label">Save</span>
-              <span className="hp-plan-callout-number hp-plan-callout-number--gold">
-                10%
-              </span>
-              <span className="hp-plan-callout-label">on total price</span>
             </div>
           </div>
         </div>
@@ -1178,23 +1135,9 @@ export default function Home() {
         {/* Divider */}
         <div className="hp-footer-divider" aria-hidden="true" />
 
-        {/* Bottom: copyright left, machete centred */}
+        {/* Bottom: copyright */}
         <div className="hp-footer-bottom">
           <p className="hp-footer-credit">&copy; 2026 Floton Africa Limited</p>
-          <a
-            href="https://www.machete.co.za"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hp-footer-machete"
-            aria-label="Machete — visit website"
-          >
-            <img
-              src="/manus-storage/machete-grey_858f02e4.png"
-              alt="Machete"
-              className="hp-footer-machete-img"
-            />
-          </a>
-          <div className="hp-footer-bottom-spacer" aria-hidden="true" />
         </div>
       </footer>
 
