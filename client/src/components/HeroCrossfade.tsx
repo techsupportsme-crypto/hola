@@ -12,44 +12,38 @@
  *   80–180vh:  Panel 2 fading in (80–100vh), fully visible (100–160vh), fading out (160–180vh)
  *   160–300vh: Panel 3 fading in (160–180vh), fully visible thereafter
  */
-import { useEffect, useRef, useCallback } from 'react';
-import { WaveHeadline } from './WaveHeadline';
+import { useEffect, useRef, useCallback } from "react";
+import { WaveHeadline } from "./WaveHeadline";
 
 interface HeroPanel {
   src: string;
   alt: string;
   lines: { text: string }[];
-  loading?: 'eager' | 'lazy';
+  loading?: "eager" | "lazy";
 }
 
 const PANELS: HeroPanel[] = [
   {
-    src: '/manus-storage/Kitesurfhero-4x_4ad00f95.webp',
-    alt: 'Kitesurf at sunset on the Indian Ocean, Paje, Zanzibar',
+    src: "/manus-storage/Kitesurfhero-4x_4ad00f95.webp",
+    alt: "Kitesurf at sunset on the Indian Ocean, Paje, Zanzibar",
     lines: [
-      { text: 'Six in the morning.' },
-      { text: 'The tide is in.' },
-      { text: 'And the kites are up.' },
+      { text: "Seven in the morning." },
+      { text: "The tide is in." },
+      { text: "And the kites are up." },
     ],
-    loading: 'eager',
+    loading: "eager",
   },
   {
-    src: '/manus-storage/brochure-cover-villa_a37d0940.jpg',
-    alt: 'Contemporary villa exterior at sunset — tropical landscaping, Hola Paje, Paje, Zanzibar',
-    lines: [
-      { text: '500 metres away.' },
-      { text: 'Your own private villa.' },
-    ],
-    loading: 'lazy',
+    src: "/manus-storage/brochure-cover-villa_a37d0940.jpg",
+    alt: "Contemporary villa exterior at sunset — tropical landscaping, Hola Paje, Paje, Zanzibar",
+    lines: [{ text: "500 metres away." }, { text: "Your own private villa." }],
+    loading: "lazy",
   },
   {
-    src: '/manus-storage/hero-aerial_b1b70375.png',
-    alt: 'Aerial view of the Hola Paje development with kite surfers on the Indian Ocean and Paje beach, Zanzibar',
-    lines: [
-      { text: 'Paje, Zanzibar.' },
-      { text: 'Village living perfected.' },
-    ],
-    loading: 'lazy',
+    src: "/manus-storage/hero-aerial_b1b70375.png",
+    alt: "Aerial view of the Hola Paje development with kite surfers on the Indian Ocean and Paje beach, Zanzibar",
+    lines: [{ text: "Paje, Zanzibar." }, { text: "Village living perfected." }],
+    loading: "lazy",
   },
 ];
 
@@ -119,34 +113,34 @@ export function HeroCrossfade() {
   const resetHeadline = useCallback((index: number) => {
     const wrap = headlineRefs.current[index];
     if (!wrap) return;
-    const lineEls = wrap.querySelectorAll<HTMLElement>('.wh-line');
-    const ruleEl = wrap.querySelector<HTMLElement>('.wh-rule');
-    lineEls.forEach((el) => {
-      el.style.transitionDelay = '0ms';
-      el.classList.remove('wh-line--visible');
+    const lineEls = wrap.querySelectorAll<HTMLElement>(".wh-line");
+    const ruleEl = wrap.querySelector<HTMLElement>(".wh-rule");
+    lineEls.forEach(el => {
+      el.style.transitionDelay = "0ms";
+      el.classList.remove("wh-line--visible");
     });
     if (ruleEl) {
-      ruleEl.style.transitionDelay = '0ms';
-      ruleEl.classList.remove('wh-rule--visible');
+      ruleEl.style.transitionDelay = "0ms";
+      ruleEl.classList.remove("wh-rule--visible");
     }
   }, []);
 
   const triggerHeadline = useCallback((index: number) => {
     const wrap = headlineRefs.current[index];
     if (!wrap) return;
-    const lineEls = wrap.querySelectorAll<HTMLElement>('.wh-line');
-    const ruleEl = wrap.querySelector<HTMLElement>('.wh-rule');
+    const lineEls = wrap.querySelectorAll<HTMLElement>(".wh-line");
+    const ruleEl = wrap.querySelector<HTMLElement>(".wh-rule");
     // Shorter delay for crossfade transitions (panels 2+), longer for initial load (panel 1)
     const baseDelay = index === 0 ? 600 : 150;
     const stagger = 260;
     lineEls.forEach((el, i) => {
       el.style.transitionDelay = `${baseDelay + i * stagger}ms`;
-      el.classList.add('wh-line--visible');
+      el.classList.add("wh-line--visible");
     });
     if (ruleEl) {
       const ruleDelay = baseDelay + (lineEls.length - 1) * stagger + 380;
       ruleEl.style.transitionDelay = `${ruleDelay}ms`;
-      ruleEl.classList.add('wh-rule--visible');
+      ruleEl.classList.add("wh-rule--visible");
     }
   }, []);
 
@@ -203,13 +197,13 @@ export function HeroCrossfade() {
     triggerHeadline(0);
 
     const scrollEl = document.documentElement;
-    scrollEl.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('scroll', onScroll, { passive: true });
+    scrollEl.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("scroll", onScroll, { passive: true });
     onScroll(); // initial paint
 
     return () => {
-      scrollEl.removeEventListener('scroll', onScroll);
-      window.removeEventListener('scroll', onScroll);
+      scrollEl.removeEventListener("scroll", onScroll);
+      window.removeEventListener("scroll", onScroll);
       cancelAnimationFrame(rafRef.current);
     };
   }, [triggerHeadline, resetHeadline]);
@@ -226,7 +220,9 @@ export function HeroCrossfade() {
         {PANELS.map((panel, i) => (
           <div
             key={i}
-            ref={(el) => { panelRefs.current[i] = el; }}
+            ref={el => {
+              panelRefs.current[i] = el;
+            }}
             className="hp-crossfade-panel"
             data-panel={i}
             style={{ opacity: i === 0 ? 1 : 0 }}
@@ -236,23 +232,28 @@ export function HeroCrossfade() {
               src={panel.src}
               alt={panel.alt}
               className="hp-seq-bg"
-              fetchPriority={panel.loading === 'eager' ? 'high' : undefined}
+              fetchPriority={panel.loading === "eager" ? "high" : undefined}
               loading={panel.loading}
             />
             <div className="hp-seq-overlay" aria-hidden="true" />
             <div className="hp-seq-content hp-seq-content--headline-only">
               {/* headlineRefs tracks the wh-wrap inside WaveHeadline */}
-              <div ref={(el) => { headlineRefs.current[i] = el; }}>
+              <div
+                ref={el => {
+                  headlineRefs.current[i] = el;
+                }}
+              >
                 <WaveHeadline
-                  as={i === 0 ? 'h1' : 'h2'}
+                  as={i === 0 ? "h1" : "h2"}
                   lines={panel.lines}
-                  baseDelay={-1} /* disabled — triggered manually via triggerHeadline */
+                  baseDelay={
+                    -1
+                  } /* disabled — triggered manually via triggerHeadline */
                   stagger={280}
                   showRule={false}
                 />
               </div>
             </div>
-
           </div>
         ))}
       </div>
